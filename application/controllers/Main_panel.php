@@ -18,6 +18,12 @@ class Main_panel extends CI_Controller {
         $this->load->helper('url');
     }
     public function index(){
-        $this->load->view('main_panel_view');
+        
+        if($this->session->userdata('logged')){ //ถ้ามี session
+            $this->load->view('main_panel_view');
+        }else{
+            
+        }
+        
     }
 }
