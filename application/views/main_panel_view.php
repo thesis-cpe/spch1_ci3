@@ -176,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="icon">
                                             <i class="fa fa-briefcase"></i>
                                         </div>
-                                        <a href="add-customer.php" class="small-box-footer">
+                                        <a href="main_data/add_customer" class="small-box-footer">
                                             เพิ่มข้อมูลกิจการของลูกค้าเข้าสู่ระบบ <i class="fa fa-arrow-circle-right"></i>
                                         </a>
                                     </div>
@@ -192,7 +192,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="icon">
                                             <i class="fa fa-user-plus"></i>
                                         </div>
-                                        <a href="add-employee.php" class="small-box-footer">
+                                        <a href="main_data/add_employee" class="small-box-footer">
                                             เพิ่มข้อมูลพนักงานเข้าสู่ระบบ <i class="fa fa-arrow-circle-right"></i>
                                         </a>
                                     </div>

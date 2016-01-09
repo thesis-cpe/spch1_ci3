@@ -1,7 +1,7 @@
 
 
     <!-- Logo -->
-    <a href="index.php" class="logo">
+    <a href="<?php echo base_url()?>index.php/main_panel" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>PC</span>
       <!-- logo for regular state and mobile devices -->
@@ -30,14 +30,14 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="#" class="user-image" alt="User Image">
+              <img src="<?php echo base_url();?>dashboard/lte/dist/img/avatar5.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">ชื่อ</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                  <img src="#" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url();?>dashboard/lte/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
                      ตำแหน่ง

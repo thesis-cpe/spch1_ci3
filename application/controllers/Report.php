@@ -27,6 +27,6 @@ class Report extends CI_Controller {
     }
     
     public function employee(){
-        $this->load->view('report_customer_view');
+        $this->load->view('report_employee_view');
     }
 }

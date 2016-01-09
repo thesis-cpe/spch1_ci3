@@ -19,4 +19,12 @@ class Main_data extends CI_Controller {
     public function index(){
         $this->load->view('main_data_view');
     }
+    
+    public function add_customer(){
+        $this->load->view('add_customer_view');
+    }
+    
+     public function add_employee(){
+        $this->load->view('add_employee_view');
+    }
 }
