@@ -6,11 +6,6 @@ class Users_model extends CI_Model {
 	}
 	function _checkUser($username, $password) //ตรวจสอบชื่อผู้ใช้งานและรหัสผ่าน
 	{
-		/*$result = $this->db->where('username', $username)
-				   ->where('password', md5($password))
-				   ->count_all_results('users');
-		return $result > 0 ? TRUE : FALSE; */
-		
 		$result = $this->db->where('em_number', $username)
 		->where('em_password', md5($password))
 		->count_all_results('employee');
