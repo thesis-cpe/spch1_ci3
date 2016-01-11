@@ -12,21 +12,36 @@
  * @author Administrator
  */
 class Report extends CI_Controller {
-    
+
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
     }
-    
-    public function index(){
-        
+
+    public function index() {
+        if ($this->session->userdata('logged')) {
+            //ใส่ code ส่วนนี้
+        } else {
+            $this->load->view('template/404anime');
+        }
     }
-    
-    public function customer(){
-        $this->load->view('report_customer_view');
+
+    public function customer() {
+
+        if ($this->session->userdata('logged')) {
+            $this->load->view('report_customer_view');
+        } else {
+            $this->load->view('template/404anime');
+        }
     }
-    
-    public function employee(){
-        $this->load->view('report_employee_view');
+
+    public function employee() {
+
+        if ($this->session->userdata('logged')) {
+            $this->load->view('report_employee_view');
+        } else {
+            $this->load->view('template/404anime');
+        }
     }
+
 }

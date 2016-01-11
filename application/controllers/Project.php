@@ -12,13 +12,18 @@
  * @author Administrator
  */
 class Project extends CI_Controller {
-    
+
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
     }
-    
-    public function index(){
-        $this->load->view('project_view');
+
+    public function index() {
+        if ($this->session->userdata('logged')) {
+            $this->load->view('project_view');
+        } else {
+            $this->load->view('template/404anime');
+        }
     }
+
 }

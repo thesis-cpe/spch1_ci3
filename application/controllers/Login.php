@@ -15,9 +15,7 @@ class Login extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('users_model','users');
-       
-        
+        $this->load->model('users_model', 'users');
     }
 
     public function index() {
@@ -34,23 +32,43 @@ class Login extends CI_Controller {
     }
 
     public function check_auth() {
-        
-        if($this->input->post('btnLogin')){
-            /*รับค่าตัวแปร*/
-            $username = $this->input->post('user');
-            $password = $this->input->post('pass');
-            $check = $this->users->_checkUser($username, $password);
-            if($check){ //ชื่อผู้ใช้รหัสถูกต้อง
-                $dataEm = array(
-                    'username' => '$username',
-                    'logged'	=> TRUE
-                );
-                $this->session->set_userdata($dataEm); //สร้างตัวแปร Session
-                redirect('login');
-            }else{ //ชื่อผู้ใช้รหัสไม่ถูกต้อง
-                redirect('login/sigin', 'refresh');
-            }
-        }
+
+        if ($this->input->post('btnLogin')) {
+
+            //ifใหญ่ g-recaptcha
+            if ($this->input->post('g-recaptcha-response') && $this->input->post('g-recaptcha-response')) {
+                $secret = "6LcfABUTAAAAAIxe6Xa5-LWOniOSZ4G0nzSeNrIX";
+                //$ip = $_SERVER['REMOTE_ADDR'];
+                $ip = $this->input->server('REMOTE_ADDR');
+                //$captcha = $_POST['g-recaptcha-response'];
+                $captcha = $this->input->post('g-recaptcha-response');
+                $rsp = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha&remoteip$ip");
+                
+                $arr = json_decode($rsp, TRUE);
+                if ($arr['success']) {
+                    //ผ่านการตรวจสอบว่าเป็นคน
+                    /* รับค่าตัวแปร */
+                    $username = $this->input->post('user');
+                    $password = $this->input->post('pass');
+                    $check = $this->users->_checkUser($username, $password);
+                    if ($check) { //ชื่อผู้ใช้รหัสถูกต้อง
+                        $dataEm = array(  //ตัวแปร session
+                            'username' => '$username',
+                            'logged' => TRUE
+                        );
+                        $this->session->set_userdata($dataEm); //สร้างตัวแปร Session
+                        redirect('login');
+                    } else { //ชื่อผู้ใช้รหัสไม่ถูกต้อง
+                       //redirect('login/sigin', 'refresh');
+                       $this->load->view('template/incorect_user'); 
+                    }
+                } else {
+                    echo 'SPAM';
+                }
+            }else{  //ไม่มีการกด recaptcha
+                $this->load->view('template/404recaptcha');
+            }//ตรวจ recapthap  //เครดิต https://www.youtube.com/watch?v=pPITBtE45bg
+        }//ตรวจกดปุ่ม login
     }
 
     public function sigout() {
