@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0047)http://themes.creativedok.com/worker-lost/blue/ -->
+
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>access is denied</title>
         <meta charset="utf-8">
@@ -23,7 +23,7 @@
             <div class="col-md-6 col-sm-6 content">
                 <h2 class="heading">OOPS!</h2>
                 <p>I THINK I AM LOST</p>
-                <p><small>Sorry, we can't find the page you're looking for. While we look into it. because access is denied. You are human or spam ? Please confirm by reCAPTCHA..</small></p>
+                <p><small>Sorry, we can't find the page you're looking for. While we look into it. because access is denied. You are human or spam? Please confirm by reCAPTCHA..</small></p>
                 <a href="<?php echo base_url()?>index.php/login/sigin" class="button"> Back to login</a>
             </div>
         </div>

@@ -70,7 +70,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <?php include_once '/template/side_bar.php'; ?>
                 <!-- /.sidebar -->
             </aside>
-
+     <!--  <form action="" method="post">      -->  
+     <?php echo form_open_multipart('main_data/insert_customer') ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
@@ -84,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="active">เพิ่มพนักงาน</li>
                     </ol>
                 </section>
-
+                
                 <!-- Main content -->
                 <section class="content">
                     <div class="row">
@@ -254,7 +255,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <i class="fa fa-phone"></i>
                                         </div>
-                                        <input name="txtEmailFriend" type="email" class="form-control" placeholder="หมายเลขโทรศัพท์">
+                                        <input name="txtTelFriend" type="text" class="form-control" placeholder="หมายเลขโทรศัพท์">
                                     </div>
                                 </div>
                             </div>
@@ -350,10 +351,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             </div>
 
-
-
-
-                            <!--.เงื่อนไขวันหยุดและสวัสดิการ+หมายเหตุ-->
+                        <!--.เงื่อนไขวันหยุดและสวัสดิการ+หมายเหตุ-->
 
                         </div>
                         <!-- /.box-body -->
@@ -361,10 +359,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!--Div Footer-->
                         <div class="box-footer">
                             <button type="reset" class="btn btn-default">ล้างข้อมูล</button>
-                            <button type="submit" class="btn btn-success pull-right">บันทึก</button>
+                            <input type="submit" name="btnsubmit" class="btn btn-success pull-right" value="บันทึก"/>
                         </div>
                         <!--.Div Footer-->
-
+                
+                 
                     </div>
 
 
@@ -372,10 +371,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <!-- .Your Page Content Here -->
                 </section>
+                
+                
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
-
+       </form><!--Form-->
             <!-- Main Footer -->
             <?php include_once '/template/footer.php'; ?>
             <!-- .Main Footer -->

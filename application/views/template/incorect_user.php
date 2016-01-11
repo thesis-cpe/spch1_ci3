@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0047)http://themes.creativedok.com/worker-lost/blue/ -->
+
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>access is denied</title>
         <meta charset="utf-8">
