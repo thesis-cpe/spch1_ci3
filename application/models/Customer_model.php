@@ -46,4 +46,17 @@ class Customer_model extends CI_Model {
         $this->db->insert('customer', $dataCustomer);
     }
 
+    public function _sel_customer_id($tax_number) {
+
+        $query = $this->db->select('customer_id')
+                        ->where('customer_tax_id', $tax_number)
+                        ->get('customer')->result();
+
+        foreach ($query as $row){
+            $customerId =   $row->customer_id;
+        }
+        
+        return $customerId;
+    }
+
 }

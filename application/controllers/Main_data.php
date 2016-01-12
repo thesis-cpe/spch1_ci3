@@ -101,8 +101,12 @@ class Main_data extends CI_Controller {
             'txtNameCon' => $this->input->post('txtNameCon[]'), //ติดสองตัวล่างเดี๋ยวดูได้จาก code เก่า
             'selStatusCondition' => $this->input->post('selStatusCondition[]')
         );
-        
+        $taxNumber = $this->input->post('txtNumTax');
         $callModelCustomer = $this->customer->_insert_customer($customer);
+        
+      echo  $tbCustomerId = $this->customer->_sel_customer_id($taxNumber);
+        
+        
     }
 
 }
