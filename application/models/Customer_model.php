@@ -38,10 +38,7 @@ class Customer_model extends CI_Model {
             'customer_note' => $customer['txtCustomerMark']
         );
 
-        $dataConditionSign = array(
-            'txtNameCon' => $customer['txtNameCon'], /* อาเรย์ข้างใน */
-            'selStatusCondition' => $customer['selStatusCondition'] /* อาเรย์ข้างใน */
-        );
+
 
         $this->db->insert('customer', $dataCustomer);
     }
@@ -52,11 +49,27 @@ class Customer_model extends CI_Model {
                         ->where('customer_tax_id', $tax_number)
                         ->get('customer')->result();
 
-        foreach ($query as $row){
-            $customerId =   $row->customer_id;
+        foreach ($query as $row) {
+            $customerId = $row->customer_id;
         }
-        
+
         return $customerId;
+    }
+
+    public function _insert_sign($customer, $customer_id, $count) {
+        $dataConditionSign = array(
+            'txtNameCon' => $customer['txtNameCon'], /* อาเรย์ข้างใน */
+            'selStatusCondition' => $customer['selStatusCondition'] /* อาเรย์ข้างใน */
+        );
+
+        for ($i = 0; $i < $count; $i++) { //วนนำข้อมูลเข้า
+            // $dataConditionSign['txtNameCon']['$i'];
+            //$dataConditionSign['selStatusCondition']['$i'];
+            $query = $this->db->set('sing_name', $dataConditionSign['txtNameCon'][$i])
+                    ->set('sign_status', $dataConditionSign['selStatusCondition'][$i])
+                    ->set('customer_id', $customer_id)
+                    ->insert('sign');
+        }
     }
 
 }
