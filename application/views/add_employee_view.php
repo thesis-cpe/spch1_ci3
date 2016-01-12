@@ -71,7 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- /.sidebar -->
             </aside>
      <!--  <form action="" method="post">      -->  
-     <?php echo form_open_multipart('main_data/insert_customer') ?>
+     <?php echo form_open_multipart('main_data/insert_emp') ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->

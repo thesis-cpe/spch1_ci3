@@ -17,7 +17,7 @@ class Users_model extends CI_Model {
         return $result > 0 ? TRUE : FALSE;
     }
 
-    function _insert_user($txtName, $txtEmName, $txtEmlastName, $selStatus, $selRole, $txtEmId, $txtAuditId, $txtPassword, $txtNationId, $selMarieStatus, $txtareaAddr1, $txtareaAddr2, $txtTel, $txtEmail, $txtNameFriend, $txtTelFriend, $selGaduLevel, $txtMajor, $txtGpa, $txtInstitute, $datInWork, $txtCoast, $txtRateCoast, $txtWorkDay, $txtareaCondition, $txtareaMark) {
+    function _insert_em($txtName, $txtEmName, $txtEmlastName, $selStatus, $selRole, $txtEmId, $txtAuditId, $txtPassword, $txtNationId, $selMarieStatus, $txtareaAddr1, $txtareaAddr2, $txtTel, $txtEmail, $txtNameFriend, $txtTelFriend, $selGaduLevel, $txtMajor, $txtGpa, $txtInstitute, $datInWork, $txtCoast, $txtRateCoast, $txtWorkDay, $txtareaCondition, $txtareaMark) {
 
         $txtPasswordSecret = $txtPassword . "bmpkobroTN"; //ต่อสตริง
 
@@ -50,8 +50,12 @@ class Users_model extends CI_Model {
         $this->db->insert('employee', $dataEmployee);
     }
 
-    function _insertpic() {
+    
+
+    function _insert_employee_file() {
         
     }
+    
+    
 
 }

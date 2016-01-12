@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.5 -->
-        <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>dashboard/lte/bootstrap/css/bootstrap.min.css">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
         <!-- <link rel="stylesheet" href="dist/css/font-awesome.min.css"> -->
@@ -19,12 +19,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> 
         <!-- <link rel="stylesheet" href="dist/css/ionicons.min.css"> -->
         <!-- Theme style -->
-        <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>dashboard/lte/dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
               page. However, you can choose any other skin. Make sure you
               apply the skin class to the body tag so the changes take effect.
         -->
-        <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/dist/css/skins/skin-blue.min.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>dashboard/lte/dist/css/skins/skin-blue.min.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,9 +34,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <![endif]-->
 
         <!--Datpicker-->
-        <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/plugins/datepicker/datepicker3.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>dashboard/lte/plugins/datepicker/datepicker3.css">
         <!--Googlemap-->
-        <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/plugins/googleMap/googlemap.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>dashboard/lte/plugins/googleMap/googlemap.css">
     </head>
     <!--
     BODY TAG OPTIONS:
@@ -82,14 +82,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <small></small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="<?php echo base_url()?>index.php/main_data"><i class="fa fa-dashboard"></i> ข้อมูลหลัก</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/main_data"><i class="fa fa-dashboard"></i> ข้อมูลหลัก</a></li>
                         <li class="active">เพิ่มข้อมูลลูกค้า</li>
                     </ol>
                 </section>
 
                 <!-- Main content -->
                 <section class="content">
-
+                    <?php echo form_open_multipart('main_data/insert_customer') ?>
                     <!-- Your Page Content Here -->
                     <!--ข้อมูลองค์กร-->
                     <div class="box box-info">
@@ -198,8 +198,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-sm-2">
                                     <label>&nbsp;</label>
                                     <ul class="list-inline">
-                                        <li><button id="btnAdd" name="btnAdd" class="btn btn-block btn-default btm-sm"><span class="fa fa-plus"></span></button></li>
-                                        <li><button id="btnDel" name="btnDel" class="btn btn-block btn-default btm-sm"><span class="fa fa-minus"></span></button></li>
+                                        <li><button type="button" id="btnAdd" name="btnAdd" class="btn btn-block btn-default btm-sm"><span class="fa fa-plus"></span></button></li>
+                                        <li><button type="button" id="btnDel" name="btnDel" class="btn btn-block btn-default btm-sm"><span class="fa fa-minus"></span></button></li>
                                     </ul> 
                                 </div>
                                 <div class="col-sm-5">
@@ -232,13 +232,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                       <label>รูปถ่าย:</label>
-                                       <input type="file" class="form-control" name="fileImgCustomer">
+                                    <label>รูปถ่าย:</label>
+                                    <input type="file" class="form-control" name="fileImgCustomer">
                                 </div>
                             </div>
-                            
+
                             <div class="row">
-                                
+
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>  <!--รับค่าจาก GoogleMap-->
                                     <input name="txtLat" id="lat_value" class="form-control" placeholder="ละติจูด(ค่าอัตโนมัติเมื่อลากหมุด)" />
@@ -257,16 +257,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!--แผนที่-->
                                 <div class="col-sm-6">
                                     <label>แผนที่:</label>
-                                     <div id="map_canvas"></div>
+                                    <div id="map_canvas"></div>
                                 </div>
-                              <!--รูป-->
+                                <!--รูป-->
                                 <div class="col-sm-6">
                                     <label>รูปถ่าย:</label>
-                                    <img title="รูปถ่ายสำนักงาน" class="img-responsive" style="height: 350px; width: 100%;" src="<?php echo base_url();?>dashboard/lte/dist/img/boxed-bg.png">
+                                    <img title="รูปถ่ายสำนักงาน" class="img-responsive" style="height: 350px; width: 100%;" src="<?php echo base_url(); ?>dashboard/lte/dist/img/boxed-bg.png">
                                 </div>
-                              
+
                             </div>
-                            
+
                         </div>
                         <!--Div Footer-->
                         <div class="box-footer">
@@ -277,10 +277,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     </div>
                     <!-- /.box-body -->
-                    </
+        
 
 
-
+                    </form>
                     <!-- .Your Page Content Here -->
                 </section>
                 <!-- /.content -->
@@ -301,21 +301,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- REQUIRED JS SCRIPTS -->
 
         <!-- jQuery 2.1.4 -->
-        <script src="<?php echo base_url();?>dashboard/lte/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <script src="<?php echo base_url(); ?>dashboard/lte/plugins/jQuery/jQuery-2.1.4.min.js"></script>
         <!-- Bootstrap 3.3.5 -->
-        <script src="<?php echo base_url();?>dashboard/lte/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url(); ?>dashboard/lte/bootstrap/js/bootstrap.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="<?php echo base_url();?>dashboard/lte/dist/js/app.min.js"></script>
+        <script src="<?php echo base_url(); ?>dashboard/lte/dist/js/app.min.js"></script>
 
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
              Both of these plugins are recommended to enhance the
              user experience. Slimscroll is required when using the
              fixed layout. -->
         <!--Datpicker-->
-        <script src="<?php echo base_url();?>dashboard/lte/plugins/datepicker/bootstrap-datepicker.js"></script>
-       <!--GoogleMap-->
-       <script src="<?php echo base_url();?>dashboard/lte/plugins/googleMap/googlemap.js"></script>
-       
+        <script src="<?php echo base_url(); ?>dashboard/lte/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <!--GoogleMap-->
+        <script src="<?php echo base_url(); ?>dashboard/lte/plugins/googleMap/googlemap.js"></script>
+
 
         <!--add element-->
         <script>

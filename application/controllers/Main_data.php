@@ -16,6 +16,7 @@ class Main_data extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('users_model', 'users');
+        $this->load->model('Customer_model', 'customer');
     }
 
     public function index() {
@@ -42,11 +43,12 @@ class Main_data extends CI_Controller {
         }
     }
 
-    public function insert_customer() {
+    public function insert_emp() {
         if ($this->input->post('btnsubmit')) {
 
+
             /* คำนำหน้า */ $txtName = $this->input->post('selTitle');
-            /* ชื่อ */  $txtEmName = $this->input->post('txtEmName');
+            /* ชื่อ */ $txtEmName = $this->input->post('txtEmName');
             /* นามสกุล */ $txtEmlastName = $this->input->post('txtEmLastName');
             /* สถานะการทำงาน */ $selStatus = $this->input->post('selStatus');
             /* สถานะในระบบ */ $selRole = $this->input->post('selRole');
@@ -72,9 +74,35 @@ class Main_data extends CI_Controller {
             /* วัน / เดือน */ $txtWorkDay = $this->input->post('txtWorkDay');
             /* วันหยุด */ $txtareaCondition = $this->input->post('txtareaCondition');
             /* หมายเหตุ */ $txtareaMark = $this->input->post('txtareaMark');
-
-            $callModel = $this->users->_insert_user($txtName, $txtEmName, $txtEmlastName, $selStatus, $selRole, $txtEmId, $txtAuditId, $txtPassword, $txtNationId, $selMarieStatus, $txtareaAddr1, $txtareaAddr2, $txtTel, $txtEmail, $txtNameFriend, $txtTelFriend, $selGaduLevel, $txtMajor, $txtGpa, $txtInstitute, $datInWork, $txtCoast, $txtRateCoast, $txtWorkDay, $txtareaCondition, $txtareaMark);
+            $callModel = $this->users->_insert_em($txtName, $txtEmName, $txtEmlastName, $selStatus, $selRole, $txtEmId, $txtAuditId, $txtPassword, $txtNationId, $selMarieStatus, $txtareaAddr1, $txtareaAddr2, $txtTel, $txtEmail, $txtNameFriend, $txtTelFriend, $selGaduLevel, $txtMajor, $txtGpa, $txtInstitute, $datInWork, $txtCoast, $txtRateCoast, $txtWorkDay, $txtareaCondition, $txtareaMark);
         }
+    }
+
+    public function insert_customer() {
+        /* รับค่าตัวแปร */
+        $customer = array(
+            'txtCusname' => $this->input->post('txtCusname'),
+            'selCusStatus' => $this->input->post('selCusStatus'),
+            'txtNumTax' => $this->input->post('txtNumTax'),
+            'txtNumBand' => $this->input->post('txtNumBand'),
+            'txtAddrTh' => $this->input->post('txtAddrTh'),
+            'txtAddrEn' => $this->input->post('txtAddrEn'),
+            'txtCusTel' => $this->input->post('txtCusTel'),
+            'txtCusFax' => $this->input->post('txtCusFax'),
+            'txtCusWeb' => $this->input->post('txtCusWeb'),
+            'txtCusMail' => $this->input->post('txtCusMail'),
+            'txtConditionNam' => $this->input->post('txtConditionNam'),
+            'txtContractName' => $this->input->post('txtContractName'),
+            'txtContractTel' => $this->input->post('txtContractTel'),
+            'txtContractMail' => $this->input->post('txtContractMail'),
+            'txtLat' => $this->input->post('txtLat'),
+            'txtLong' => $this->input->post('txtLong'),
+            'txtCustomerMark' => $this->input->post('txtCustomerMark'),
+            'txtNameCon' => $this->input->post('txtNameCon[]'), //ติดสองตัวล่างเดี๋ยวดูได้จาก code เก่า
+            'selStatusCondition' => $this->input->post('selStatusCondition[]')
+        );
+        
+        $callModelCustomer = $this->customer->_insert_customer($customer);
     }
 
 }
