@@ -15,6 +15,7 @@ class Customer_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
+        $this->load->library('upload');
     }
 
     public function _insert_customer($customer) {
