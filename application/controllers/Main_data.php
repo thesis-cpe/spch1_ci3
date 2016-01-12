@@ -101,14 +101,12 @@ class Main_data extends CI_Controller {
             'txtNameCon' => $this->input->post('txtNameCon[]'), //ติดสองตัวล่างเดี๋ยวดูได้จาก code เก่า
             'selStatusCondition' => $this->input->post('selStatusCondition[]')
         );
-        
-        $callModelCustomer = $this->customer->_insert_customer($customer);//นำเข้าข้อมูล
+
+        $callModelCustomer = $this->customer->_insert_customer($customer); //นำเข้าข้อมูล
         $tbCustomerId = $this->customer->_sel_customer_id($customer['txtNumTax']); //เลื่อก customer_id ที่ตรงกับ txtNumTax
         //insert ลง sign
-        $countofSign    = count($customer['txtNameCon']);  //นับจำนวนผู้ลงนาม
-        $insertTosign =  $this->customer->_insert_sign($customer,$tbCustomerId, $countofSign); //เอาลง tb sign
-        
-        
+        $countofSign = count($customer['txtNameCon']);  //นับจำนวนผู้ลงนาม
+        $insertTosign = $this->customer->_insert_sign($customer, $tbCustomerId, $countofSign); //เอาลง tb sign
     }
 
 }
