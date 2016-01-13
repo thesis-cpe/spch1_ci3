@@ -30,7 +30,8 @@ class Project extends CI_Controller {
     }
 
     public function add_project($customer_id) {
-        echo $customer_id; //เอาไปเพิ่มโครงการ
+      //เอาไปเพิ่มโครงการ
+        $this->load->view('add_project_view');
     }
     
     public function project_customer($customer_id){
