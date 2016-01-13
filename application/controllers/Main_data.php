@@ -79,6 +79,15 @@ class Main_data extends CI_Controller {
     }
 
     public function insert_customer() {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 1000;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 1000;
+        $this->upload->initialize($config);
+        $this->load->library('upload', $config);
+
+
         /* รับค่าตัวแปร */
         $customer = array(
             'txtCusname' => $this->input->post('txtCusname'),
@@ -107,6 +116,20 @@ class Main_data extends CI_Controller {
         //insert ลง sign
         $countofSign = count($customer['txtNameCon']);  //นับจำนวนผู้ลงนาม
         $insertTosign = $this->customer->_insert_sign($customer, $tbCustomerId, $countofSign); //เอาลง tb sign
+        /* Upload */
+
+        if (!empty($_FILES['fileImgCustomer']['name'])) {  //ตรวจว่าฟิวไฟล์ว่างหรือไม่
+            if (!$this->upload->do_upload('fileImgCustomer')) {
+                $error = array('error' => $this->upload->display_errors());
+                print_r($error);
+            } else {
+
+                $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
+                $file_name = $upload_data['file_name'];
+                /* insertFile */
+                $insertPhotoFile = $this->customer->_insert_file($file_name, $tbCustomerId);
+            }
+        }
     }
 
 }

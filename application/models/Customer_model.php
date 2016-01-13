@@ -73,4 +73,12 @@ class Customer_model extends CI_Model {
         }
     }
 
+    public function _insert_file($file_name, $customer_id) {
+
+        $query = $this->db->set('file_name', 'รูปถ่ายลูกค้า')
+                ->set('file_path', $file_name)
+                ->set('customer_id', $customer_id)
+                ->insert('file');
+    }
+
 }
