@@ -12,7 +12,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.5 -->
-        <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/bootstrap/css/bootstrap.min.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/bootstrap/css/bootstrap.min.css">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
         <!-- <link rel="stylesheet" href="dist/css/font-awesome.min.css"> -->
@@ -20,14 +20,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> 
         <!-- <link rel="stylesheet" href="dist/css/ionicons.min.css"> -->
         <!-- DataTables -->
-        <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/plugins/datatables/dataTables.bootstrap.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/plugins/datatables/dataTables.bootstrap.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/dist/css/AdminLTE.min.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
               page. However, you can choose any other skin. Make sure you
               apply the skin class to the body tag so the changes take effect.
         -->
-        <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/dist/css/skins/skin-blue.min.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/dist/css/skins/skin-blue.min.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,13 +61,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Main Header -->
             <header class="main-header">
-                <?php include_once 'template/header.php'; ?>
+                <?php include_once '/template/header.php'; ?>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar">
 
                 <!-- sidebar: style can be found in sidebar.less -->
-                <?php include_once 'template/side_bar.php'; ?>
+                <?php include_once '/template/side_bar.php'; ?>
                 <!-- /.sidebar -->
             </aside>
 
@@ -76,12 +76,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        โครงการ
-                        <small>แสดงโครงการทั้งหมด</small>
+                        จัดการโครงการ
+                        <small>หน้าจัดการโครงการ</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> โครงการ</a></li>
-                        <!--<li class="active">Here</li> -->
+                        <li><a href="project.php"><i class="fa fa-dashboard"></i> โครงการ</a></li>
+                        <li class="active">จัดการโครงการ</li>
                     </ol>
                 </section>
 
@@ -92,14 +92,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- TAB --->
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab_1" data-toggle="tab">ข้อมูลลูกค้า</a></li>
-                            
+                            <li class="active"><a href="#tab_1" data-toggle="tab">ข้อมูลโครงการ</a></li>
+                      
+                            <center> <li><a><h5>เลขประจำตัวผู้เสียภาษีอากร: <?php ?> หน่วยงาน: <?php ?></h5></a></li></center>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
                                 <!--Conten Tab1-->
                                 <section class="content">
-                                   
+                                    <!--  <div class="row">
+                                          <div class="col-sm-offset-10 col-xs-2"> <a href="#"><i class="fa   fa-user-plus"></i> เพิ่มลูกค้า</a></div>
+                                      </div>   -->
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="box">
@@ -107,35 +110,49 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <!-- <h3 class="box-title">รายการข้อมูลลูกค้า</h3> -->
                                                     
                                                 </div>  
-                                            <!-- /.box-header -->
+                                                <!-- /.box-header -->
                                                 <div class="box-body">
-                                                  <div class="table-responsive">
+                                                    <div class="table-responsive">
                                                         <table id="example1" class="table table-bordered table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>เลขประจำตัวผู้เสียภาษีอากร</th>
-                                                                    <th>ชื่อกิจการ</th>
-                                                                    <th>โทรศัพท์</th>
-                                                                    <th>อีเมล์</th>
+                                                                    <th>รหัสโครงการ</th>
+                                                                    <th>วันที่นำเข้า</th>
+                                                                    <th>วันเริ่มโครงการ</th>
+                                                                    <th>วันสิ้นสุดโครงการ</th>
                                                                     <th>เพิ่มเติม</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                
-                                                                
-                                                                <?php foreach ($listCustomer as $rowlistCustomer): ?>
-                                                                          <tr>
-                                                                            <td><?php echo $rowlistCustomer->customer_tax_id; ?></td> <!--เลขประจำตัวผู้เสียภาษีอากร-->
-                                                                            
-                                                                            <td><a title="โครงการทั้งหมดของลูกค้าท่านนี้" href="<?php echo base_url();?>index.php/project/project_customer/<?php echo $rowlistCustomer->customer_id;  ?>"><?php echo $rowlistCustomer->customer_name; ?></a></td>
-                                                                            <td><?php echo $rowlistCustomer->customer_tel; ?></td>
-                                                                            <td><?php echo $rowlistCustomer->customer_mail; ?></td>
-                                                                            
-                                                                            <td><a href="<?php echo base_url();?>index.php/project/add_project/<?php echo $rowlistCustomer->customer_id; ?>" name="btnAddProject" title="เพิ่มโครงการ" class="btn btn-xs btn-default"><span class="fa  fa-suitcase"></span></a></td>
-                                                                        </tr>
-                                                             <?php endforeach;?>
+                                                       <?php foreach ($details as $rowdetails):?>    
+                                                                <tr>
+                                                                    <!--รหัสโครงการ-->
+                                                                    <td><?php echo $rowdetails->project_number;?></td>
+                                                                    <!--วันที่นำเข้า-->
+                                                                    <td><?php echo $rowdetails->project_receip;?></td>
+                                                                    <!--วันเริ่มโครงการ-->
+                                                                    <td><?php echo $rowdetails->prject_start;?></td>
+                                                                    <!--วันสิ้นสุดโครงการ-->
+                                                                    <td><?php echo $rowdetails->project_end;?></td>
+                                                                    
+                                                                    <!--เพิ่มเติม-->
+                                                                    <td><a href="#" name="btnAddProject" title="ตั้งค่าโครงการ" class="btn btn-xs btn-default"><span class="fa  fa-gear"></span></a>
+                                                                        <!--ปิดโครงการ  ยังไม่ได้มี action เปิด/ปิด-->
+                                                                     <a href="#" name="btnCloseProject" title="คลิกปิดโครงการ" class="btn btn-xs btn-default"><span class="fa   fa-unlock"></span></a>
+                                                                    </td>
+                                                                </tr>
+                                                      <?php endforeach;?>          
+                                                    
                                                             </tbody>
-                                                           
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>รหัสโครงการ</th>
+                                                                    <th>วันที่นำเข้า</th>
+                                                                    <th>วันเริ่มโครงการ</th>
+                                                                    <th>วันสิ้นสุดโครงการ</th>
+                                                                    <th>เพิ่มเติม</th>
+                                                                </tr>
+                                                            </tfoot>
                                                         </table>
                                                     </div> <!--/.div table responsive-->
                                                 </div>
@@ -162,7 +179,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.content-wrapper -->
 
             <!-- Main Footer -->
-            <?php include_once 'template/footer.php'; ?>
+            <?php include_once '/template/footer.php'; ?>
             <!-- .Main Footer -->
 
             <!-- Control Sidebar -->
@@ -245,11 +262,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- REQUIRED JS SCRIPTS -->
 
         <!-- jQuery 2.1.4 -->
-        <script src="<?php echo base_url('dashboard/lte/plugins/jQuery/jQuery-2.1.4.min.js')?>"></script>
+        <script src="<?php echo base_url();?>dashboard/lte/plugins/jQuery/jQuery-2.1.4.min.js"></script>
         <!-- Bootstrap 3.3.5 -->
-        <script src="<?php echo base_url('dashboard/lte/bootstrap/js/bootstrap.min.js')?>"></script>
+        <script src="<?php echo base_url();?>dashboard/lte/bootstrap/js/bootstrap.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="<?php echo base_url('dashboard/lte/dist/js/app.min.js')?>"></script>
+        <script src="<?php echo base_url();?>dashboard/lte/dist/js/app.min.js"></script>
 
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
              Both of these plugins are recommended to enhance the
@@ -257,12 +274,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
              fixed layout. -->
 
         <!-- DataTables -->
-        <script src="<?php echo base_url('dashboard/lte/plugins/datatables/jquery.dataTables.min.js')?>"></script>
-        <script src="<?php echo  base_url('dashboard/lte/plugins/datatables/dataTables.bootstrap.min.js')?>"></script>
+        <script src="<?php echo base_url();?>dashboard/lte/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="<?php echo base_url();?>dashboard/lte/plugins/datatables/dataTables.bootstrap.min.js"></script>
         <!-- SlimScroll -->
-        <script src="<?php echo base_url('dashboard/lte/plugins/slimScroll/jquery.slimscroll.min.js');?>"></script>
+        <script src="<?php echo base_url();?>dashboard/lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
         <!-- FastClick -->
-        <script src="<?php echo base_url('dashboard/lte/plugins/fastclick/fastclick.js')?>"></script>
+        <script src="<?php echo base_url();?>dashboard/lte/plugins/fastclick/fastclick.js"></script>
 
         <!--Data 1  -->
         <script>
@@ -293,3 +310,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     </body>
 </html>
+   
+	  
