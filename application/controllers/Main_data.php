@@ -21,7 +21,9 @@ class Main_data extends CI_Controller {
 
     public function index() {
         if ($this->session->userdata('logged')) {
-            $this->load->view('main_data_view');
+            /*เตรียมยัดข้อมูลลงตัวแปร*/
+            $dataMain['customer'] = $this->customer->_sel_customer_details(); //ข้อมูลลูกค้า
+            $this->load->view('main_data_view',$dataMain);
         } else {
             $this->load->view('template/404anime');
         }
@@ -130,6 +132,7 @@ class Main_data extends CI_Controller {
                 $insertPhotoFile = $this->customer->_insert_file($file_name, $tbCustomerId);
             }
         }
+        $this->load->view('maindata_view_load');
     }
 
 }

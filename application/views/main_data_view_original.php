@@ -126,22 +126,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                        <?php foreach ($customer as $rowcustomer):?>
+                                                     <?php
+                                                        /*เรียกดูข้อมูลลูกค้า*/
+                                                       
+                                                     ?>
                                                                 <tr>
                                                                     <!--เลขประจำตัวผู้เสียภาษีอากร-->
-                                                                    <td><?php echo $rowcustomer->customer_tax_id; ?></td>
+                                                                    <td></td>
                                                                     <!--ชื่อกิจการ-->
-                                                                    <td><a title="ดูข้อมูลลูกค้าอย่างละเอียด" href="#"><?php echo $rowcustomer->customer_name; ?></a></td>
+                                                                    <td><a title="ดูข้อมูลลูกค้าอย่างละเอียด" href="#"></a></td>
                                                                     <!--โทรศัพท์-->
-                                                                    <td><?php echo $rowcustomer->customer_tel;  ?></td>
+                                                                    <td></td>
                                                                     <!--อีเมล์-->
-                                                                    <td><?php echo $rowcustomer->customer_mail; ?></td>
+                                                                    <td></td>
                                                                     <!--เพิ่มเติม-->
                                                                     <td></td>
                                                                 </tr>
-                                                    <?php endforeach; ?>  
+                                                    
                                                             </tbody>
-                                                            
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>เลขประจำตัวผู้เสียภาษีอากร</th>
+                                                                    <th>ชื่อกิจการ</th>
+                                                                    <th>โทรศัพท์</th>
+                                                                    <th>อีเมล์</th>
+                                                                    <th>เพิ่มเติม</th>
+                                                                </tr>
+                                                            </tfoot>
                                                         </table>
                                                     </div> <!--/.div table responsive-->
                                                 </div>

@@ -80,5 +80,10 @@ class Customer_model extends CI_Model {
                 ->set('customer_id', $customer_id)
                 ->insert('file');
     }
+    
+    public function _sel_customer_details(){
+        $query = $this->db->get('customer')->result();
+        return $query;
+    }
 
 }

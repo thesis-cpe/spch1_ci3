@@ -32,7 +32,7 @@
               <!-- The user image in the navbar-->
               <img src="<?php echo base_url();?>dashboard/lte/dist/img/avatar5.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">ชื่อ</span>
+              <span class="hidden-xs">ชื่อ <?php echo $this->session->userdata('name');?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -40,7 +40,7 @@
                   <img src="<?php echo base_url();?>dashboard/lte/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                     ตำแหน่ง
+                     ตำแหน่ง <?php echo $this->session->userdata('em_status');?>
                   <small>เริ่มทำงาน ...</small>
                 </p>
               </li>

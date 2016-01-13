@@ -52,9 +52,13 @@ class Login extends CI_Controller {
                     $password = $this->input->post('pass');
                     $check = $this->users->_checkUser($username, $password);
                     if ($check) { //ชื่อผู้ใช้รหัสถูกต้อง
+                        $dataEmDb = $this->users->_sel_customer_details($username);
+                        
                         $dataEm = array(  //ตัวแปร session
-                            'username' => '$username',
-                            'logged' => TRUE
+                            'username' => $username,
+                            'logged' => TRUE,
+                            'em_name' => $dataEmDb['name']
+                            
                         );
                         $this->session->set_userdata($dataEm); //สร้างตัวแปร Session
                         redirect('login');
@@ -75,5 +79,7 @@ class Login extends CI_Controller {
         $this->session->sess_destroy(); //ล้างค่าตัวแปร Session
         redirect('login/sigin', 'refresh'); //กลับไปหน้าล๊อกอิน
     }
+    
+    
 
 }
