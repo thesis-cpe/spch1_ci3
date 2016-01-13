@@ -20,14 +20,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> 
         <!-- <link rel="stylesheet" href="dist/css/ionicons.min.css"> -->
         <!-- DataTables -->
-        <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/plugins/datatables/dataTables.bootstrap.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/plugins/datatables/dataTables.bootstrap.css'); ?>">
         <!-- Theme style -->
-        <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/dist/css/AdminLTE.min.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/dist/css/AdminLTE.min.css'); ?>">
         <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
               page. However, you can choose any other skin. Make sure you
               apply the skin class to the body tag so the changes take effect.
         -->
-        <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/dist/css/skins/skin-blue.min.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/dist/css/skins/skin-blue.min.css'); ?>">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -107,7 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="box">
                                                 <div class="box-header">
                                                     <!-- <h3 class="box-title">รายการข้อมูลลูกค้า</h3> -->
-                                                    <a  href="<?php echo base_url()?>index.php/main_data/add_customer" title="เพิ่มข้อมูลลูกค้า"><i class="fa fa-user-plus"></i> เพิ่มลูกค้า</a>
+                                                    <a  href="<?php echo base_url() ?>index.php/main_data/add_customer" title="เพิ่มข้อมูลลูกค้า"><i class="fa fa-user-plus"></i> เพิ่มลูกค้า</a>
                                                 </div>  
 
 
@@ -126,22 +126,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                        <?php foreach ($customer as $rowcustomer):?>
-                                                                <tr>
-                                                                    <!--เลขประจำตัวผู้เสียภาษีอากร-->
-                                                                    <td><?php echo $rowcustomer->customer_tax_id; ?></td>
-                                                                    <!--ชื่อกิจการ-->
-                                                                    <td><a title="ดูข้อมูลลูกค้าอย่างละเอียด" href="#"><?php echo $rowcustomer->customer_name; ?></a></td>
-                                                                    <!--โทรศัพท์-->
-                                                                    <td><?php echo $rowcustomer->customer_tel;  ?></td>
-                                                                    <!--อีเมล์-->
-                                                                    <td><?php echo $rowcustomer->customer_mail; ?></td>
-                                                                    <!--เพิ่มเติม-->
-                                                                    <td></td>
-                                                                </tr>
-                                                    <?php endforeach; ?>  
+                                                                <?php foreach ($customer as $rowcustomer): ?>
+                                                                    <tr>
+                                                                        <!--เลขประจำตัวผู้เสียภาษีอากร-->
+                                                                        <td><?php echo $rowcustomer->customer_tax_id; ?></td>
+                                                                        <!--ชื่อกิจการ-->
+                                                                        <td><a title="ดูข้อมูลลูกค้าอย่างละเอียด" href="#"><?php echo $rowcustomer->customer_name; ?></a></td>
+                                                                        <!--โทรศัพท์-->
+                                                                        <td><?php echo $rowcustomer->customer_tel; ?></td>
+                                                                        <!--อีเมล์-->
+                                                                        <td><?php echo $rowcustomer->customer_mail; ?></td>
+                                                                        <!--เพิ่มเติม-->
+                                                                        <td></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>  
                                                             </tbody>
-                                                            
+
                                                         </table>
                                                     </div> <!--/.div table responsive-->
                                                 </div>
@@ -183,33 +183,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                         <?php
-                                            /*ดูข้อมูลพนักงาน*/    
-                                          
-                                         ?>   
+                                                            <?php foreach ($employee as $rowemployee): ?>
+
+
+
                                                             <tr>
                                                                 <!--รหัสพนักงาน-->
-                                                                <td></td>
+                                                                <td><?php echo $rowemployee->em_number; ?></td>
                                                                 <!--ชื่อ - นามสกุล-->
-                                                                <td><a title="ข้อมูลพนักงานอย่างระเอียด" href="#"></a></td>
+                                                                <td><a title="ข้อมูลพนักงานอย่างระเอียด" href="#"><?php echo $rowemployee->em_name;?></a></td>
                                                                 <!--โทรศัพท์-->
-                                                                <td></td>
+                                                                <td><?php echo $rowemployee->em_tel;?></td>
                                                                 <!--อีเมล์-->
-                                                                <td></td>
+                                                                <td><?php echo $rowemployee->em_mail;?></td>
                                                                 <!--เพิ่มเติม-->
                                                                 <td></td>
                                                             </tr>
-                                                 
+                                                            <?php endforeach; ?>
                                                         </tbody>
-                                                        <tfoot>
-                                                            <tr>
-                                                                <th>รหัสพนักงาน</th>
-                                                                <th>ชื่อ - นามสกุล</th>
-                                                                <th>โทรศัพท์</th>
-                                                                <th>อีเมล์</th>
-                                                                <th>เพิ่มเติม</th>
-                                                            </tr>
-                                                        </tfoot>
+
                                                     </table>
                                                 </div>
                                                 <!-- /.box-body -->
@@ -317,11 +309,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- REQUIRED JS SCRIPTS -->
 
         <!-- jQuery 2.1.4 -->
-        <script src="<?php echo base_url('dashboard/lte/plugins/jQuery/jQuery-2.1.4.min.js');?>"></script>
+        <script src="<?php echo base_url('dashboard/lte/plugins/jQuery/jQuery-2.1.4.min.js'); ?>"></script>
         <!-- Bootstrap 3.3.5 -->
-        <script src="<?php echo base_url('dashboard/lte/bootstrap/js/bootstrap.min.js');?>"></script>
+        <script src="<?php echo base_url('dashboard/lte/bootstrap/js/bootstrap.min.js'); ?>"></script>
         <!-- AdminLTE App -->
-        <script src="<?php echo base_url('dashboard/lte/dist/js/app.min.js');?>"></script>
+        <script src="<?php echo base_url('dashboard/lte/dist/js/app.min.js'); ?>"></script>
 
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
              Both of these plugins are recommended to enhance the
@@ -329,12 +321,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
              fixed layout. -->
 
         <!-- DataTables -->
-        <script src="<?php echo base_url('dashboard/lte/plugins/datatables/jquery.dataTables.min.js');?>"></script>
-        <script src="<?php echo base_url('dashboard/lte/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
+        <script src="<?php echo base_url('dashboard/lte/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+        <script src="<?php echo base_url('dashboard/lte/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
         <!-- SlimScroll -->
-        <script src="<?php echo base_url('dashboard/lte/plugins/slimScroll/jquery.slimscroll.min.js')?>"></script>
+        <script src="<?php echo base_url('dashboard/lte/plugins/slimScroll/jquery.slimscroll.min.js') ?>"></script>
         <!-- FastClick -->
-        <script src="<?php echo base_url('dashboard/lte/plugins/fastclick/fastclick.js');?>"></script>
+        <script src="<?php echo base_url('dashboard/lte/plugins/fastclick/fastclick.js'); ?>"></script>
 
         <!--Data 1  -->
         <script>

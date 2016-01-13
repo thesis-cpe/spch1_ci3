@@ -23,6 +23,7 @@ class Main_data extends CI_Controller {
         if ($this->session->userdata('logged')) {
             /*เตรียมยัดข้อมูลลงตัวแปร*/
             $dataMain['customer'] = $this->customer->_sel_customer_details(); //ข้อมูลลูกค้า
+            $dataMain['employee'] = $this->users->_sel_employee_details();
             $this->load->view('main_data_view',$dataMain);
         } else {
             $this->load->view('template/404anime');

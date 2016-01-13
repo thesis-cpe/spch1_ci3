@@ -54,18 +54,9 @@ class Users_model extends CI_Model {
         
     }
 
-    function _sel_customer_details($username) {///ค้างไว้ยังไม่สมบูรณ์
-        $case = array('em_number' => $username);
-        $query = $this->db->get_where('employee', $case)->result();
-
-        foreach ($query as $rows) {
-            $datarow['name'] = $rows->em_name;
-           /* $datarow['em_status'] = $rows['em_status'];
-            $datarow['em_role'] = $rows['em_role'];
-            $datarow['em_start_work'] = $rows['em_start_work']; */
-        }
-
-        return $datarow;
+    function _sel_employee_details() {
+        $query = $this->db->get('employee')->result();
+        return $query;
     }
 
 }
