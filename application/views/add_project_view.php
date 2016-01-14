@@ -92,7 +92,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </section>
 
                 <!-- Main content -->
-                <form action="php_action/add_project_team.php" method="POST" enctype="multipart/form-data"> 
+             
+              <?php echo form_open_multipart('project/insert_project');?>
                     <section class="content">
 
                         <!-- Your Page Content Here -->
@@ -416,7 +417,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <!-- .Your Page Content Here -->
                     </section>
-                    <input type="hidden" value="<?php //echo  $customerIDFromProject; ?>" name="hdfCusId"/>
+                    <input type="hidden" value="<?php echo $customer_id ?>" name="hdfCustomerId"/>
                 </form>
                 <!-- /.content -->
             </div>

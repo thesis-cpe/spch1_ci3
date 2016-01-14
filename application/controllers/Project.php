@@ -38,20 +38,56 @@ class Project extends CI_Controller {
         $dataOpenPro = array(
             'newProNumber' => $newProNumber,
             'taxId' => $customer_tax_id,
-            'customerName' => $customer_name
+            'customerName' => $customer_name,
+            'customer_id' =>  $customer_id
         );
 
         $this->load->view('add_project_view', $dataOpenPro);
     }
 
-    public function project_customer($customer_id) {
+    public function project_customer($customer_id, $customer_name,$tax_id) {
 
         $dataProCus['details'] = $this->projects->_sel_project($customer_id);
+        $dataProCus['customer_name'] = $customer_name;
+        $dataProCus['tax_id'] = $tax_id;
         $this->load->view('project_customer_view', $dataProCus);
     }
 
     public function insert_project() {
         //เอาลงฐานข้อมูล
+        $projectData = array(
+            'hdfCustomerId' => $this->input->post('hdfCustomerId'),
+            'txtIdWorkCustomer' => $this->input->post('txtIdWorkCustomer'),
+            'txtAssetProject' => $this->input->post('txtAssetProject'),
+            'txtCoastOffice' => $this->input->post('txtCoastOffice'),
+            'txtMarkProject' => $this->input->post('txtMarkProject'),
+            /*team*/
+            'selEmRole' => $this->input->post('selEmRole[]'),
+            'selEmName' => $this->input->post('selEmName[]'),
+            'txtCountWorkHour' => $this->input->post('txtCountWorkHour[]'),
+            'txtBathTime' => $this->input->post('txtBathTime[]'),
+            /*Project ต่อ*/
+            'datIntWork' => $this->input->post('datIntWork'),
+            'datFinalWork' => $this->input->post('datFinalWork'),
+            'datAcepeWork' => $this->input->post('datAcepeWork'),
+            'selRateCoast' => $this->input->post('selRateCoast'),
+            'txtRevenueAudit' => $this->input->post('txtRevenueAudit'),
+            'txtInstallment' => $this->input->post('txtInstallment'),
+            /*Project_doc*/
+            'datOffers' => $this->input->post('datOffers'),  //ใบเสนอราคา
+            'txtSumMoney' => $this->input->post('txtSumMoney'),
+            'txtNoOffer' => $this->input->post('txtNoOffer'),
+            'datOffersEmploy' => $this->input->post('datOffersEmploy'), //สัญญาจ้าง
+            'txtSumMoneyEmploy' => $this->input->post('txtSumMoneyEmploy'),
+            'txtNoEmploy' => $this->input->post('txtNoEmploy'),
+            
+        );
+        //insert ลง project
+        
+       $insertToProject = $this->projects->_insert_project($projectData);
+        
     }
+    
+    
 
 }

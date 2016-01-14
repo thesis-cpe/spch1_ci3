@@ -94,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab_1" data-toggle="tab">ข้อมูลโครงการ</a></li>
                       
-                            <center> <li><a><h5>เลขประจำตัวผู้เสียภาษีอากร: <?php ?> หน่วยงาน: <?php ?></h5></a></li></center>
+                            <center> <li><a><h5>เลขประจำตัวผู้เสียภาษีอากร: <?php echo $tax_id;  ?> หน่วยงาน: <?php echo $customer_name; ?></h5></a></li></center>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">

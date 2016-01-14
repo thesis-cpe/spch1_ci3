@@ -42,8 +42,25 @@ class Project_model extends CI_Model {
         
     }
 
-    public function _insert_project($project_id) {
-        
+    public function _insert_project($projectData) {
+         $curentYear = date("Y") + 543;
+        $projectDataInsert = array(
+        'project_number' => $projectData['txtIdWorkCustomer'],  
+        'project_income' => $projectData['txtAssetProject'],  
+        'project_coast' => $projectData['txtCoastOffice'],  
+        'project_note' => $projectData['txtMarkProject'],
+        'prject_start' => $projectData['datIntWork'],
+        'project_end' => $projectData['datFinalWork'],
+        'project_receip' => $projectData['datAcepeWork'],
+        'project_rate' => $projectData['selRateCoast'],
+        'project_coasts' => $projectData['txtRevenueAudit'],
+        'project_period' => $projectData['txtInstallment'],
+        'project_status' => 'เปิดโครงการ',
+        'project_year' =>   $curentYear, //อาจมีการเปลี่ยนแปลง
+        'customer_id' => $projectData['hdfCustomerId']
+        );
+
+        $this->db->insert('project', $projectDataInsert);
     }
 
 }
