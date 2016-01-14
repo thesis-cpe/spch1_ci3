@@ -29,15 +29,29 @@ class Project extends CI_Controller {
         }
     }
 
-    public function add_project($customer_id) {
-      //เอาไปเพิ่มโครงการ
-        $this->load->view('add_project_view');
+    public function add_project($customer_id, $customer_tax_id, $customer_name) {
+        //เจนรหัสใหม่
+        $curentYear = date("Y") + 543; //ปีปัจจุบัน พ.ศ.   
+        $curentYearSub = substr($curentYear, 2);
+        $newProNumber = $this->projects->_add_project($curentYearSub, $customer_id, $customer_tax_id);
+       /* เอา Data ไปยัด */
+        $dataOpenPro = array(
+            'newProNumber' => $newProNumber,
+            'taxId' => $customer_tax_id,
+            'customerName' => $customer_name
+        );
+
+        $this->load->view('add_project_view', $dataOpenPro);
     }
-    
-    public function project_customer($customer_id){
-       
+
+    public function project_customer($customer_id) {
+
         $dataProCus['details'] = $this->projects->_sel_project($customer_id);
-        $this->load->view('project_customer_view',$dataProCus);
+        $this->load->view('project_customer_view', $dataProCus);
+    }
+
+    public function insert_project() {
+        //เอาลงฐานข้อมูล
     }
 
 }

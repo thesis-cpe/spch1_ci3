@@ -100,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-sm-12">
                                 <div class="box-body">
                                     <div class="callout callout-info">
-                                        <center>เลขประจำตัวผู้เสียภาษีอากร: <a></a> หน่วยงาน: <a></a></center>  
+                                        <center>เลขประจำตัวผู้เสียภาษีอากร: <?php echo $taxId ?><a></a> หน่วยงาน: <?php echo $customerName;?> <a></a></center>  
                                     </div>
                                 </div>
                             </div>

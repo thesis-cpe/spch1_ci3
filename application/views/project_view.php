@@ -131,7 +131,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                             <td><?php echo $rowlistCustomer->customer_tel; ?></td>
                                                                             <td><?php echo $rowlistCustomer->customer_mail; ?></td>
                                                                             
-                                                                            <td><a href="<?php echo base_url();?>index.php/project/add_project/<?php echo $rowlistCustomer->customer_id; ?>" name="btnAddProject" title="เพิ่มโครงการ" class="btn btn-xs btn-default"><span class="fa  fa-suitcase"></span></a></td>
+                                                                            <td><a href="<?php echo base_url();?>index.php/project/add_project/<?php echo $rowlistCustomer->customer_id; ?>/<?php echo $rowlistCustomer->customer_tax_id; ?>/<?php echo $rowlistCustomer->customer_name; ?>" name="btnAddProject" title="เพิ่มโครงการ" class="btn btn-xs btn-default"><span class="fa  fa-suitcase"></span></a></td>
                                                                         </tr>
                                                              <?php endforeach;?>
                                                             </tbody>
