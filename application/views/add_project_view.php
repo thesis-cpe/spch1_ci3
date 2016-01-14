@@ -115,12 +115,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <!--รหัสงานที่ Gen ใหม่-->
                                     <div class="col-sm-3">
                                         <label>รหัสงานใหม่:</label>
-                                        <input type="text" class="form-control" name="txtIdWorkCustomer"  value="" readonly=""/>
+                                        <input type="text" class="form-control" name="txtIdWorkCustomer"  value="<?php echo $newProNumber; ?>" readonly=""/>
                                     </div>
                                     <div class="col-sm-3">
                                         <!--echo ชื่อหน่วยงานลง value-->
                                         <label>หน่วยงาน:</label>
-                                        <input type="text" class="form-control" name="txtCustomerName" value="" readonly=""/>
+                                        <input type="text" class="form-control" name="txtCustomerName" value="<?php echo $customerName;?>" readonly=""/>
                                     </div>
                                     <!--รายได้โครงการ-->
                                     <div class="col-sm-3">
