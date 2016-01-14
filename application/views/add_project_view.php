@@ -92,332 +92,334 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </section>
 
                 <!-- Main content -->
-             
-              <?php echo form_open_multipart('project/insert_project');?>
-                    <section class="content">
 
-                        <!-- Your Page Content Here -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="box-body">
-                                    <div class="callout callout-info">
-                                        <center>เลขประจำตัวผู้เสียภาษีอากร: <?php echo $taxId ?><a></a> หน่วยงาน: <?php echo $customerName;?> <a></a></center>  
-                                    </div>
+                <?php echo form_open_multipart('project/insert_project'); ?>
+                <section class="content">
+
+                    <!-- Your Page Content Here -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="box-body">
+                                <div class="callout callout-info">
+                                    <center>เลขประจำตัวผู้เสียภาษีอากร: <?php echo $taxId ?><a></a> หน่วยงาน: <?php echo $customerName; ?> <a></a></center>  
                                 </div>
                             </div>
                         </div>
-                        <!--Box ข้อมูลโครงการ-->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">ข้อมูลโครงการ</h3>
-                            </div>
-                            <div class="box-body">
-                                <div class="row">
-                                    <!--รหัสงานที่ Gen ใหม่-->
-                                    <div class="col-sm-3">
-                                        <label>รหัสงานใหม่:</label>
-                                        <input type="text" class="form-control" name="txtIdWorkCustomer"  value="<?php echo $newProNumber; ?>" readonly=""/>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <!--echo ชื่อหน่วยงานลง value-->
-                                        <label>หน่วยงาน:</label>
-                                        <input type="text" class="form-control" name="txtCustomerName" value="<?php echo $customerName;?>" readonly=""/>
-                                    </div>
-                                    <!--รายได้โครงการ-->
-                                    <div class="col-sm-3">
-                                        <label>&nbsp;</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="glyphicon glyphicon-usd"></i>
-                                            </div>
-                                            <input name="txtAssetProject" type="number" class="form-control" placeholder="รายได้โครงการ(บาท)"/>
+                    </div>
+                    <!--Box ข้อมูลโครงการ-->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">ข้อมูลโครงการ</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <!--รหัสงานที่ Gen ใหม่-->
+                                <div class="col-sm-3">
+                                    <label>รหัสงานใหม่:</label>
+                                    <input type="text" class="form-control" name="txtIdWorkCustomer"  value="<?php echo $newProNumber; ?>" readonly=""/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <!--echo ชื่อหน่วยงานลง value-->
+                                    <label>หน่วยงาน:</label>
+                                    <input type="text" class="form-control" name="txtCustomerName" value="<?php echo $customerName; ?>" readonly=""/>
+                                </div>
+                                <!--รายได้โครงการ-->
+                                <div class="col-sm-3">
+                                    <label>&nbsp;</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="glyphicon glyphicon-usd"></i>
                                         </div>
-                                    </div>
-                                    <!--ค่าใช้จ่ายสำนักงาน-->
-                                    <div class="col-sm-3">
-
-                                        <label>&nbsp;</label>
-                                        <input type="number"  class="form-control" name="txtCoastOffice" placeholder="ค่าใช้จ่ายสำนักงาน(บาท)"  />
+                                        <input name="txtAssetProject" type="number" class="form-control" placeholder="รายได้โครงการ(บาท)"/>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>&nbsp;</label>
-                                        <textarea class="form-control" name="txtMarkProject" placeholder="หมายเหตุ"></textarea>
-                                    </div>
+                                <!--ค่าใช้จ่ายสำนักงาน-->
+                                <div class="col-sm-3">
+
+                                    <label>&nbsp;</label>
+                                    <input type="number"  class="form-control" name="txtCoastOffice" placeholder="ค่าใช้จ่ายสำนักงาน(บาท)"  />
                                 </div>
                             </div>
-                            <!-- /.box-body -->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>&nbsp;</label>
+                                    <textarea class="form-control" name="txtMarkProject" placeholder="หมายเหตุ"></textarea>
+                                </div>
+                            </div>
                         </div>
+                        <!-- /.box-body -->
+                    </div>
 
 
-                        <!--Box ข้อมูลทีมงาน-->
-                        <div class="box box-info">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">ข้อมูลทีมงาน</h3>
-                            </div>
-                            <div class="box-body">
+                    <!--Box ข้อมูลทีมงาน-->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">ข้อมูลทีมงาน</h3>
+                        </div>
+                        <div class="box-body">
 
-                                <!--Data Table ข้อมูลพนักงานในทีม-->
-                                <div class="table-responsive">
-                                    <table id="example1" class="table table-bordered table-striped delete_multiple_check_box">
-                                        <thead>
+                            <!--Data Table ข้อมูลพนักงานในทีม-->
+                            <div class="table-responsive">
+                                <table id="example1" class="table table-bordered table-striped delete_multiple_check_box">
+                                    <thead>
+                                        <tr>
+                                            <th><!--<input type="checkbox" class="checkall"  /> -->เลือก</th> 
+                                            <th width="10">ลำดับ</th>
+                                            <th>สถานะ</th>
+                                            <th>ชื่อ-นามสกุล</th>
+                                            <th>จำนวนนาที</th>
+                                            <th>บาท/นาที</th>
+                                            <th>เพิ่มเติม</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody> 
+                                        <?php for ($i = 1; $i <= 10; $i++) { ?>        
                                             <tr>
-                                                <th><!--<input type="checkbox" class="checkall"  /> -->เลือก</th> 
-                                                <th width="10">ลำดับ</th>
-                                                <th>สถานะ</th>
-                                                <th>ชื่อ-นามสกุล</th>
-                                                <th>จำนวนนาที</th>
-                                                <th>บาท/นาที</th>
-                                                <th>เพิ่มเติม</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody> 
-                                            <?php for ($i = 1; $i <= 10; $i++) { ?>        
-                                                <tr>
-                                                    <!--สถานะ-->
-                                                    <td><input type="checkbox" class="checkbox" id="chkBox<?php echo $i; ?>" /></td>
-                                                    <td><center><?php echo $i; ?></center></td>
-                                            <td>
-                                                <select class="form-control" name="selEmRole[]" id="selEmRole<?php echo $i; ?>" disabled="">
-                                                    <option value="" disabled selected>เลือกสถานะ</option>
-                                                    <option value="ผู้ทำบัญชี">หัวหน้าทีม</option>
-                                                    <option value="ผู้ปฏิบัติงาน">ผู้ปฏิบัติงาน</option>
-                                                </select>
-                                            </td>
-                                            <!--ชื่อ-นามสกุล-->
-                                            <td>
-                                                <select class="form-control" name="selEmName[]" id="selEmName<?php echo $i; ?>" disabled="">
-                                                    <option value="" disabled selected>เลือกพนักงาน</option>
-                                                    
-                                                </select>
-                                            </td>
-                                            <!--จำนวนชั่วโมง-->
-                                            <td>
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-clock-o"></i>
-                                                    </div>
-                                                    <input name="txtCountWorkHour[]" id="txtCountWorkHour<?php echo $i; ?>" type="number" class="form-control" placeholder="ชั่วโมงการทำงาน" disabled="" />
+                                                <!--สถานะ-->
+                                                <td><input type="checkbox" class="checkbox" id="chkBox<?php echo $i; ?>" /></td>
+                                                <td><center><?php echo $i; ?></center></td>
+                                        <td>
+                                            <select class="form-control" name="selEmRole[]" id="selEmRole<?php echo $i; ?>" disabled="">
+                                                <option value="" disabled selected>เลือกสถานะ</option>
+                                                <option value="ผู้ทำบัญชี">หัวหน้าทีม</option>
+                                                <option value="ผู้ปฏิบัติงาน">ผู้ปฏิบัติงาน</option>
+                                            </select>
+                                        </td>
+                                        <!--ชื่อ-นามสกุล-->
+                                        <td>
+                                            <select class="form-control" name="selEmName[]" id="selEmName<?php echo $i; ?>" disabled="">
+                                                <option value="" disabled selected>เลือกพนักงาน</option>
+                                                <?php foreach ($em_name as $rowem_name): ?>
+                                                    <option value="<?php echo $rowem_name->em_id; ?>" ><?php echo $rowem_name->em_name ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </td>
+                                        <!--จำนวนชั่วโมง-->
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-clock-o"></i>
                                                 </div>
-                                            </td>
-                                            <!--บาท/ชั่วโมง-->
-                                            <td>
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="glyphicon glyphicon-usd"></i>
-                                                    </div>
-                                                    <input name="txtBathTime[]" id="txtBathTime<?php echo $i; ?>" type="number" class="form-control" placeholder="ค่าจ้าง" disabled="" />
+                                                <input name="txtCountWorkHour[]" id="txtCountWorkHour<?php echo $i; ?>" type="number" class="form-control" placeholder="ชั่วโมงการทำงาน" disabled="" />
+                                            </div>
+                                        </td>
+                                        <!--บาท/ชั่วโมง-->
+                                        <td>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-usd"></i>
                                                 </div>
-                                            </td>
-                                            <!--เพิ่มเติม-->
-                                            <td>
-                                                <a title="ลบรายการนี้" href="javascript:;" class="delete_single btn btn-sm btn-default"><span class="fa fa-trash"></span></a>
-                                            </td>
-                                            </tr>
-                                            <!--CheckBox-->
-                                            <script>
-                                                document.getElementById('chkBox<?php echo $i; ?>').onchange = function () {
-                                                    document.getElementById('selEmRole<?php echo $i; ?>').disabled = !this.checked;
-                                                    document.getElementById('selEmName<?php echo $i; ?>').disabled = !this.checked;
-                                                    document.getElementById('txtCountWorkHour<?php echo $i; ?>').disabled = !this.checked;
-                                                    document.getElementById('txtBathTime<?php echo $i; ?>').disabled = !this.checked;
+                                                <input name="txtBathTime[]" id="txtBathTime<?php echo $i; ?>" type="number" class="form-control" placeholder="ค่าจ้าง" disabled="" />
+                                            </div>
+                                        </td>
+                                        <!--เพิ่มเติม-->
+                                        <td>
+                                            <a title="ลบรายการนี้" href="javascript:;" class="delete_single btn btn-sm btn-default"><span class="fa fa-trash"></span></a>
+                                        </td>
+                                        </tr>
+                                        <!--CheckBox-->
+                                        <script>
+                                            document.getElementById('chkBox<?php echo $i; ?>').onchange = function () {
+                                                document.getElementById('selEmRole<?php echo $i; ?>').disabled = !this.checked;
+                                                document.getElementById('selEmName<?php echo $i; ?>').disabled = !this.checked;
+                                                document.getElementById('txtCountWorkHour<?php echo $i; ?>').disabled = !this.checked;
+                                                document.getElementById('txtBathTime<?php echo $i; ?>').disabled = !this.checked;
 
-                                                };
-                                            </script>
-                                            <!--.CheckBox-->
-                                        <?php } ?> 
+                                            };
+                                        </script>
+                                        <!--.CheckBox-->
+                                    <?php } ?> 
 
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th><a href="javascript:;" class="deleteall btn btn-default btm-xs" title="ลบรายที่เลือก"><span class="fa fa-trash"></span></a></th>
-                                                <th>ลำดับ</th>
-                                                <th>สถานะ</th>
-                                                <th>ชื่อ-นามสกุล</th>
-                                                <th>จำนวนนาที</th>
-                                                <th>บาท/นาที</th>
-                                                <th>เพิ่มเติม</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div> <!--/.div table responsive-->
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th><a href="javascript:;" class="deleteall btn btn-default btm-xs" title="ลบรายที่เลือก"><span class="fa fa-trash"></span></a></th>
+                                            <th>ลำดับ</th>
+                                            <th>สถานะ</th>
+                                            <th>ชื่อ-นามสกุล</th>
+                                            <th>จำนวนนาที</th>
+                                            <th>บาท/นาที</th>
+                                            <th>เพิ่มเติม</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div> <!--/.div table responsive-->
 
-                                <!--/.Data Table ข้อมูลพนักงานในทีม-->
-                                <!-- </div> -->
-                                <!-- /.box-body แสดงพนักงานในทีม -->  
-                                <!--   </div> -->
-                                <!-- /.Box Data table แสดงพนักงานในทีม -->  
-                            </div>
-                            <!-- /.box-body -->
+                            <!--/.Data Table ข้อมูลพนักงานในทีม-->
+                            <!-- </div> -->
+                            <!-- /.box-body แสดงพนักงานในทีม -->  
+                            <!--   </div> -->
+                            <!-- /.Box Data table แสดงพนักงานในทีม -->  
                         </div>
+                        <!-- /.box-body -->
+                    </div>
 
 
 
-                        <!--Box ข้อมูลงาน-->
-                        <div class="box box-info">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">ข้อมูลงาน</h3>
-                            </div>
-                            <div class="box-body">
-                                <!--วันที่เริ่มทำ-->
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label>วันที่เริ่มรอบบัญชี:</label>
+                    <!--Box ข้อมูลงาน-->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">ข้อมูลงาน</h3>
+                        </div>
+                        <div class="box-body">
+                            <!--วันที่เริ่มทำ-->
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label>วันที่เริ่มรอบบัญชี:</label>
 
                                    <!-- <input  data-provide="datepicker" name="datInWork" type="text" class="form-control datepicker" placeholder="" data-date-format="dd/mm/yyyy">-->
-                                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-th"></span>
-                                            </div>
-                                            <input name="datIntWork" type="text" class="form-control" placeholder="01/01/2016">
-
+                                    <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
                                         </div>
+                                        <input name="datIntWork" type="text" class="form-control" placeholder="01/01/2016">
+
                                     </div>
+                                </div>
 
 
-                                    <!--วันที่สิ้นสุด-->  
-                                    <div class="col-sm-4">
-                                        <label>วันที่สิ้นสุดรอบบัญชี:</label>
+                                <!--วันที่สิ้นสุด-->  
+                                <div class="col-sm-4">
+                                    <label>วันที่สิ้นสุดรอบบัญชี:</label>
 
                                    <!-- <input  data-provide="datepicker" name="datInWork" type="text" class="form-control datepicker" placeholder="" data-date-format="dd/mm/yyyy">-->
-                                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-th"></span>
-                                            </div>
-                                            <input name="datFinalWork" type="text" class="form-control" placeholder="01/01/2017">
-
+                                    <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
                                         </div>
-                                    </div>
+                                        <input name="datFinalWork" type="text" class="form-control" placeholder="01/01/2017">
 
-                                    <!--วันที่รับทำบัญชี-->  
-                                    <div class="col-sm-4">
-                                        <label>วันที่รับทำบัญชี:</label>
+                                    </div>
+                                </div>
+
+                                <!--วันที่รับทำบัญชี-->  
+                                <div class="col-sm-4">
+                                    <label>วันที่รับทำบัญชี:</label>
 
                                    <!-- <input  data-provide="datepicker" name="datInWork" type="text" class="form-control datepicker" placeholder="" data-date-format="dd/mm/yyyy">-->
-                                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-th"></span>
-                                            </div>
-                                            <input name="datAcepeWork" type="text" class="form-control" placeholder="01/01/2016">
-
+                                    <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
                                         </div>
+                                        <input name="datAcepeWork" type="text" class="form-control" placeholder="01/01/2016">
+
                                     </div>
-
-                                    <!--อัตราค่าทำบัญชี-->
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label>อัตราค่าทำบัญชี:</label>
-                                        <select class="form-control" name="selRateCoast">
-
-                                            <option value="รายเดือน">รายเดือน</option>
-                                            <option value="รายครั้ง">รายครั้ง</option>
-                                        </select>
-                                    </div>
-                                    <!--จำนวนเงินบาท-->
-                                    <div class="col-sm-4">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" name="txtRevenueAudit" type="number" placeholder="จำนวนเงิน(บาท)" />
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" name="txtInstallment" type="number" placeholder="จำนวนงวดงาน"/>
-                                    </div>
-
                                 </div>
 
+                                <!--อัตราค่าทำบัญชี-->
 
                             </div>
-                            <!-- /.box-body -->
-                        </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label>อัตราค่าทำบัญชี:</label>
+                                    <select class="form-control" name="selRateCoast">
 
-
-                        <!--ใบเสนอราคา-->
-                        <div class="box box-default">
-                            <div class="box-header">
-                                <h3 class="box-title">เอกสาร</h3>
-                            </div>
-                            <div class="box-body">
-                                <!--ใบเสนอราคา-->
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <label>ใบเสนอราคา:</label>
-                                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-th"></span>
-                                            </div>
-                                            <input name="datOffers" type="text" class="form-control" placeholder="วันที่เสนอราคา 01/01/2016">
-
-                                        </div>
-                                    </div>
-                                    <!--ยอดเงินรวม-->  
-                                    <div class="col-sm-3">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" name="txtSumMoney" type="number" placeholder="ยอดเงินรวม"/>
-                                    </div>
-                                    <!--เลขที่ใบเสนอราคา-->  
-                                    <div class="col-sm-3">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" name="txtNoOffer" type="number" placeholder="เลขที่ใบเสนอราคา"/>
-                                    </div>
-                                    <!--ไฟล์ใบเสนอราคา-->  
-                                    <div class="col-sm-3">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" name="fileDocOfffer" type="file" />
-                                    </div>
-
+                                        <option value="รายเดือน">รายเดือน</option>
+                                        <option value="รายครั้ง">รายครั้ง</option>
+                                    </select>
+                                </div>
+                                <!--จำนวนเงินบาท-->
+                                <div class="col-sm-4">
+                                    <label>&nbsp;</label>
+                                    <input class="form-control" name="txtRevenueAudit" type="number" placeholder="จำนวนเงิน(บาท)" />
                                 </div>
 
-                                <!--สัญญาจ้าง-->
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <label>สัญญาจ้าง:</label>
-                                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-th"></span>
-                                            </div>
-                                            <input name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016">
-
-                                        </div>
-                                    </div>
-                                    <!--ยอดเงินรวม-->  
-                                    <div class="col-sm-3">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" name="txtSumMoneyEmploy" type="number" placeholder="ยอดเงินรวม"/>
-                                    </div>
-                                    <!--เลขที่สัญญาจ้าง--->  
-                                    <div class="col-sm-3">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" name="txtNoEmploy" type="number" placeholder="เลขที่ใบสัญญา"/>
-                                    </div>
-                                    <!--ไฟล์สัญญาจ้าง--->  
-                                    <div class="col-sm-3">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" name="fileDocEmploy" type="file" />
-                                    </div>
-
+                                <div class="col-sm-4">
+                                    <label>&nbsp;</label>
+                                    <input class="form-control" name="txtInstallment" type="number" placeholder="จำนวนงวดงาน"/>
                                 </div>
-                            </div>
-                            <!-- /.box-body -->
 
-                            <!--Div Footer-->
-                            <div class="box-footer">
-                                <button type="reset" class="btn btn-default">ล้างข้อมูล</button>
-                                <button type="submit" class="btn btn-success pull-right">บันทึก</button>
                             </div>
-                            <!--.Div Footer-->
+
 
                         </div>
+                        <!-- /.box-body -->
+                    </div>
+
+
+                    <!--ใบเสนอราคา-->
+                    <div class="box box-default">
+                        <div class="box-header">
+                            <h3 class="box-title">เอกสาร</h3>
+                        </div>
+                        <div class="box-body">
+                            <!--ใบเสนอราคา-->
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>ใบเสนอราคา:</label>
+                                    <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                        <input name="datOffers" type="text" class="form-control" placeholder="วันที่เสนอราคา 01/01/2016">
+
+                                    </div>
+                                </div>
+                                <!--ยอดเงินรวม-->  
+                                <div class="col-sm-3">
+                                    <label>&nbsp;</label>
+                                    <input class="form-control" name="txtSumMoney" type="number" placeholder="ยอดเงินรวม"/>
+                                </div>
+                                <!--เลขที่ใบเสนอราคา-->  
+                                <div class="col-sm-3">
+                                    <label>&nbsp;</label>
+                                    <input class="form-control" name="txtNoOffer" type="number" placeholder="เลขที่ใบเสนอราคา"/>
+                                </div>
+                                <!--ไฟล์ใบเสนอราคา-->  
+                                <div class="col-sm-3">
+                                    <label>&nbsp;</label>
+                                    <input class="form-control" name="fileDocOfffer" type="file" />
+                                </div>
+
+                            </div>
+
+                            <!--สัญญาจ้าง-->
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>สัญญาจ้าง:</label>
+                                    <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                        <input name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016">
+
+                                    </div>
+                                </div>
+                                <!--ยอดเงินรวม-->  
+                                <div class="col-sm-3">
+                                    <label>&nbsp;</label>
+                                    <input class="form-control" name="txtSumMoneyEmploy" type="number" placeholder="ยอดเงินรวม"/>
+                                </div>
+                                <!--เลขที่สัญญาจ้าง--->  
+                                <div class="col-sm-3">
+                                    <label>&nbsp;</label>
+                                    <input class="form-control" name="txtNoEmploy" type="number" placeholder="เลขที่ใบสัญญา"/>
+                                </div>
+                                <!--ไฟล์สัญญาจ้าง--->  
+                                <div class="col-sm-3">
+                                    <label>&nbsp;</label>
+                                    <input class="form-control" name="fileDocEmploy" type="file" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+
+                        <!--Div Footer-->
+                        <div class="box-footer">
+                            <button type="reset" class="btn btn-default">ล้างข้อมูล</button>
+                            <button type="submit" class="btn btn-success pull-right">บันทึก</button>
+                        </div>
+                        <!--.Div Footer-->
+
+                    </div>
 
 
 
 
-                        <!-- .Your Page Content Here -->
-                    </section>
-                    <input type="hidden" value="<?php echo $customer_id ?>" name="hdfCustomerId"/>
+                    <!-- .Your Page Content Here -->
+                </section>
+                <input type="hidden" value="<?php echo $customer_id ?>" name="hdfCustomerId"/>
                 </form>
                 <!-- /.content -->
             </div>

@@ -43,24 +43,67 @@ class Project_model extends CI_Model {
     }
 
     public function _insert_project($projectData) {
-         $curentYear = date("Y") + 543;
+        $curentYear = date("Y") + 543;
         $projectDataInsert = array(
-        'project_number' => $projectData['txtIdWorkCustomer'],  
-        'project_income' => $projectData['txtAssetProject'],  
-        'project_coast' => $projectData['txtCoastOffice'],  
-        'project_note' => $projectData['txtMarkProject'],
-        'prject_start' => $projectData['datIntWork'],
-        'project_end' => $projectData['datFinalWork'],
-        'project_receip' => $projectData['datAcepeWork'],
-        'project_rate' => $projectData['selRateCoast'],
-        'project_coasts' => $projectData['txtRevenueAudit'],
-        'project_period' => $projectData['txtInstallment'],
-        'project_status' => 'เปิดโครงการ',
-        'project_year' =>   $curentYear, //อาจมีการเปลี่ยนแปลง
-        'customer_id' => $projectData['hdfCustomerId']
+            'project_number' => $projectData['txtIdWorkCustomer'],
+            'project_income' => $projectData['txtAssetProject'],
+            'project_coast' => $projectData['txtCoastOffice'],
+            'project_note' => $projectData['txtMarkProject'],
+            'prject_start' => $projectData['datIntWork'],
+            'project_end' => $projectData['datFinalWork'],
+            'project_receip' => $projectData['datAcepeWork'],
+            'project_rate' => $projectData['selRateCoast'],
+            'project_coasts' => $projectData['txtRevenueAudit'],
+            'project_period' => $projectData['txtInstallment'],
+            'project_status' => 'เปิดโครงการ',
+            'project_year' => $curentYear, //อาจมีการเปลี่ยนแปลง
+            'customer_id' => $projectData['hdfCustomerId']
         );
 
         $this->db->insert('project', $projectDataInsert);
     }
 
+    public function _proid_from_pro_number($pronumber) {
+        $query = $this->db->where('project_number', $pronumber)
+                ->get('project')
+                ->result();
+        foreach ($query as $row) {
+            return $row->project_id;
+        }
+    }
+
+    public function _insert_team($projec_id, $projectData, $countEm) {
+        /* insert ลงทีม */
+        $dataTeam = array(
+            'team_role' => $projectData['selEmRole'],
+            'team_hour' => $projectData['txtCountWorkHour'],
+            'team_salary' => $projectData['txtBathTime'],
+            'em_id' => $projectData['selEmName'], //ค่า em_id
+        );
+
+        /* วนเอาข้อมูลเข้า DB */
+        for ($i = 0; $i < $countEm; $i++) {
+            
+            $query = $this->db->set('team_role', $dataTeam['team_role'][$i])
+                    ->set('team_hour', $dataTeam['team_hour'][$i])
+                    ->set('team_salary', $dataTeam['team_salary'][$i])
+                    ->set('em_id', $dataTeam['em_id'][$i])
+                    ->set('project_id', $projec_id)
+                    ->insert('team');
+        }
+    }
+    
+    public function _insert_prodoc($projectData, $cusIdFromproNumber, $docName){
+        $dataInsertFile = array(
+            'project_doc_name' => $docName,
+            'project_doc_qua_dat' => 
+            'project_doc_money' =>
+            'project_doc_no' =>
+            'project_doc_path' =>
+            'project_id' => $cusIdFromproNumber
+        );
+        
+    }
+    
+        
 }
