@@ -83,7 +83,7 @@ class Project_model extends CI_Model {
 
         /* วนเอาข้อมูลเข้า DB */
         for ($i = 0; $i < $countEm; $i++) {
-            
+
             $query = $this->db->set('team_role', $dataTeam['team_role'][$i])
                     ->set('team_hour', $dataTeam['team_hour'][$i])
                     ->set('team_salary', $dataTeam['team_salary'][$i])
@@ -92,18 +92,24 @@ class Project_model extends CI_Model {
                     ->insert('team');
         }
     }
-    
-    public function _insert_prodoc($projectData, $cusIdFromproNumber, $docName){
+
+    public function _insert_prodoc($docDate, $docCoast, $docNo, $filePath, $proId, $fileName) {
         $dataInsertFile = array(
-            'project_doc_name' => $docName,
-            'project_doc_qua_dat' => 
-            'project_doc_money' =>
-            'project_doc_no' =>
-            'project_doc_path' =>
-            'project_id' => $cusIdFromproNumber
+            'project_doc_name' => $fileName,
+            'project_doc_qua_dat' => $docDate,
+            'project_doc_money' => $docCoast,
+            'project_doc_no' => $docNo,
+            'project_doc_path' => $filePath,
+            'project_id' => $proId
         );
-        
+
+        $query = $this->db->set('project_doc_name', $dataInsertFile['project_doc_name'])
+                ->set('project_doc_qua_dat', $dataInsertFile['project_doc_qua_dat'])
+                ->set('project_doc_money', $dataInsertFile['project_doc_money'])
+                ->set('project_doc_no', $dataInsertFile['project_doc_no'])
+                ->set('project_doc_path', $dataInsertFile['project_doc_path'])
+                ->set('project_id', $dataInsertFile['project_id'])
+                ->insert('project_doc');
     }
-    
-        
+
 }
