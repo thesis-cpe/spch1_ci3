@@ -6,7 +6,7 @@
           <img src="<?php echo base_url();?>dashboard/lte/dist/img/avatar5.png"/>
         </div>
         <div class="pull-left info">
-          <p>ชื่อ</p>
+          <p><?php echo $this->session->userdata('em_name');?></p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>

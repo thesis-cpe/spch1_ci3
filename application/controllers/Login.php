@@ -53,12 +53,20 @@ class Login extends CI_Controller {
                     $check = $this->users->_checkUser($username, $password);
                     if ($check) { //ชื่อผู้ใช้รหัสถูกต้อง
                        
+                       $emSession = $this->users->_get_employee_session($username);
+                       foreach ($emSession as $rowemSession)
+                       {
+                         $resultEmSession['name'] =  $rowemSession->em_name;
+                         $resultEmSession['role'] =  $rowemSession->em_role;
+                         $resultEmSession['em_start_work'] =  $rowemSession->em_start_work;
+                       }
                         
                         $dataEm = array(  //ตัวแปร session
                             'username' => $username,
                             'logged' => TRUE,
-                           
-                            
+                            'em_name' => $resultEmSession['name'],
+                            'em_role' => $resultEmSession['role'],
+                            'em_start' =>$resultEmSession['em_start_work']
                         );
                         $this->session->set_userdata($dataEm); //สร้างตัวแปร Session
                         redirect('login');

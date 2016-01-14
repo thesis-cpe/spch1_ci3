@@ -59,4 +59,12 @@ class Users_model extends CI_Model {
         return $query;
     }
 
+    function _get_employee_session($username) {
+        $query = $this->db->where('em_number', $username)
+          ->get('employee')
+          ->result();
+       // $query = $this->db->get_where('employee', array('em_number' => $username))->result();
+        return $query;
+    }
+
 }
