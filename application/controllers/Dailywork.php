@@ -21,15 +21,20 @@ class Dailywork extends CI_Controller {
     public function index() {
 
         if ($this->session->userdata('logged')) {
-            
-            $this->load->view('daily_work_view');
+                
+                $this->load->view('daily_work_view');
+        
+                
+                
+                
         } else {
             $this->load->view('template/404anime');
         }
     }
     
-    
-    public function insert_daily(){
+   
+
+    public function insert_daily() {
         
     }
 

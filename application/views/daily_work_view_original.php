@@ -37,12 +37,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <!--Datpicker-->
-        <link rel="stylesheet" href="http://127.0.0.1/spch1_ci3/dashboard/lte/plugins/datepicker/datepicker3.css">
+
 
         <!--css timepicker for timepiar-->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('dashboard/lte/plugins/datepair-this/jquery.timepicker.css') ?>" /> 
-    </head>
+</head>
     <!--
     BODY TAG OPTIONS:
     =================
@@ -81,33 +80,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
-                <section class="content-header" > 
-
-                    <div class="row">  
-                        <div class="col-md-3">
-                            <h1 style="font-size: 24px;margin: 0">
-                                งานประจำวัน
-                                <small style="font-size: 15px">บันทึกข้อมูลงานประจำวัน </small>
-                            </h1>
-                        </div>
-
-                        <div class="col-md-2">
-                            <form action="">  <!--ไปยัง AJAX-->
-                                <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
-                                    </div>
-                                    <input name="datInWork" type="text" class="form-control" placeholder="01/01/2016">
-
-                                </div>
-                            </form> <!--.ไปยัง AJAX-->
-                        </div>
-
-                    </div>
+                <section class="content-header">
+                    <h1>
+                        งานประจำวัน
+                        <small>บันทึกข้อมูลงานประจำวัน</small>
+                    </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> งานประจำวัน</a></li>
                     </ol>
-
                 </section>
 
                 <!-- Main content -->
@@ -120,7 +100,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#tab_1" data-toggle="tab">ข้อมูลงาน</a></li>
-
                                 <li><button name="btnSubmit" type="submit" class="btn btn-block btn-info btn-sm" title="บันทึก"><span class="fa fa-save"></button></li> 
                             </ul>
 
@@ -291,7 +270,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 </tbody>
 
                                                                 <tfoot><!--ท้ายตาราง-->
-
+                                                                    <tr>
+                                                                        <td rowspan="2" align="center"><p>&nbsp;</p>
+                                                                            <p>เลือก</p>
+                                                                        </td>
+                                                                        <td rowspan="2" align="center"><p>cuscode</p>
+                                                                            <p>รหัสงาน</p></td>
+                                                                        <td  rowspan="2" align="center"><p>cusname</p>
+                                                                            <p>ชื่อบริษัท</p></td>
+                                                                        <td  rowspan="2" align="center"><p>trndate</p>
+                                                                            <p>วันที่</p></td>
+                                                                        <td  rowspan="2" align="center"><p>trntime</p>
+                                                                            <p>ช่วงเวลา</p></td>
+                                                                        <td colspan="3" align="center">เวลา</td>
+                                                                        <td colspan="3" align="center">รายการบันทึก</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td  align="center">ใช้ไป</td>
+                                                                        <td  align="center">ยกมา</td>
+                                                                        <td  align="center">คงเหลือ</td>
+                                                                        <td  align="center">ยกมา</td>
+                                                                        <td  align="center">คีย์เข้า</td>
+                                                                        <td  align="center">โน้ต</td>
+                                                                    </tr>
                                                                 </tfoot>
                                                             </table>
                                                         </div><!-- .table-responsive -->
