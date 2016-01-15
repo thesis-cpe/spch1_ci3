@@ -42,6 +42,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!--css timepicker for timepiar-->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('dashboard/lte/plugins/datepair-this/jquery.timepicker.css') ?>" /> 
+        <script>
+            function showHint(str) {
+                if (str.length == 0) {
+                    document.getElementById("txtHint").innerHTML = "";
+                    return;
+                } else {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+                        }
+                    };
+                    // xmlhttp.open("GET", "gethint.php?q=" + str, true);
+                    xmlhttp.open("GET", "<?php echo base_url(); ?>ajax/getdate.php?q=" + str, true);
+                    xmlhttp.send();
+                }
+            }
+        </script>
+
+
     </head>
     <!--
     BODY TAG OPTIONS:
@@ -92,17 +112,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
 
                         <div class="col-md-2">
-                            <form action="">  <!--ไปยัง AJAX-->
-                                <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
-                                    </div>
-                                    <input name="datInWork" type="text" class="form-control" placeholder="01/01/2016">
-
+                            <?php echo form_open('dailywork') ?> 
+                            <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
                                 </div>
-                            </form> <!--.ไปยัง AJAX-->
-                        </div>
+                                <input  name="datInWork" type="text" class="form-control input-sm" placeholder="01/01/2016" required=""/> 
+                            </div>
 
+                        </div>
+                        <div class="col-md-2">
+                            <input class="btn btn-sm btn-default" type="submit" name="btnSelDate" value="เลือก"/>
+                        </div>
+                        <?php echo form_close(); ?>
                     </div>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> งานประจำวัน</a></li>
@@ -174,14 +196,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <?php
                                                                     $i = 1;   //วนตัว CheckBox 
                                                                     /* วันที่ */
+                                                                   
                                                                     ?>
+                                                               
                                                                     <tr>
                                                                         <td>
                                                                             <input id="chkBox<?php echo $i; ?>" name="chkBox1[]" type="checkbox"/>
                                                                         </td>
 
                                                                         <td>
-                                                                            เลขรหัสงาน
+                                                                           รหัสงาน
                                                                             <input disabled="" id="hdfProjectNumber<?php echo $i; ?>" type="hidden" name="hdfProjectNumber[]" value="#">
                                                                         </td>
 
@@ -189,79 +213,76 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                             ชื่อลูกค้า
                                                                         </td>
 
-                                                                        <td>
-                                                                            วันที่ที่ถูกเลือก
+                                                                        <td><center> <?php echo $dateSel; ?></center></td>
 
-                                                                        </td>
+                                                                <td> 
+                                                                    <div id="basicExample">
+                                                                        <input required="" disabled id="txtStartTime<?php echo $i; ?>" name="txtStartTime[]" size="7" placeholder="เริ่ม"  type="text" class="time start form-control input-sm" />
+                                                                        <input required="" disabled id="txtEndTime<?php echo $i; ?>" name="txtEndTime[]" size="7" placeholder="สิ้นสุด" type="text" class="time end form-control input-sm" />
+                                                                    </div>
+                                                                </td>
 
-                                                                        <td> 
-                                                                            <div id="basicExample">
-                                                                                <input required="" disabled id="txtStartTime<?php echo $i; ?>" name="txtStartTime[]" size="7" placeholder="เริ่ม"  type="text" class="time start form-control input-sm" />
-                                                                                <input required="" disabled id="txtEndTime<?php echo $i; ?>" name="txtEndTime[]" size="7" placeholder="สิ้นสุด" type="text" class="time end form-control input-sm" />
-                                                                            </div>
-                                                                        </td>
+                                                                <td>
+                                                                    <input required="" disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
+                                                                </td>
 
-                                                                        <td>
-                                                                            <input required="" disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
-                                                                        </td>
-
-                                                                        <!--เวลายกมา-->
-                                                                        <td>
-                                                                            <div align="right">
-                                                                                รวมเดลีย์เรคคอร์ดทาม
-                                                                            </div>
+                                                                <!--เวลายกมา-->
+                                                                <td>
+                                                                    <div align="right">
+                                                                        รวมเดลีย์เรคคอร์ดทาม
+                                                                    </div>
 
 
-                                                                        </td>
+                                                                </td>
 
-                                                                        <!--เวลาคงเหลือ-->
-                                                                        <td>
-                                                                            <div align="right">
-                                                                                team_hour - sum_time
-                                                                            </div>
-                                                                        </td>
+                                                                <!--เวลาคงเหลือ-->
+                                                                <td>
+                                                                    <div align="right">
+                                                                        team_hour - sum_time
+                                                                    </div>
+                                                                </td>
 
-                                                                        <!--รายการบันทึก ยกมา-->
-                                                                        <td>
-                                                                            <div align="right">
-                                                                                sum_rec
-                                                                            </div>
-                                                                        </td>
+                                                                <!--รายการบันทึก ยกมา-->
+                                                                <td>
+                                                                    <div align="right">
+                                                                        sum_rec
+                                                                    </div>
+                                                                </td>
 
-                                                                        <td>
-                                                                            <input required="" disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
-                                                                        </td>
-                                                                        <!--โน้ต-->
-                                                                        <td>
-                                                                            <button disabled="" id="buttonNote<?php echo $i; ?>" data-toggle="modal" data-target="#pnlNote<?php echo $i; ?>" type="button" class="btn btn-xs btn-default"><span class="fa fa-pencil-square-o"></span></button>
+                                                                <td>
+                                                                    <input required="" disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
+                                                                </td>
+                                                                <!--โน้ต-->
+                                                                <td>
+                                                                    <button disabled="" id="buttonNote<?php echo $i; ?>" data-toggle="modal" data-target="#pnlNote<?php echo $i; ?>" type="button" class="btn btn-xs btn-default"><span class="fa fa-pencil-square-o"></span></button>
 
-                                                                            <!--Modal-->
-                                                                            <div class="modal fade" id="pnlNote<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                                                <div class="modal-dialog" role="document">
-                                                                                    <div class="modal-content">
-                                                                                        <div class="modal-header">
-                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                            <h4 class="modal-title" id="myModalLabel">บันทึกข้อความ</h4>
-                                                                                        </div>
-                                                                                        <div class="modal-body">
-                                                                                            <!--Editor-->
+                                                                    <!--Modal-->
+                                                                    <div class="modal fade" id="pnlNote<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                    <h4 class="modal-title" id="myModalLabel">บันทึกข้อความ</h4>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <!--Editor-->
 
-                                                                                            <textarea placeholder="แทรกข้อความ...ข้อความจะถูกเก็บเมื่อกดบันทึก" disabled=""   name="areaNote[]" id="noteArea<?php echo $i; ?>" rows="5" cols="90"></textarea>
+                                                                                    <textarea placeholder="แทรกข้อความ...ข้อความจะถูกเก็บเมื่อกดบันทึก" disabled=""   name="areaNote[]" id="noteArea<?php echo $i; ?>" rows="5" cols="90"></textarea>
 
 
-                                                                                            <!--.Editor-->
-                                                                                        </div>
-                                                                                        <div class="modal-footer">
-                                                                                            <button type="button" class="btn btn-primary" data-dismiss="modal">ปิด</button>
-                                                                                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    <!--.Editor-->
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">ปิด</button>
+                                                                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                                                                                 </div>
                                                                             </div>
+                                                                        </div>
+                                                                    </div>
 
-                                                                            <!--.Modal-->
-                                                                        </td>
-                                                                        <!--CheckBox-->
+                                                                    <!--.Modal-->
+                                                                </td>
+                                                                <!--CheckBox-->
                                                                 <script>
 
                                                                     document.getElementById('chkBox<?php echo $i; ?>').onchange = function () {
@@ -285,13 +306,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                                                                 <?php
-                                                                $i++;
-                                                                // } while มาวน
+                                                                $i++;  // $i checkbox
+                                                               // foreach ใหญ่ มาวน
+                                                                
                                                                 ?>            
                                                                 </tbody>
 
                                                                 <tfoot><!--ท้ายตาราง-->
-
+                                                                    <!--input hidden-->
+                                                                <input type="hidden" name="hdfDateSel" value="<?php echo $dateSel?>"/>
+                                                                    <!---->
                                                                 </tfoot>
                                                             </table>
                                                         </div><!-- .table-responsive -->
@@ -360,7 +384,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="<?php echo base_url('dashboard/lte/plugins/datepair-this/bootstrap-datepicker.js'); ?>"></script>
         <script src="<?php echo base_url('dashboard/lte/plugins/datepair-this/datepair.js'); ?>"></script>
         <script src="<?php echo base_url('dashboard/lte/plugins/datepair-this/jquery.datepair.js'); ?>"></script>
-
+        <!-- InputMask -->
+        <script src="<?php echo base_url(); ?>dashboard/lte/plugins/input-mask/jquery.inputmask.js"></script>
+        <script src="<?php echo base_url(); ?>dashboard/lte/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+        <script src="<?php echo base_url(); ?>dashboard/lte/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
 
 
@@ -399,7 +426,68 @@ scratch. This page gets rid of all links and provides the needed markup only.
             var datepair = new Datepair(basicExampleEl);
         </script>
 
+        <script>
+            $(function () {
+                //Initialize Select2 Elements
+                $(".select2").select2();
 
+                //Datemask dd/mm/yyyy
+                $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+                //Datemask2 mm/dd/yyyy
+                $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+                //Money Euro
+                $("[data-mask]").inputmask();
+
+                //Date range picker
+                $('#reservation').daterangepicker();
+                //Date range picker with time picker
+                $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+                //Date range as a button
+                $('#daterange-btn').daterangepicker(
+                        {
+                            ranges: {
+                                'Today': [moment(), moment()],
+                                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                            },
+                            startDate: moment().subtract(29, 'days'),
+                            endDate: moment()
+                        },
+                        function (start, end) {
+                            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                        }
+                );
+
+                //iCheck for checkbox and radio inputs
+                $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                    checkboxClass: 'icheckbox_minimal-blue',
+                    radioClass: 'iradio_minimal-blue'
+                });
+                //Red color scheme for iCheck
+                $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                    checkboxClass: 'icheckbox_minimal-red',
+                    radioClass: 'iradio_minimal-red'
+                });
+                //Flat red color scheme for iCheck
+                $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                    checkboxClass: 'icheckbox_flat-green',
+                    radioClass: 'iradio_flat-green'
+                });
+
+                //Colorpicker
+                $(".my-colorpicker1").colorpicker();
+                //color picker with addon
+                $(".my-colorpicker2").colorpicker();
+
+                //Timepicker
+                $(".timepicker").timepicker({
+                    showInputs: false
+                });
+            });
+        </script>
 
 
     </body>

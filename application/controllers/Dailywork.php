@@ -15,24 +15,34 @@ class Dailywork extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->helper('url');
+
+        $this->load->model('Daily_model', 'daily');
     }
 
     public function index() {
 
         if ($this->session->userdata('logged')) {
-                
-                $this->load->view('daily_work_view');
-        
-                
-                
-                
+
+            $dataDate['dateSel'] = "";
+            if ($this->input->post('btnSelDate') != "") {
+                $dataDate['dateSel'] = $this->input->post('datInWork');
+            }
+            /* LOOP ใหญ่ เลือกโปรเจคจากทีม */
+            
+            $em_id = $this->session->userdata('em_id');
+
+            $dataDate['team_data'] = $this->daily->_sel_work_team_em($em_id); //ได้ข้อมูลลูปใหญ่ ว่าอยู่ในทีมไหนบ้างรับผิดชอบรหัสงานไหนบ้าง
+            
+            
+            foreach ($dataDate['team_data']->result() as $row){
+               echo  $row->project_number;
+            }
+            
+                $this->load->view('daily_work_view', $dataDate);
         } else {
             $this->load->view('template/404anime');
         }
     }
-    
-   
 
     public function insert_daily() {
         

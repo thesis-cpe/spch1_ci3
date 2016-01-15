@@ -59,6 +59,7 @@ class Login extends CI_Controller {
                          $resultEmSession['name'] =  $rowemSession->em_name;
                          $resultEmSession['role'] =  $rowemSession->em_role;
                          $resultEmSession['em_start_work'] =  $rowemSession->em_start_work;
+                         $resultEmSession['em_id'] = $rowemSession->em_id;
                        }
                         
                         $dataEm = array(  //ตัวแปร session
@@ -66,7 +67,8 @@ class Login extends CI_Controller {
                             'logged' => TRUE,
                             'em_name' => $resultEmSession['name'],
                             'em_role' => $resultEmSession['role'],
-                            'em_start' =>$resultEmSession['em_start_work']
+                            'em_start' =>$resultEmSession['em_start_work'],
+                            'em_id' => $resultEmSession['em_id'] 
                         );
                         $this->session->set_userdata($dataEm); //สร้างตัวแปร Session
                         redirect('login');
