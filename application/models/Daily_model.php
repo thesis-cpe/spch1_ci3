@@ -18,7 +18,9 @@ class Daily_model extends CI_Model {
                 . "FROM `team` JOIN project ON team.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id "
                 . "WHERE team.em_id = '$em_id' AND project.project_status = 'เปิดโครงการ'";
     
-       return $query = $this->db->query($sqlSelWorkFromTeam);
+      $query = $this->db->query($sqlSelWorkFromTeam);
+      $result = $query->result_array();
+      return $result;
     }
 
 }

@@ -42,24 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!--css timepicker for timepiar-->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('dashboard/lte/plugins/datepair-this/jquery.timepicker.css') ?>" /> 
-        <script>
-            function showHint(str) {
-                if (str.length == 0) {
-                    document.getElementById("txtHint").innerHTML = "";
-                    return;
-                } else {
-                    var xmlhttp = new XMLHttpRequest();
-                    xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
-                        }
-                    };
-                    // xmlhttp.open("GET", "gethint.php?q=" + str, true);
-                    xmlhttp.open("GET", "<?php echo base_url(); ?>ajax/getdate.php?q=" + str, true);
-                    xmlhttp.send();
-                }
-            }
-        </script>
+
 
 
     </head>
@@ -196,126 +179,136 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <?php
                                                                     $i = 1;   //วนตัว CheckBox 
                                                                     /* วันที่ */
-                                                                   
-                                                                    ?>
-                                                               
-                                                                    <tr>
-                                                                        <td>
-                                                                            <input id="chkBox<?php echo $i; ?>" name="chkBox1[]" type="checkbox"/>
-                                                                        </td>
+                                                                    foreach ($team_data as $rowteam_data):
+                                                                        ?>
 
-                                                                        <td>
-                                                                           รหัสงาน
-                                                                            <input disabled="" id="hdfProjectNumber<?php echo $i; ?>" type="hidden" name="hdfProjectNumber[]" value="#">
-                                                                        </td>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <input id="chkBox<?php echo $i; ?>" name="chkBox1[]" type="checkbox"/>
+                                                                            </td>
 
-                                                                        <td>
-                                                                            ชื่อลูกค้า
-                                                                        </td>
+                                                                            <td>
+                                                                                <?php echo $rowteam_data['project_number']; ?>
+                                                                                <input disabled="" id="hdfProjectNumber<?php echo $i; ?>" type="hidden" name="hdfProjectNumber[]" value="<?php echo $rowteam_data['project_number']; ?>">
+                                                                            </td>
 
-                                                                        <td><center> <?php echo $dateSel; ?></center></td>
+                                                                            <td>
+                                                                                <?php echo $rowteam_data['customer_name']; ?>
+                                                                            </td>
 
-                                                                <td> 
-                                                                    <div id="basicExample">
-                                                                        <input required="" disabled id="txtStartTime<?php echo $i; ?>" name="txtStartTime[]" size="7" placeholder="เริ่ม"  type="text" class="time start form-control input-sm" />
-                                                                        <input required="" disabled id="txtEndTime<?php echo $i; ?>" name="txtEndTime[]" size="7" placeholder="สิ้นสุด" type="text" class="time end form-control input-sm" />
-                                                                    </div>
-                                                                </td>
+                                                                            <td>
+                                                                                <center> 
+                                                                                    <?php if(!empty($dateSel)){
+                                                                                      $dateSelected =   $dateSel;
+                                                                                    }else{
+                                                                                        $dateSelected = $this->session->userdata('date_curent');
+                                                                                    }
+                                                                                    echo $dateSelected;
+                                                                                    ?>
+                                                                                </center>
+                                                                            </td>
 
-                                                                <td>
-                                                                    <input required="" disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
-                                                                </td>
+                                                                    <td> 
+                                                                        <div id="basicExample">
+                                                                            <input required="" disabled id="txtStartTime<?php echo $i; ?>" name="txtStartTime[]" size="7" placeholder="เริ่ม"  type="text" class="time start form-control input-sm" />
+                                                                            <input required="" disabled id="txtEndTime<?php echo $i; ?>" name="txtEndTime[]" size="7" placeholder="สิ้นสุด" type="text" class="time end form-control input-sm" />
+                                                                        </div>
+                                                                    </td>
 
-                                                                <!--เวลายกมา-->
-                                                                <td>
-                                                                    <div align="right">
-                                                                        รวมเดลีย์เรคคอร์ดทาม
-                                                                    </div>
+                                                                    <td>
+                                                                        <input required="" disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
+                                                                    </td>
 
-
-                                                                </td>
-
-                                                                <!--เวลาคงเหลือ-->
-                                                                <td>
-                                                                    <div align="right">
-                                                                        team_hour - sum_time
-                                                                    </div>
-                                                                </td>
-
-                                                                <!--รายการบันทึก ยกมา-->
-                                                                <td>
-                                                                    <div align="right">
-                                                                        sum_rec
-                                                                    </div>
-                                                                </td>
-
-                                                                <td>
-                                                                    <input required="" disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
-                                                                </td>
-                                                                <!--โน้ต-->
-                                                                <td>
-                                                                    <button disabled="" id="buttonNote<?php echo $i; ?>" data-toggle="modal" data-target="#pnlNote<?php echo $i; ?>" type="button" class="btn btn-xs btn-default"><span class="fa fa-pencil-square-o"></span></button>
-
-                                                                    <!--Modal-->
-                                                                    <div class="modal fade" id="pnlNote<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                                        <div class="modal-dialog" role="document">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                    <h4 class="modal-title" id="myModalLabel">บันทึกข้อความ</h4>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <!--Editor-->
-
-                                                                                    <textarea placeholder="แทรกข้อความ...ข้อความจะถูกเก็บเมื่อกดบันทึก" disabled=""   name="areaNote[]" id="noteArea<?php echo $i; ?>" rows="5" cols="90"></textarea>
+                                                                    <!--เวลายกมา-->
+                                                                    <td>
+                                                                        <div align="right">
+                                                                            รวมเดลีย์เรคคอร์ดทาม
+                                                                        </div>
 
 
-                                                                                    <!--.Editor-->
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">ปิด</button>
-                                                                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                                                    </td>
+
+                                                                    <!--เวลาคงเหลือ-->
+                                                                    <td>
+                                                                        <div align="right">
+                                                                            team_hour - sum_time
+                                                                        </div>
+                                                                    </td>
+
+                                                                    <!--รายการบันทึก ยกมา-->
+                                                                    <td>
+                                                                        <div align="right">
+                                                                            sum_rec
+                                                                        </div>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <input required="" disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
+                                                                    </td>
+                                                                    <!--โน้ต-->
+                                                                    <td>
+                                                                        <button disabled="" id="buttonNote<?php echo $i; ?>" data-toggle="modal" data-target="#pnlNote<?php echo $i; ?>" type="button" class="btn btn-xs btn-default"><span class="fa fa-pencil-square-o"></span></button>
+
+                                                                        <!--Modal-->
+                                                                        <div class="modal fade" id="pnlNote<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                        <h4 class="modal-title" id="myModalLabel">บันทึกข้อความ</h4>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <!--Editor-->
+
+                                                                                        <textarea placeholder="แทรกข้อความ...ข้อความจะถูกเก็บเมื่อกดบันทึก" disabled=""   name="areaNote[]" id="noteArea<?php echo $i; ?>" rows="5" cols="90"></textarea>
+
+
+                                                                                        <!--.Editor-->
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-primary" data-dismiss="modal">ปิด</button>
+                                                                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <!--.Modal-->
-                                                                </td>
-                                                                <!--CheckBox-->
-                                                                <script>
+                                                                        <!--.Modal-->
+                                                                    </td>
+                                                                    <!--CheckBox-->
+                                                                    <script>
 
-                                                                    document.getElementById('chkBox<?php echo $i; ?>').onchange = function () {
-                                                                        document.getElementById('txtStartTime<?php echo $i; ?>').disabled = !this.checked;
-                                                                        document.getElementById('txtEndTime<?php echo $i; ?>').disabled = !this.checked;
-                                                                        document.getElementById('txtUseTime<?php echo $i; ?>').disabled = !this.checked;
-                                                                        document.getElementById('txtCountRec<?php echo $i; ?>').disabled = !this.checked;
+                                                                        document.getElementById('chkBox<?php echo $i; ?>').onchange = function () {
+                                                                            document.getElementById('txtStartTime<?php echo $i; ?>').disabled = !this.checked;
+                                                                            document.getElementById('txtEndTime<?php echo $i; ?>').disabled = !this.checked;
+                                                                            document.getElementById('txtUseTime<?php echo $i; ?>').disabled = !this.checked;
+                                                                            document.getElementById('txtCountRec<?php echo $i; ?>').disabled = !this.checked;
 
-                                                                        document.getElementById('hdfProjectNumber<?php echo $i; ?>').disabled = !this.checked;
-                                                                        document.getElementById('buttonNote<?php echo $i; ?>').disabled = !this.checked;
-                                                                        document.getElementById('noteArea<?php echo $i; ?>').disabled = !this.checked;
+                                                                            document.getElementById('hdfProjectNumber<?php echo $i; ?>').disabled = !this.checked;
+                                                                            document.getElementById('buttonNote<?php echo $i; ?>').disabled = !this.checked;
+                                                                            document.getElementById('noteArea<?php echo $i; ?>').disabled = !this.checked;
 
-                                                                    };
-                                                                </script>
-
+                                                                        };
+                                                                    </script>
 
 
 
-                                                                <!--.CK EDITOR-->
-                                                                </tr>
+
+                                                                    <!--.CK EDITOR-->
+                                                                    </tr>
 
 
-                                                                <?php
-                                                                $i++;  // $i checkbox
-                                                               // foreach ใหญ่ มาวน
-                                                                
+                                                                    <?php
+                                                                    $i++;  // $i checkbox
+                                                                    // foreach ใหญ่ มาวน
+                                                                endforeach;
                                                                 ?>            
                                                                 </tbody>
 
                                                                 <tfoot><!--ท้ายตาราง-->
                                                                     <!--input hidden-->
-                                                                <input type="hidden" name="hdfDateSel" value="<?php echo $dateSel?>"/>
-                                                                    <!---->
+                                                                <input type="hidden" name="hdfDateSel" value="<?php echo $dateSel ?>"/>
+                                                                <!---->
                                                                 </tfoot>
                                                             </table>
                                                         </div><!-- .table-responsive -->

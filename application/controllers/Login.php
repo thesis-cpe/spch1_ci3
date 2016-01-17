@@ -43,7 +43,7 @@ class Login extends CI_Controller {
                 //$captcha = $_POST['g-recaptcha-response'];
                 $captcha = $this->input->post('g-recaptcha-response');
                 $rsp = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha&remoteip$ip");
-                
+
                 $arr = json_decode($rsp, TRUE);
                 if ($arr['success']) {
                     //ผ่านการตรวจสอบว่าเป็นคน
@@ -52,34 +52,42 @@ class Login extends CI_Controller {
                     $password = $this->input->post('pass');
                     $check = $this->users->_checkUser($username, $password);
                     if ($check) { //ชื่อผู้ใช้รหัสถูกต้อง
-                       
-                       $emSession = $this->users->_get_employee_session($username);
-                       foreach ($emSession as $rowemSession)
-                       {
-                         $resultEmSession['name'] =  $rowemSession->em_name;
-                         $resultEmSession['role'] =  $rowemSession->em_role;
-                         $resultEmSession['em_start_work'] =  $rowemSession->em_start_work;
-                         $resultEmSession['em_id'] = $rowemSession->em_id;
-                       }
-                        
-                        $dataEm = array(  //ตัวแปร session
+
+                        /* วันที่ */
+                        $today = date("d-m-Y ");
+                        $todayExplode = explode("-", $today);
+                        $yearThaiBank = $todayExplode[2] + 543; //ได้เป็นปีพ.ศ.
+                        $curentDay = date("d/m") . "/" . $yearThaiBank; //วันที่ปัจจุบัน
+                        /* .วันที่ */
+
+
+                        $emSession = $this->users->_get_employee_session($username);
+                        foreach ($emSession as $rowemSession) {
+                            $resultEmSession['name'] = $rowemSession->em_name;
+                            $resultEmSession['role'] = $rowemSession->em_role;
+                            $resultEmSession['em_start_work'] = $rowemSession->em_start_work;
+                            $resultEmSession['em_id'] = $rowemSession->em_id;
+                        }
+
+                        $dataEm = array(//ตัวแปร session
                             'username' => $username,
                             'logged' => TRUE,
                             'em_name' => $resultEmSession['name'],
                             'em_role' => $resultEmSession['role'],
-                            'em_start' =>$resultEmSession['em_start_work'],
-                            'em_id' => $resultEmSession['em_id'] 
+                            'em_start' => $resultEmSession['em_start_work'],
+                            'em_id' => $resultEmSession['em_id'],
+                            'date_curent' => $curentDay
                         );
                         $this->session->set_userdata($dataEm); //สร้างตัวแปร Session
                         redirect('login');
                     } else { //ชื่อผู้ใช้รหัสไม่ถูกต้อง
-                       //redirect('login/sigin', 'refresh');
-                       $this->load->view('template/incorect_user'); 
+                        //redirect('login/sigin', 'refresh');
+                        $this->load->view('template/incorect_user');
                     }
                 } else {
                     echo 'SPAM';
                 }
-            }else{  //ไม่มีการกด recaptcha
+            } else {  //ไม่มีการกด recaptcha
                 $this->load->view('template/404recaptcha');
             }//ตรวจ recapthap  //เครดิต https://www.youtube.com/watch?v=pPITBtE45bg
         }//ตรวจกดปุ่ม login
@@ -89,7 +97,5 @@ class Login extends CI_Controller {
         $this->session->sess_destroy(); //ล้างค่าตัวแปร Session
         redirect('login/sigin', 'refresh'); //กลับไปหน้าล๊อกอิน
     }
-    
-    
 
 }
