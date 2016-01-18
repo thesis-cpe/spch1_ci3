@@ -95,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
 
                         <div class="col-md-2">
-                            <?php echo form_open('dailywork') ?> 
+                            <?php echo form_open('dailywork/dailywork2') ?> 
                             <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                 <div class="input-group-addon">
                                     <span class="glyphicon glyphicon-th"></span>
@@ -117,235 +117,244 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <!-- Main content -->
 
-                <form action="php_action/insert_daily.php" method="POST">  <!--Form-->
-                    <section class="content">
+                <!--<form action="php_action/insert_daily.php" method="POST">-->    <!--Form-->
+                <?php echo form_open('dailywork/insert_daily') ?>
+                <section class="content">
 
-                        <!-- Your Page Content Here -->
-                        <!-- TAB --->
-                        <div class="nav-tabs-custom">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab_1" data-toggle="tab">ข้อมูลงาน</a></li>
+                    <!-- Your Page Content Here -->
+                    <!-- TAB --->
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab_1" data-toggle="tab">ข้อมูลงาน</a></li>
 
-                                <li><button name="btnSubmit" type="submit" class="btn btn-block btn-info btn-sm" title="บันทึก"><span class="fa fa-save"></button></li> 
-                            </ul>
+                            <li><button name="btnSubmit" type="submit" class="btn btn-block btn-info btn-sm" title="บันทึก"><span class="fa fa-save"></button></li> 
+                        </ul>
 
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="tab_1">
-                                    <!--Conten Tab1-->
-                                    <section class="content">
-                                        <!--  <div class="row">
-                                              <div class="col-sm-offset-10 col-xs-2"> <a href="#"><i class="fa   fa-user-plus"></i> เพิ่มลูกค้า</a></div>
-                                          </div>   -->
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <div class="box">
-                                                    <div class="box-header">
-                                                        <!-- <h3 class="box-title">รายการข้อมูลลูกค้า</h3> -->
-                                                      <!--  <a  href="#" title="เพิ่มข้อมูลลูกค้า"><i class="fa fa-save"></i> บันทึกงาน</a>  -->
-                                                    </div>  
-                                                    <!-- /.box-header -->
-                                                    <div class="box-body">
-                                                        <div class="table-responsive">  
-                                                            <table id="example1" class="table table-bordered table-striped" width="1205">
-                                                                <thead><!--หัวตาราง-->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_1">
+                                <!--Conten Tab1-->
+                                <section class="content">
+                                    <!--  <div class="row">
+                                          <div class="col-sm-offset-10 col-xs-2"> <a href="#"><i class="fa   fa-user-plus"></i> เพิ่มลูกค้า</a></div>
+                                      </div>   -->
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <!-- <h3 class="box-title">รายการข้อมูลลูกค้า</h3> -->
+                                                  <!--  <a  href="#" title="เพิ่มข้อมูลลูกค้า"><i class="fa fa-save"></i> บันทึกงาน</a>  -->
+                                                </div>  
+                                                <!-- /.box-header -->
+                                                <div class="box-body">
+                                                    <div class="table-responsive">  
+                                                        <table id="example1" class="table table-bordered table-striped" width="1205">
+                                                            <thead><!--หัวตาราง-->
+                                                                <tr>
+
+                                                                    <td width="20" rowspan="2" align="center"><p>&nbsp;</p>
+                                                                        <p>เลือก</p>
+                                                                    </td>
+
+                                                                    <td width="130" rowspan="2" align="center"><p>cuscode</p>
+                                                                        <p>รหัสงาน</p></td>
+                                                                    <td width="200"  rowspan="2" align="center"><p>cusname</p>
+                                                                        <p>ชื่อบริษัท</p></td>
+                                                                    <td width="100"  rowspan="2" align="center"><p>trndate</p>
+                                                                        <p>วันที่</p></td>
+                                                                    <td  width="139" rowspan="2" align="center"><p>trntime</p>
+                                                                        <p>ช่วงเวลา</p></td>
+                                                                    <td colspan="3" align="center">เวลา</td>
+                                                                    <td colspan="3" align="center">รายการบันทึก</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td width="20"  align="center">ใช้ไป</td>
+                                                                    <td  align="center">ยกมา</td>
+                                                                    <td  align="center">คงเหลือ</td>
+                                                                    <td  align="center">ยกมา</td>
+                                                                    <td width="20"  align="center">คีย์เข้า</td>
+                                                                    <td  align="center">โน้ต</td>
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody><!--ตัวตาราง-->
+                                                                <?php
+                                                                $i = 1;   //วนตัว CheckBox 
+                                                                /* วันที่ */
+
+                                                                foreach ($team_data as $rowteam_data):
+                                                                    ?>
+
                                                                     <tr>
-
-                                                                        <td width="20" rowspan="2" align="center"><p>&nbsp;</p>
-                                                                            <p>เลือก</p>
+                                                                        <td>
+                                                                            <input id="chkBox<?php echo $i; ?>" name="chkBox1[]" type="checkbox"/>
                                                                         </td>
 
-                                                                        <td width="130" rowspan="2" align="center"><p>cuscode</p>
-                                                                            <p>รหัสงาน</p></td>
-                                                                        <td width="200"  rowspan="2" align="center"><p>cusname</p>
-                                                                            <p>ชื่อบริษัท</p></td>
-                                                                        <td width="100"  rowspan="2" align="center"><p>trndate</p>
-                                                                            <p>วันที่</p></td>
-                                                                        <td  width="139" rowspan="2" align="center"><p>trntime</p>
-                                                                            <p>ช่วงเวลา</p></td>
-                                                                        <td colspan="3" align="center">เวลา</td>
-                                                                        <td colspan="3" align="center">รายการบันทึก</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td width="20"  align="center">ใช้ไป</td>
-                                                                        <td  align="center">ยกมา</td>
-                                                                        <td  align="center">คงเหลือ</td>
-                                                                        <td  align="center">ยกมา</td>
-                                                                        <td width="20"  align="center">คีย์เข้า</td>
-                                                                        <td  align="center">โน้ต</td>
-                                                                    </tr>
-                                                                </thead>
+                                                                        <td>
+                                                                            <?php echo $rowteam_data['project_number']; ?>
+                                                                            <input disabled="" id="hdfProjectNumber<?php echo $i; ?>" type="hidden" name="hdfProjectNumber[]" value="<?php echo $rowteam_data['project_number']; ?>">
+                                                                        </td>
 
-                                                                <tbody><!--ตัวตาราง-->
+                                                                        <td>
+                                                                            <?php echo $rowteam_data['customer_name']; ?>
+                                                                        </td>
+
+                                                                        <td>
+                                                                <center> 
                                                                     <?php
-                                                                    $i = 1;   //วนตัว CheckBox 
-                                                                    /* วันที่ */
-                                                                    
-                                                                    foreach ($team_data as $rowteam_data):
-                                                                        ?>
+                                                                    if (!empty($dateSel)) {
+                                                                        $dateSelected = $dateSel;
+                                                                    } else {
+                                                                        $dateSelected = $this->session->userdata('date_curent');
+                                                                    }
+                                                                    echo $dateSelected;
+                                                                    ?>
 
-                                                                        <tr>
-                                                                            <td>
-                                                                                <input id="chkBox<?php echo $i; ?>" name="chkBox1[]" type="checkbox"/>
-                                                                            </td>
+                                                                </center>
+                                                                </td>
 
-                                                                            <td>
-                                                                                <?php echo $rowteam_data['project_number']; ?>
-                                                                                <input disabled="" id="hdfProjectNumber<?php echo $i; ?>" type="hidden" name="hdfProjectNumber[]" value="<?php echo $rowteam_data['project_number']; ?>">
-                                                                            </td>
+                                                                <td> 
+                                                                    <div id="basicExample">
+                                                                        <input required="" disabled id="txtStartTime<?php echo $i; ?>" name="txtStartTime[]" size="7" placeholder="เริ่ม"  type="text" class="time start form-control input-sm" />
+                                                                        <input required="" disabled id="txtEndTime<?php echo $i; ?>" name="txtEndTime[]" size="7" placeholder="สิ้นสุด" type="text" class="time end form-control input-sm" />
+                                                                    </div>
+                                                                </td>
 
-                                                                            <td>
-                                                                                <?php echo $rowteam_data['customer_name']; ?>
-                                                                            </td>
+                                                                <td>
+                                                                    <input required="" disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
+                                                                </td>
 
-                                                                            <td>
-                                                                                <center> 
-                                                                                    <?php if(!empty($dateSel)){
-                                                                                      $dateSelected =   $dateSel;
-                                                                                    }else{
-                                                                                        $dateSelected = $this->session->userdata('date_curent');
-                                                                                    }
-                                                                                    echo $dateSelected;
-                                                                                    ?>
-                                                                                </center>
-                                                                            </td>
-
-                                                                    <td> 
-                                                                        <div id="basicExample">
-                                                                            <input required="" disabled id="txtStartTime<?php echo $i; ?>" name="txtStartTime[]" size="7" placeholder="เริ่ม"  type="text" class="time start form-control input-sm" />
-                                                                            <input required="" disabled id="txtEndTime<?php echo $i; ?>" name="txtEndTime[]" size="7" placeholder="สิ้นสุด" type="text" class="time end form-control input-sm" />
-                                                                        </div>
-                                                                    </td>
-                                                                    
-                                                                    <td>
-                                                                        <input required="" disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
-                                                                    </td>
-
-                                                                    <!--เวลายกมา-->
-                                                                    <td>
-                                                                  <?php 
+                                                                <!--เวลายกมา-->
+                                                                <td>
+                                                                    <?php
                                                                     /* SUM ค่าจาก Dr มาแสดง */
                                                                     $em_id = $this->session->userdata('em_id');
-                                                                     $projectID = $rowteam_data['project_id'];
+                                                                    $projectID = $rowteam_data['project_id'];
                                                                     $sqlSumDr = "SELECT SUM(daily_use_time) AS sum_time, SUM(daily_rec_insert) AS sum_rec FROM daily WHERE project_id = ' $rowteam_data[project_id]' AND em_id = '$em_id'";
                                                                     $querySumDr = $this->db->query($sqlSumDr);
                                                                     $result = $querySumDr->result_array();
-                                                                        /* .SUM ค่าจาก Dr มาแสดง */
-                                                                        foreach ($result as $rowresultDr){
-                                                                          $resultSumDr =   $rowresultDr['sum_time'];
-                                                                        }
-                                                                  ?>      
-                                                                        
-                                                                        <div align="right">
-                                                                            <?php echo $resultSumDr; //เวลารวมของพนักงานที่ล๊อคอินต่อโปรเจคนั้นๆ?>
-                                                                        </div>
+                                                                    /* .SUM ค่าจาก Dr มาแสดง */
+                                                                    foreach ($result as $rowresultDr) {
+                                                                        $resultSumDr = $rowresultDr['sum_time'];
+                                                                        $resultSumDrRec = $rowresultDr['sum_rec'];
+                                                                    }
+                                                                    ?>      
+
+                                                                    <div align="right">
+                                                                        <?php echo number_format($resultSumDr); //เวลารวมของพนักงานที่ล๊อคอินต่อโปรเจคนั้นๆ ?>
+                                                                    </div>
 
 
-                                                                    </td>
+                                                                </td>
 
-                                                                    <!--เวลาคงเหลือ-->
-                                                                    <td>
-                                                                        <div align="right">
-                                                                            team_hour - sum_time
-                                                                        </div>
-                                                                    </td>
+                                                                <!--เวลาคงเหลือ-->
+                                                                <td>
+                                                                    <div align="right">
+                                                                        <?php echo number_format($rowteam_data['team_hour'] - $resultSumDr);  //team_hour - sum_time   ?>
+                                                                    </div>
+                                                                </td>
 
-                                                                    <!--รายการบันทึก ยกมา-->
-                                                                    <td>
-                                                                        <div align="right">
-                                                                            sum_rec
-                                                                        </div>
-                                                                    </td>
+                                                                <!--รายการบันทึก ยกมา-->
+                                                                <td>
+                                                                    <div align="right">
+                                                                        <?php echo number_format($resultSumDrRec); ?>
+                                                                    </div>
+                                                                </td>
 
-                                                                    <td>
-                                                                        <input required="" disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
-                                                                    </td>
-                                                                    <!--โน้ต-->
-                                                                    <td>
-                                                                        <button disabled="" id="buttonNote<?php echo $i; ?>" data-toggle="modal" data-target="#pnlNote<?php echo $i; ?>" type="button" class="btn btn-xs btn-default"><span class="fa fa-pencil-square-o"></span></button>
+                                                                <td>
+                                                                    <input required="" disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
+                                                                </td>
+                                                                <!--โน้ต-->
+                                                                <td>
+                                                                    <button disabled="" id="buttonNote<?php echo $i; ?>" data-toggle="modal" data-target="#pnlNote<?php echo $i; ?>" type="button" class="btn btn-xs btn-default"><span class="fa fa-pencil-square-o"></span></button>
 
-                                                                        <!--Modal-->
-                                                                        <div class="modal fade" id="pnlNote<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                                            <div class="modal-dialog" role="document">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                        <h4 class="modal-title" id="myModalLabel">บันทึกข้อความ</h4>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <!--Editor-->
+                                                                    <!--Modal-->
+                                                                    <div class="modal fade" id="pnlNote<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                    <h4 class="modal-title" id="myModalLabel">บันทึกข้อความ</h4>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <!--Editor-->
 
-                                                                                        <textarea placeholder="แทรกข้อความ...ข้อความจะถูกเก็บเมื่อกดบันทึก" disabled=""   name="areaNote[]" id="noteArea<?php echo $i; ?>" rows="5" cols="90"></textarea>
+                                                                                    <textarea placeholder="แทรกข้อความ...ข้อความจะถูกเก็บเมื่อกดบันทึก" disabled=""   name="areaNote[]" id="noteArea<?php echo $i; ?>" rows="5" cols="90"></textarea>
 
 
-                                                                                        <!--.Editor-->
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-primary" data-dismiss="modal">ปิด</button>
-                                                                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                                                                                    </div>
+                                                                                    <!--.Editor-->
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">ปิด</button>
+                                                                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
 
-                                                                        <!--.Modal-->
-                                                                    </td>
-                                                                    <!--CheckBox-->
-                                                                    <script>
+                                                                    <!--.Modal-->
+                                                                </td>
+                                                                <!--CheckBox-->
+                                                                <!--ProID-->
+                                                                <input disabled="" id="hdfProId<?php echo $i ?>" type="hidden" name="hdfProId[]" value="<?php echo $projectID ?>"/>
+                                                                <script>
 
-                                                                        document.getElementById('chkBox<?php echo $i; ?>').onchange = function () {
-                                                                            document.getElementById('txtStartTime<?php echo $i; ?>').disabled = !this.checked;
-                                                                            document.getElementById('txtEndTime<?php echo $i; ?>').disabled = !this.checked;
-                                                                            document.getElementById('txtUseTime<?php echo $i; ?>').disabled = !this.checked;
-                                                                            document.getElementById('txtCountRec<?php echo $i; ?>').disabled = !this.checked;
+                                                                    document.getElementById('chkBox<?php echo $i; ?>').onchange = function () {
+                                                                        document.getElementById('txtStartTime<?php echo $i; ?>').disabled = !this.checked;
+                                                                        document.getElementById('txtEndTime<?php echo $i; ?>').disabled = !this.checked;
+                                                                        document.getElementById('txtUseTime<?php echo $i; ?>').disabled = !this.checked;
+                                                                        document.getElementById('txtCountRec<?php echo $i; ?>').disabled = !this.checked;
 
-                                                                            document.getElementById('hdfProjectNumber<?php echo $i; ?>').disabled = !this.checked;
-                                                                            document.getElementById('buttonNote<?php echo $i; ?>').disabled = !this.checked;
-                                                                            document.getElementById('noteArea<?php echo $i; ?>').disabled = !this.checked;
+                                                                        document.getElementById('hdfProjectNumber<?php echo $i; ?>').disabled = !this.checked;
+                                                                        document.getElementById('buttonNote<?php echo $i; ?>').disabled = !this.checked;
+                                                                        document.getElementById('noteArea<?php echo $i; ?>').disabled = !this.checked;
+                                                                        document.getElementById('hdfProId<?php echo $i ?>').disabled = !this.checked;
 
-                                                                        };
-                                                                    </script>
-
-
-
-
-                                                                    <!--.CK EDITOR-->
-                                                                    </tr>
+                                                                    };
+                                                                </script>
 
 
-                                                                    <?php
-                                                                    $i++;  // $i checkbox
-                                                                    // foreach ใหญ่ มาวน
-                                                                 endforeach;
-                                                                ?>            
-                                                                </tbody>
 
-                                                                <tfoot><!--ท้ายตาราง-->
-                                                                    <!--input hidden-->
-                                                                <input type="hidden" name="hdfDateSel" value="<?php echo $dateSel ?>"/>
-                                                                <!---->
-                                                                </tfoot>
-                                                            </table>
-                                                        </div><!-- .table-responsive -->
-                                                    </div>
-                                                    <!-- /.box-body -->
+
+                                                                <!--.CK EDITOR-->
+                                                                </tr>
+
+                                                                <?php
+                                                                $i++;  // $i checkbox
+                                                                // foreach ใหญ่ มาวน
+                                                            endforeach;
+                                                            ?>            
+                                                            </tbody>
+
+                                                            <tfoot><!--ท้ายตาราง-->
+                                                                <!--input hidden-->
+                                                            <input type="hidden" name="hdfDateSel" value="<?php echo $dateSel ?>"/>
+                                                            <input type="hidden" name="hdfDateSelected" value="<?php echo $dateSelected ?>"/>
+                                                            <input type="hidden" name="hdfEmID" value="<?php echo $em_id ?>"/>  
+
+                                                            <!---->
+                                                            </tfoot>
+                                                        </table>
+                                                    </div><!-- .table-responsive -->
                                                 </div>
-                                                <!-- /.box -->
+                                                <!-- /.box-body -->
                                             </div>
-                                            <!-- /.col -->
+                                            <!-- /.box -->
                                         </div>
-                                        <!-- /.row -->
-                                    </section>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </section>
 
-                                    <!--.Conten Tab1-->
-                                </div>
-
-
+                                <!--.Conten Tab1-->
                             </div>
-                            <!-- /.tab-content -->
+
+
                         </div>
-                        <!-- .TAB --->
-                    </section>
-                    <!-- /.content -->
+                        <!-- /.tab-content -->
+                    </div>
+                    <!-- .TAB --->
+                </section>
+                <!-- /.content -->
                 </form> <!--.Form-->
             </div>
             <!-- /.content-wrapper -->
