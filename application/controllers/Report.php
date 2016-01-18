@@ -15,13 +15,13 @@ class Report extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Report_model','report');
+        $this->load->model('Report_model', 'report');
     }
 
     public function index() {
         if ($this->session->userdata('logged')) {
             //ใส่ code ส่วนนี้
-            redirect('report/customer','refresh');
+            redirect('report/customer', 'refresh');
         } else {
             $this->load->view('template/404anime');
         }
@@ -30,10 +30,24 @@ class Report extends CI_Controller {
     public function customer() {
 
         if ($this->session->userdata('logged')) {
-            
+
             $data['proNumber'] = $this->report->_sel_pro_num();
             $data['customerName'] = $this->report->_sel_customer_name();
-            $this->load->view('report_customer_view2',$data);
+            /* POST ค่า */
+            if ($this->input->post('selProjectNumber') || $this->input->post('selCustomerName') || $this->input->post('selYear') != "") {
+                $dataToSearchL1 = array(
+                    'selProjectNumber' => $this->input->post('selProjectNumber'),
+                    'selCustomerName' => $this->input->post('selCustomerName'),
+                    'selYear' => $this->input->post('selYear')
+                );
+              echo  $searhL1 = $this->report->_search_L1($dataToSearchL1);
+            }
+
+
+
+
+
+            $this->load->view('report_customer_view2', $data); //set ตัวแปร
         } else {
             $this->load->view('template/404anime');
         }

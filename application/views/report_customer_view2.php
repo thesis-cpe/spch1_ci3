@@ -101,7 +101,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!--Conten Tab1-->
                                 <section class="content">
                                     <!--ส่วนค้นหาตามบริษัท-->
-                                    <form name="formCustomer" action="#" method="POST">
+                                  <!--  <form name="formCustomer" action="#" method="POST">  -->
+                                  <?php echo form_open('report/customer');?>
                                         <div class="row">
                                          
                                             <div class="col-sm-2">
@@ -144,11 +145,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <button title="ค้นหา"  name="btnSubmitCustomer" type="submit"  class="btn btn-sm btn-default"><span class="fa fa-search"></span></button>
                                             </div>
 
-                                      </form><!--.Form การค้นหา-->
+                                     
                                                
                                             
                                         </div>
-                                    
+                                     <?php echo form_close();?><!--.Form การค้นหา-->
                                     <br>
                                     
                                     
