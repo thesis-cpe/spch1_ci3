@@ -53,6 +53,7 @@ class Report_model extends CI_Model {
         if(!empty($dataL1['selYear'])){
             $sqlSerhL1 = $sqlSerhL1." AND project.project_year = '$dataL1[selYear]";
         }
+        $sqlSerhL1 = $sqlSerhL1." GROUP BY(daily.em_id)";
         return $sqlSerhL1;
     }
 
