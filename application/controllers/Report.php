@@ -32,6 +32,7 @@ class Report extends CI_Controller {
         if ($this->session->userdata('logged')) {
             
             $data['proNumber'] = $this->report->_sel_pro_num();
+            $data['customerName'] = $this->report->_sel_customer_name();
             $this->load->view('report_customer_view2',$data);
         } else {
             $this->load->view('template/404anime');

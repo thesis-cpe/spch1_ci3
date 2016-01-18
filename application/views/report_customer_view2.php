@@ -119,7 +119,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="col-sm-2">
                                                 <select name="selCustomerName" class="form-control input-sm">
                                                     <option value="" selected="" disabled="">ชื่อบริษัท</option><!--Admin เห็นหมด พนักงานเห็นที่ตัวเองรับผิดชอบ-->
-                                                   
+                                                   <?php foreach ($customerName as $rowcustomerName):?>
+                                                    <option value="<?php echo $rowcustomerName['customer_id'];?>" ><?php echo $rowcustomerName['customer_name'];?></option>
+                                                    <?php endforeach;?>
+                                                    
                                                 </select>
                                             
                                             </div>
