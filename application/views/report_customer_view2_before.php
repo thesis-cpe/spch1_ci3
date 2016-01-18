@@ -180,22 +180,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php
-                                                        //loop1
-                                                        foreach ($searhL1 as $rowsearhL1):
-                                                        ?>
+                                                        
                                                         <tr>
-                                                            <td><?php echo $rowsearhL1['project_number'];?></td>
+                                                            <td></td>
 
                                                             <!--รหัสพนักงาน-->
                                                             <td>
-                                                                <?php echo $rowsearhL1['em_number']; ?>
+
                                                             </td>
 
                                                             <!--ชื่อพนักงาน-->
-                                                            <td><?php echo $rowsearhL1['em_name']; ?></td>
+                                                            <td></td>
                                                             <!--เวลาใช้ไป-->
-                                                            <td><div style="text-align: right;"><?php echo number_format($rowsearhL1['sum_use_time']); ?></div></td>
+                                                            <td></td>
                                                             <!--เวลาตั้-งต้น-->
                                                             <td></td>
                                                             <!--คงเหลือ-->
@@ -205,42 +202,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                             <td><div style="float: right"></div></td>
                                                             <!--รวม-->
-                                                            <td><div style="float: right"><?php echo number_format($rowsearhL1['sum_rec']);?></div></td>
+                                                            <td><div style="float: right"></div></td>
                                                             <!--โน้ต-->
-                                                            <td>
-                                                                <a title="เพิ่มเติม" href="#" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
-
-                                                                <button title="ข้อความวันนี้" data-toggle="modal" data-target="#pnlMsn" class="btn btn-xs btn-default"><span class="fa fa-envelope"></button>
-                                                                <!--ดูแบบระเอียด-->
-
-                                                                <!--MODAL ข้อความ-->
-                                                                <div class="modal fade" tabindex="-1" role="dialog" id="pnlMsn">
-                                                                    <div class="modal-dialog">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                <h4 class="modal-title">ข้อความ</h4>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                <a></a>
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
-
-                                                                            </div>
-                                                                        </div><!-- /.modal-content -->
-                                                                    </div><!-- /.modal-dialog -->
-                                                                </div><!-- /.modal -->
-                                                                <!--.MODAL ข้อความ-->
-
-
-
-                                                            </td>
+                                                            <td></td>
 
                                                         </tr>
-                                                        <?php endforeach;?>
+                                                      
 
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td colspan="9"><center>เลือกข้อมูลเพื่อค้นหา</center></td>
+                                                        </tr>
+                                                    </tfoot>
 
                                                 </table>
                                             </div> 

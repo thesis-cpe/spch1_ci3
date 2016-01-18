@@ -40,14 +40,13 @@ class Report extends CI_Controller {
                     'selCustomerName' => $this->input->post('selCustomerName'),
                     'selYear' => $this->input->post('selYear')
                 );
-              echo  $searhL1 = $this->report->_search_L1($dataToSearchL1);
+                $data['searhL1'] = $this->report->_search_L1($dataToSearchL1);
+                $data['searhL2'] = $this->report->_search_L2($dataToSearchL1);
+                print_r($data['searhL2']);
+                $this->load->view('report_customer_view2', $data); //set ตัวแปร
+            } else {
+                $this->load->view('report_customer_view2_before', $data);
             }
-
-
-
-
-
-            $this->load->view('report_customer_view2', $data); //set ตัวแปร
         } else {
             $this->load->view('template/404anime');
         }

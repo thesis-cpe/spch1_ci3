@@ -40,21 +40,45 @@ class Report_model extends CI_Model {
 
         return $res;
     }
-    
-    public function _search_L1($dataL1){
+
+    public function _search_L1($dataL1) {
         $sqlSerhL1 = "SELECT project.project_number AS project_number, SUM(daily_use_time) AS sum_use_time, em_number, em_name, employee.em_id AS employee_id, SUM(daily.daily_rec_insert) AS sum_rec FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
+
+        if (!empty($dataL1['selProjectNumber'])) {
+            $sqlSerhL1 = $sqlSerhL1 . " AND project.project_id = '$dataL1[selProjectNumber]'";
+        }
+        if (!empty($dataL1['selCustomerName'])) {
+            $sqlSerhL1 = $sqlSerhL1 . " AND customer.customer_id = '$dataL1[selCustomerName]'";
+        }
+        if (!empty($dataL1['selYear'])) {
+            $sqlSerhL1 = $sqlSerhL1 . " AND project.project_year = '$dataL1[selYear]'";
+        }
+        $sqlSerhL1 = $sqlSerhL1 . " GROUP BY(daily.em_id)";
+        $query = $this->db->query($sqlSerhL1);
+        $res = $query->result_array();
+        return $res;
+    }
+    
+    public function _search_L2($dataL1){
+        $date = $this->session->userdata('date_curent'); //วันที่
+        $em_id = $this->session->userdata('em_id');
+        $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND employee.em_number = '$em_id' AND daily.daily_dat = '$date'";
         
-        if(!empty($dataL1['selProjectNumber'])){
-            $sqlSerhL1 = $sqlSerhL1." AND project.project_id = '$dataL1[selProjectNumber]'";
+        if (!empty($dataL1['selProjectNumber'])) {
+            $sqlSelRecToday = $sqlSelRecToday . " AND project.project_id = '$dataL1[selProjectNumber]'";
         }
-        if(!empty($dataL1['selCustomerName'])){
-            $sqlSerhL1 = $sqlSerhL1." AND customer.customer_id = '$dataL1[selCustomerName]'";
+        if (!empty($dataL1['selCustomerName'])) {
+            $sqlSelRecToday = $sqlSelRecToday . " AND customer.customer_id = '$dataL1[selCustomerName]'";
         }
-        if(!empty($dataL1['selYear'])){
-            $sqlSerhL1 = $sqlSerhL1." AND project.project_year = '$dataL1[selYear]";
+        if (!empty($dataL1['selYear'])) {
+            $sqlSelRecToday = $sqlSelRecToday . " AND project.project_year = '$dataL1[selYear]'";
         }
-        $sqlSerhL1 = $sqlSerhL1." GROUP BY(daily.em_id)";
-        return $sqlSerhL1;
+        
+        
+       $query = $this->db->query($sqlSelRecToday);
+       $res = $query->result_array();
+       return $res;
     }
 
+        
 }
