@@ -59,11 +59,11 @@ class Dailywork extends CI_Controller {
             $em_id = $this->session->userdata('em_id');
 
             $dataDate['team_data'] = $this->daily->_sel_work_team_em($em_id); //ได้ข้อมูลลูปใหญ่ ว่าอยู่ในทีมไหนบ้างรับผิดชอบรหัสงานไหนบ้าง
+           // $dataDate['daily_data'] = $this->daily->_sel_data_daily_sum($dataDate['team_data'],$em_id);
+           
             
             
-          /*  foreach ($dataDate['team_data']->result() as $row){
-               echo  $row->project_number;
-            } */
+            
             
                 $this->load->view('daily_work_view2', $dataDate);
     }

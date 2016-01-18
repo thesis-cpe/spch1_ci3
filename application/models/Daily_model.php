@@ -14,13 +14,28 @@
 class Daily_model extends CI_Model {
 
     function _sel_work_team_em($em_id) {
-               $sqlSelWorkFromTeam = "SELECT *"
+        $sqlSelWorkFromTeam = "SELECT *"
                 . "FROM `team` JOIN project ON team.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id "
                 . "WHERE team.em_id = '$em_id' AND project.project_status = 'เปิดโครงการ'";
-    
-      $query = $this->db->query($sqlSelWorkFromTeam);
-      $result = $query->result_array();
-      return $result;
+
+        $query = $this->db->query($sqlSelWorkFromTeam);
+        $result = $query->result_array();
+        return $result;
+    }
+
+    function _sel_data_daily_sum($team_data, $em_id) {
+        $sqlSelWorkFromTeam = "SELECT *"
+                . "FROM `team` JOIN project ON team.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id "
+                . "WHERE team.em_id = '$em_id' AND project.project_status = 'เปิดโครงการ'";
+
+        $query = $this->db->query($sqlSelWorkFromTeam);
+         $result = $query->result_array();
+        foreach ($result as $rowquery)
+        {
+            
+          $rows[] =   $rowquery['project_id'];  
+        }
+        return $rows;  
     }
 
 }

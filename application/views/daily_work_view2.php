@@ -179,6 +179,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <?php
                                                                     $i = 1;   //วนตัว CheckBox 
                                                                     /* วันที่ */
+                                                                    
                                                                     foreach ($team_data as $rowteam_data):
                                                                         ?>
 
@@ -214,15 +215,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                             <input required="" disabled id="txtEndTime<?php echo $i; ?>" name="txtEndTime[]" size="7" placeholder="สิ้นสุด" type="text" class="time end form-control input-sm" />
                                                                         </div>
                                                                     </td>
-
+                                                                    
                                                                     <td>
                                                                         <input required="" disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
                                                                     </td>
 
                                                                     <!--เวลายกมา-->
                                                                     <td>
+                                                                  <?php 
+                                                                    /* SUM ค่าจาก Dr มาแสดง */
+                                                                    $em_id = $this->session->userdata('em_id');
+                                                                     $projectID = $rowteam_data['project_id'];
+                                                                    $sqlSumDr = "SELECT SUM(daily_use_time) AS sum_time, SUM(daily_rec_insert) AS sum_rec FROM daily WHERE project_id = ' $rowteam_data[project_id]' AND em_id = '$em_id'";
+                                                                    $querySumDr = $this->db->query($sqlSumDr);
+                                                                    $result = $querySumDr->result_array();
+                                                                        /* .SUM ค่าจาก Dr มาแสดง */
+                                                                        foreach ($result as $rowresultDr){
+                                                                          $resultSumDr =   $rowresultDr['sum_time'];
+                                                                        }
+                                                                  ?>      
+                                                                        
                                                                         <div align="right">
-                                                                            รวมเดลีย์เรคคอร์ดทาม
+                                                                            <?php echo $resultSumDr; //เวลารวมของพนักงานที่ล๊อคอินต่อโปรเจคนั้นๆ?>
                                                                         </div>
 
 
@@ -301,7 +315,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <?php
                                                                     $i++;  // $i checkbox
                                                                     // foreach ใหญ่ มาวน
-                                                                endforeach;
+                                                                 endforeach;
                                                                 ?>            
                                                                 </tbody>
 
