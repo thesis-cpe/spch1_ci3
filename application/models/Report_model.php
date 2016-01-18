@@ -42,7 +42,7 @@ class Report_model extends CI_Model {
     }
     
     public function _search_L1($dataL1){
-        $sqlSerhL1 = "SELECT SUM(daily_use_time) AS sum_use_time, em_number, em_name, employee.em_id AS employee_id, SUM(daily.daily_rec_insert) AS sum_rec FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
+        $sqlSerhL1 = "SELECT project.project_number AS project_number, SUM(daily_use_time) AS sum_use_time, em_number, em_name, employee.em_id AS employee_id, SUM(daily.daily_rec_insert) AS sum_rec FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
         
         if(!empty($dataL1['selProjectNumber'])){
             $sqlSerhL1 = $sqlSerhL1." AND project.project_id = '$dataL1[selProjectNumber]'";
