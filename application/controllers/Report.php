@@ -40,38 +40,36 @@ class Report extends CI_Controller {
                     'selCustomerName' => $this->input->post('selCustomerName'),
                     'selYear' => $this->input->post('selYear')
                 );
+
                 $data['searhL1'] = $this->report->_search_L1($dataToSearchL1);
+
                 $data['searhL2'] = $this->report->_search_L2($dataToSearchL1); //อาจมี bug L2
 
-
-
-
-
-
-
-                foreach ($data['searhL2'] as $row) {  //อาจมี bug //วนลูป2
-                    $dailyRecInsert[] = $row['daily_rec_insert']; //rec วันนี้
-                    $dailyNoteInsert[] = $row['daily_note']; //โน้ตวันนี้ อนาคตเปลี่ยนเป็นที่มีล่าสุด
-                }
-
-                $data['dailyRecInsert'] = $dailyRecInsert;
-                $data['dailyNoteInsert'] = $dailyNoteInsert;
-
-
-                //L3
-                foreach ($data['searhL1'] as $rowL1) {
-                    $emInTeam[] = $rowL1['em_id'];  //em_id ในทีมที่ถูกเลือก
-                }
-                $cuontEmId = count($emInTeam);
-                $data['search3'] = $this->report->_search_L3($dataToSearchL1, $emInTeam, $cuontEmId); //L3
-                for ($iii = 0; $iii < $cuontEmId; $iii++) {
-                    foreach ($data['search3'][$iii] as $rowL3) {
-                        $search3IntTime[] =  $rowL3['team_hour'];
+                if (!empty($data['searhL2'])) {  //ถ้า L2 ไม่คืนค่ากลับมาเป็นค่าว่าง
+                    foreach ($data['searhL2'] as $row) {  //อาจมี bug //วนลูป2
+                        $dailyRecInsert[] = $row['daily_rec_insert']; //rec วันนี้
+                        $dailyNoteInsert[] = $row['daily_note']; //โน้ตวันนี้ อนาคตเปลี่ยนเป็นที่มีล่าสุด
                     }
+
+                    $data['dailyRecInsert'] = $dailyRecInsert;
+                    $data['dailyNoteInsert'] = $dailyNoteInsert;
+
+
+                    //L3
+                    foreach ($data['searhL1'] as $rowL1) {
+                        $emInTeam[] = $rowL1['em_id'];  //em_id ในทีมที่ถูกเลือก
+                    }
+                    $cuontEmId = count($emInTeam);
+                    $data['search3'] = $this->report->_search_L3($dataToSearchL1, $emInTeam, $cuontEmId); //L3
+                    for ($iii = 0; $iii < $cuontEmId; $iii++) {
+                        foreach ($data['search3'][$iii] as $rowL3) {
+                            $search3IntTime[] = $rowL3['team_hour'];
+                        }
+                    }
+                    $data['searchIntTime'] = $search3IntTime;
                 }
-                $data['searchIntTime'] =  $search3IntTime;
-                //print_r($data['searchIntTime'] );
-                //echo  $data['dailyRecInsert'][1];
+
+
                 $this->load->view('report_customer_view2', $data); //set ตัวแปร
             } else {
                 $this->load->view('report_customer_view2_before', $data);
