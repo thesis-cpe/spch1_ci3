@@ -42,7 +42,14 @@ class Report extends CI_Controller {
                 );
                 $data['searhL1'] = $this->report->_search_L1($dataToSearchL1);
                 $data['searhL2'] = $this->report->_search_L2($dataToSearchL1);
-                print_r($data['searhL2']);
+
+                //print_r($data['searhL2']);
+                foreach ($data['searhL2'] as $row) {
+                    $dailyRecInsert[] = $row['daily_rec_insert'];
+                }
+                $data['dailyRecInsert'] = $dailyRecInsert;
+
+              //echo  $data['dailyRecInsert'][1];
                 $this->load->view('report_customer_view2', $data); //set ตัวแปร
             } else {
                 $this->load->view('report_customer_view2_before', $data);

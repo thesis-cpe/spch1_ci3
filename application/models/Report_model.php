@@ -62,7 +62,12 @@ class Report_model extends CI_Model {
     public function _search_L2($dataL1){
         $date = $this->session->userdata('date_curent'); //วันที่
         $em_id = $this->session->userdata('em_id');
-        $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND employee.em_number = '$em_id' AND daily.daily_dat = '$date'";
+       /* if($this->session->userdata('em_role') == "ผู้ดูแลระบบ"){
+            $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.daily_dat = '$date'";
+        }else{
+            $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.em_id = '$em_id' AND daily.daily_dat = '$date'";
+        } */
+        $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.daily_dat = '$date'";
         
         if (!empty($dataL1['selProjectNumber'])) {
             $sqlSelRecToday = $sqlSelRecToday . " AND project.project_id = '$dataL1[selProjectNumber]'";
@@ -74,7 +79,7 @@ class Report_model extends CI_Model {
             $sqlSelRecToday = $sqlSelRecToday . " AND project.project_year = '$dataL1[selYear]'";
         }
         
-        
+        //return $sqlSelRecToday; 
        $query = $this->db->query($sqlSelRecToday);
        $res = $query->result_array();
        return $res;

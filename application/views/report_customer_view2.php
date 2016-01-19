@@ -182,6 +182,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <tbody>
                                                         <?php
                                                         //loop1
+                                                        $i=0;
                                                         foreach ($searhL1 as $rowsearhL1):
                                                         ?>
                                                         <tr>
@@ -203,7 +204,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-                                                            <td><div style="float: right"></div></td>
+                                                            <td><div style="float: right"><?php echo number_format($dailyRecInsert[$i]) ;?></div></td>
                                                             <!--รวม-->
                                                             <td><div style="float: right"><?php echo number_format($rowsearhL1['sum_rec']);?></div></td>
                                                             <!--โน้ต-->
@@ -238,7 +239,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             </td>
 
                                                         </tr>
-                                                        <?php endforeach;?>
+                                                        <?php 
+                                                        $i++;
+                                                        endforeach;?>
 
                                                     </tbody>
 
