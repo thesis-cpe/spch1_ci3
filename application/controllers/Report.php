@@ -40,7 +40,8 @@ class Report extends CI_Controller {
                     'selCustomerName' => $this->input->post('selCustomerName'),
                     'selYear' => $this->input->post('selYear')
                 );
-
+/*เก็บ post $dataToSearchL1*/ $data['dataToSearchL1'] = $dataToSearchL1;
+                
                 $data['searhL1'] = $this->report->_search_L1($dataToSearchL1);
 
                 $data['searhL2'] = $this->report->_search_L2($dataToSearchL1); //อาจมี bug L2
@@ -86,6 +87,10 @@ class Report extends CI_Controller {
         } else {
             $this->load->view('template/404anime');
         }
+    }
+    
+    public function customer_record(){
+        $this->load->view('customer_rec_detail_view');
     }
 
 }

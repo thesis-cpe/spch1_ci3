@@ -109,7 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <select class="form-control input-sm" name="selProjectNumber">
                                                 <option value="" disabled="" selected>รหัสงานบริษัท</option>  <!--Admin เห็นหมด พนักงานเห็นตัวเอง-->
                                                 <?php foreach ($proNumber as $rowproNumber): ?>
-                                                    <option value="<?php echo $rowproNumber['project_id']; ?>"  ><?php echo $rowproNumber['project_number']; ?></option>
+                                                <option value="<?php echo $rowproNumber['project_id']; ?>"  ><?php echo $rowproNumber['project_number']; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -121,7 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <select name="selCustomerName" class="form-control input-sm">
                                                 <option value="" selected="" disabled="">ชื่อบริษัท</option><!--Admin เห็นหมด พนักงานเห็นที่ตัวเองรับผิดชอบ-->
                                                 <?php foreach ($customerName as $rowcustomerName): ?>
-                                                    <option value="<?php echo $rowcustomerName['customer_id']; ?>" ><?php echo $rowcustomerName['customer_name']; ?></option>
+                                                <option value="<?php echo $rowcustomerName['customer_id']; ?>" ><?php echo $rowcustomerName['customer_name']; ?></option>
                                                 <?php endforeach; ?>
 
                                             </select>
@@ -135,21 +135,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <select class="form-control input-sm" name="selYear">
                                                 <option value="" disabled="" selected="">ปี</option>
                                                 <?php
-                                                for ($year = 2555; $year <= 2600; $year++) {
-                                                    ?>
-                                                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                                                <?php } ?>
+                                                for ($year = 2555;
+                                                $year <= 2600;
+                                                $year++) {
+                                                ?>
+                                                <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+<?php } ?>
                                             </select>
                                         </div>  
                                         <div class="col-sm-2">
                                             <button title="ค้นหา"  name="btnSubmitCustomer" type="submit"  class="btn btn-sm btn-default"><span class="fa fa-search"></span></button>
                                         </div>
+                                        <div class="col-sm-2">
+                                            <?php
+                                            if ($dataToSearchL1['selProjectNumber'] || $dataToSearchL1['selCustomerName'] || $dataToSearchL1['selYear'] != "") {
+                                            $stringOutPut = "";
+                                            if (!empty($dataToSearchL1['selProjectNumber'])) {
+                                            $stringOutPut = "รหัสงาน : " . $dataToSearchL1['selProjectNumber'];
+                                            }
+                                            if (!empty($dataToSearchL1['selCustomerName'])) {
+                                            $stringOutPut = $stringOutPut . " บริษัท : " . $dataToSearchL1['selCustomerName'];
+                                            }
+                                            if (!empty($dataToSearchL1['selYear'])) {
+                                            $stringOutPut = $stringOutPut . " ปีบัญชี : " . $dataToSearchL1['selYear'];
+                                            }
+                                            echo $stringOutPut;
+                                            }
+                                            ?>
+                                        </div>
 
 
 
-
-                                    </div>
-                                    <?php echo form_close(); ?><!--.Form การค้นหา-->
+                                    </div> <!--/.row-->
+<?php echo form_close(); ?><!--.Form การค้นหา-->
                                     <br>
 
 
@@ -182,15 +200,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <tbody>
                                                         <?php
                                                         //loop1
-                                                        $i=0;
+                                                        $i = 0;
                                                         foreach ($searhL1 as $rowsearhL1):
                                                         ?>
                                                         <tr>
-                                                            <td><?php echo $rowsearhL1['project_number'];?></td>
+                                                            <td><?php echo $rowsearhL1['project_number']; ?></td>
 
                                                             <!--รหัสพนักงาน-->
                                                             <td>
-                                                                <?php echo $rowsearhL1['em_number']; ?>
+<?php echo $rowsearhL1['em_number']; ?>
                                                             </td>
 
                                                             <!--ชื่อพนักงาน-->
@@ -198,32 +216,46 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <!--เวลาใช้ไป-->
                                                             <td><div style="text-align: right;"><?php echo number_format($rowsearhL1['sum_use_time']); ?></div></td>
                                                             <!--เวลาตั้-งต้น-->
-                                                            <td><div style="text-align: right;"><?php echo number_format($searchIntTime[$i])  ;?></div></td>
+                                                            <td><div style="text-align: right;"><?php echo number_format($searchIntTime[$i]); ?></div></td>
                                                             <!--คงเหลือ-->
-                                                            <td><div style="text-align: right;"><?php echo number_format($searchIntTime[$i] - $rowsearhL1['sum_use_time']);?></div></td>
+                                                            <td><div style="text-align: right;"><?php echo number_format($searchIntTime[$i] - $rowsearhL1['sum_use_time']); ?></div></td>
 
 
 
-                                                            <td><div style="float: right"><?php echo number_format($dailyRecInsert[$i]) ;?></div></td>
+                                                            <td><div style="float: right"><?php
+                                                                    if(!empty($dailyRecInsert[$i])){
+                                                                    echo number_format($dailyRecInsert[$i]);
+                                                                    }else{
+                                                                    echo "0";
+                                                                    }
+                                                                    ?>
+                                                                </div>
+                                                            </td>
                                                             <!--รวม-->
-                                                            <td><div style="float: right"><?php echo number_format($rowsearhL1['sum_rec']);?></div></td>
+                                                            <td><div style="float: right"><?php echo number_format($rowsearhL1['sum_rec']); ?></div></td>
                                                             <!--โน้ต-->
                                                             <td>
-                                                                <a title="เพิ่มเติม" href="#" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
-                                                             
-                                                                <button title="ข้อความวันนี้" data-toggle="modal" data-target="#pnlMsn<?php echo $i;?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></button>
+                                                                <a target="_blank" title="เพิ่มเติม" href="<?php echo base_url()?>/index.php/report/customer_record" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
+                                                                <?php if(!empty($dailyNoteInsert[$i])):?>
+                                                                    <button title="ข้อความวันนี้" data-toggle="modal" data-target="#pnlMsn<?php echo $i; ?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></button>
+                                                                <?php endif;?>
                                                                 <!--ดูแบบระเอียด-->
 
                                                                 <!--MODAL ข้อความ-->
-                                                                <div class="modal fade" tabindex="-1" role="dialog" id="pnlMsn<?php echo $i;?>">
+                                                                <div class="modal fade" tabindex="-1" role="dialog" id="pnlMsn<?php echo $i; ?>">
                                                                     <div class="modal-dialog">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
+                                                                               
                                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                         
                                                                                 <h4 class="modal-title">ข้อความ</h4>
                                                                             </div>
                                                                             <div class="modal-body">
-                                                                                <a><?php echo $dailyNoteInsert[$i];?></a>
+                                                                                <a><?php
+                                                                                    if(!empty($dailyNoteInsert[$i])){
+                                                                                    echo $dailyNoteInsert[$i];
+                                                                                    }?></a>
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
@@ -239,9 +271,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             </td>
 
                                                         </tr>
-                                                        <?php 
+                                                        <?php
                                                         $i++;
-                                                        endforeach;?>
+                                                        endforeach;
+                                                        ?>
 
                                                     </tbody>
 
@@ -270,7 +303,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.content-wrapper -->
 
             <!-- Main Footer -->
-<?php include_once '/template/footer.php'; ?>
+            <?php include_once '/template/footer.php'; ?>
             <!-- .Main Footer -->
 
             <!-- Control Sidebar -->
