@@ -198,9 +198,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <!--เวลาใช้ไป-->
                                                             <td><div style="text-align: right;"><?php echo number_format($rowsearhL1['sum_use_time']); ?></div></td>
                                                             <!--เวลาตั้-งต้น-->
-                                                            <td></td>
+                                                            <td><div style="text-align: right;"><?php echo number_format($searchIntTime[$i])  ;?></div></td>
                                                             <!--คงเหลือ-->
-                                                            <td></td>
+                                                            <td><div style="text-align: right;"><?php echo number_format($searchIntTime[$i] - $rowsearhL1['sum_use_time']);?></div></td>
 
 
 
@@ -210,12 +210,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <!--โน้ต-->
                                                             <td>
                                                                 <a title="เพิ่มเติม" href="#" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
-
-                                                                <button title="ข้อความวันนี้" data-toggle="modal" data-target="#pnlMsn" class="btn btn-xs btn-default"><span class="fa fa-envelope"></button>
+                                                             
+                                                                <button title="ข้อความวันนี้" data-toggle="modal" data-target="#pnlMsn<?php echo $i;?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></button>
                                                                 <!--ดูแบบระเอียด-->
 
                                                                 <!--MODAL ข้อความ-->
-                                                                <div class="modal fade" tabindex="-1" role="dialog" id="pnlMsn">
+                                                                <div class="modal fade" tabindex="-1" role="dialog" id="pnlMsn<?php echo $i;?>">
                                                                     <div class="modal-dialog">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
@@ -223,7 +223,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                 <h4 class="modal-title">ข้อความ</h4>
                                                                             </div>
                                                                             <div class="modal-body">
-                                                                                <a></a>
+                                                                                <a><?php echo $dailyNoteInsert[$i];?></a>
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>

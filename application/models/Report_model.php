@@ -41,8 +41,8 @@ class Report_model extends CI_Model {
         return $res;
     }
 
-    public function _search_L1($dataL1) {
-        $sqlSerhL1 = "SELECT project.project_number AS project_number, SUM(daily_use_time) AS sum_use_time, em_number, em_name, employee.em_id AS employee_id, SUM(daily.daily_rec_insert) AS sum_rec FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
+    public function _search_L1($dataL1) { //หาในทีมรหัสงาน
+        $sqlSerhL1 = "SELECT  employee.em_id AS em_id, project.project_number AS project_number, SUM(daily_use_time) AS sum_use_time, em_number, em_name, employee.em_id AS employee_id, SUM(daily.daily_rec_insert) AS sum_rec FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
 
         if (!empty($dataL1['selProjectNumber'])) {
             $sqlSerhL1 = $sqlSerhL1 . " AND project.project_id = '$dataL1[selProjectNumber]'";
@@ -58,17 +58,17 @@ class Report_model extends CI_Model {
         $res = $query->result_array();
         return $res;
     }
-    
-    public function _search_L2($dataL1){
+
+    public function _search_L2($dataL1) { //หาบันทึกวันนี้
         $date = $this->session->userdata('date_curent'); //วันที่
         $em_id = $this->session->userdata('em_id');
-       /* if($this->session->userdata('em_role') == "ผู้ดูแลระบบ"){
-            $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.daily_dat = '$date'";
-        }else{
-            $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.em_id = '$em_id' AND daily.daily_dat = '$date'";
-        } */
+        /* if($this->session->userdata('em_role') == "ผู้ดูแลระบบ"){
+          $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.daily_dat = '$date'";
+          }else{
+          $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.em_id = '$em_id' AND daily.daily_dat = '$date'";
+          } */
         $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.daily_dat = '$date'";
-        
+
         if (!empty($dataL1['selProjectNumber'])) {
             $sqlSelRecToday = $sqlSelRecToday . " AND project.project_id = '$dataL1[selProjectNumber]'";
         }
@@ -78,12 +78,32 @@ class Report_model extends CI_Model {
         if (!empty($dataL1['selYear'])) {
             $sqlSelRecToday = $sqlSelRecToday . " AND project.project_year = '$dataL1[selYear]'";
         }
-        
+
         //return $sqlSelRecToday; 
-       $query = $this->db->query($sqlSelRecToday);
-       $res = $query->result_array();
-       return $res;
+        $query = $this->db->query($sqlSelRecToday);
+        $res = $query->result_array();
+        return $res;
     }
 
-        
+    public function _search_L3($dataL1, $em_id, $cuontEmId) { //หาในทีมเรียกโปรเจคตั้งต้น
+        $sqlSelProjectTime = "SELECT SUM(team_hour) AS team_hour FROM `team`JOIN project ON team.project_id = project.project_id";
+        if (!empty($dataL1['selProjectNumber'])) {
+            $sqlSelProjectTime = $sqlSelProjectTime . " AND project.project_id = '$dataL1[selProjectNumber]'";
+        }
+        if (!empty($dataL1['selCustomerName'])) {
+            $sqlSelProjectTime = $sqlSelProjectTime . " AND project.customer_id = '$dataL1[selCustomerName]'";
+        }
+        if (!empty($dataL1['selYear'])) {
+            $sqlSelProjectTime = $sqlSelProjectTime . " AND project.project_year = '$dataL1[selYear]'";
+        }
+
+        for ($i = 0; $i < $cuontEmId; $i++) {
+            //$sqlSelProjectTime2 = "";
+            $sqlSelProjectTime2 = $sqlSelProjectTime . " AND team.em_id = '$em_id[$i]'";
+            $query = $this->db->query($sqlSelProjectTime2);
+            $res[] = $query->result_array();
+        }
+        return $res;
+    }
+
 }
