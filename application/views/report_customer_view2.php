@@ -202,13 +202,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         //loop1
                                                         $i = 0;
                                                         foreach ($searhL1 as $rowsearhL1):
+                                                        
                                                         ?>
                                                         <tr>
                                                             <td><?php echo $rowsearhL1['project_number']; ?></td>
 
                                                             <!--รหัสพนักงาน-->
                                                             <td>
-<?php echo $rowsearhL1['em_number']; ?>
+                                                                <?php echo $rowsearhL1['em_number']; ?>
                                                             </td>
 
                                                             <!--ชื่อพนักงาน-->
@@ -235,12 +236,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <td><div style="float: right"><?php echo number_format($rowsearhL1['sum_rec']); ?></div></td>
                                                             <!--โน้ต-->
                                                             <td>
-                                                                <a target="_blank" title="เพิ่มเติม" href="<?php echo base_url()?>/index.php/report/customer_record" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
+                                                                <a target="_blank" title="เพิ่มเติม" href="<?php echo base_url()?>index.php/report/customer_record/<?php echo $rowsearhL1['em_number']; ?>/<?php echo $rowsearhL1['em_id'];?>/<?php echo $rowsearhL1['em_name']; ?>/<?php echo $rowsearhL1['project_number']; ?>/<?php echo $rowsearhL1['project_id']; ?>" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
                                                                 <?php if(!empty($dailyNoteInsert[$i])):?>
-                                                                    <button title="ข้อความวันนี้" data-toggle="modal" data-target="#pnlMsn<?php echo $i; ?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></button>
+                                                                <button type="button" title="ข้อความวันนี้" data-toggle="modal" data-target="#pnlMsn<?php echo $i; ?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></button>
                                                                 <?php endif;?>
                                                                 <!--ดูแบบระเอียด-->
-
+                                                                
                                                                 <!--MODAL ข้อความ-->
                                                                 <div class="modal fade" tabindex="-1" role="dialog" id="pnlMsn<?php echo $i; ?>">
                                                                     <div class="modal-dialog">
@@ -271,8 +272,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             </td>
 
                                                         </tr>
+                                                        
                                                         <?php
                                                         $i++;
+                                                       
                                                         endforeach;
                                                         ?>
 
