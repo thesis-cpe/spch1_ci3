@@ -98,6 +98,8 @@ class Report extends CI_Controller {
             'project_id' => $project_id
         );
         
+        $data['customer_pro_details'] = $this->report->_sel_pro_customer_detail($data['argument']);
+        //print_r($data['customer_pro_details']);
         
         $this->load->view('customer_rec_detail_view',$data);
     }

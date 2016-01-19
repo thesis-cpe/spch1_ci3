@@ -106,4 +106,11 @@ class Report_model extends CI_Model {
         return $res;
     }
 
+    public function _sel_pro_customer_detail($data) {
+        $query = $this->db->where('em_id', $data['em_id'])
+                        ->where('project_id', $data['project_id'])
+                        ->get('daily')->result();
+        return $query;
+    }
+
 }

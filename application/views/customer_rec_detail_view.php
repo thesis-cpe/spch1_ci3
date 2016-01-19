@@ -76,7 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <section class="content-header">
                     <h1>
                         รายงานลูกค้าแบบละเอียด
-                        <small>รหัสงาน:<?php echo $argument['project_number']?> บริษัท: พนักงาน:<?php echo $argument['em_name'];?></small>
+                        <small>รหัสงาน:<?php echo $argument['project_number'] ?> บริษัท: พนักงาน:<?php echo $argument['em_name']; ?></small>
                     </h1>
                     <!--    <ol class="breadcrumb">
                           <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -102,19 +102,66 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <th>เวลาสิ้นสุด</th>
                                         <th>เวลาที่ใช้(นาที)</th>
                                         <th>รายการบันทึก</th>
+                                        <th>ข้อความ</th>
                                         <th>ตรวจสอบ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    <?php $i = 0; $usetime = 0; $recuse = 0;
+                                    foreach ($customer_pro_details as $rowcustomer_pro_details): ?>    
+                                        <tr>
+                                            <td><?php echo $rowcustomer_pro_details->daily_dat; ?></td>
+                                            <td><?php echo $rowcustomer_pro_details->daily_start_time; ?></td>
+                                            <td><?php echo $rowcustomer_pro_details->daily_end_time; ?></td>
+                                            <td><div style="float: right;"><?php echo number_format($rowcustomer_pro_details->daily_use_time); $usetime = $usetime+ $rowcustomer_pro_details->daily_use_time;  ?></div></td>
+                                            <td><div style="float: right;"><?php echo number_format($rowcustomer_pro_details->daily_rec_insert); $recuse = $recuse+ $rowcustomer_pro_details->daily_rec_insert;  ?></div></td>
+                                            <td>
+                                                <?php if (!empty($rowcustomer_pro_details->daily_note)): ?>
+                                                    <button data-toggle="modal" data-target="#panelMsn<?php echo $i; ?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></span></button>
+                                                    <?php else: echo "-";
+                                                    endif; ?>
+                                            </td>
+                                            <td><input type="checkbox" name="ckecked[]" /></td>
+                                        </tr>
+
+                            <?php if (!empty($rowcustomer_pro_details->daily_note)): ?>        
+                                            <!--Modal-->
+                                        <div  id="panelMsn<?php echo $i; ?>" class="modal fade" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title">ข้อความ...</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p><?php echo $rowcustomer_pro_details->daily_note; ?></p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
+                                                        <!--    <button type="button" class="btn btn-primary">Save changes</button> -->
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                                        <!--/Modal-->
+                                        <?php
+                                    endif;
+                                    $i++;
+                                endforeach;
+                                ?>
+
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2"></td>
+
+                                        <th>รวม</th>
+                                        <td><div style="float: right;"><?php echo $usetime;?></div></td>
+                                        <td><div style="float: right;"><?php echo $recuse;?></div></td>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
 
                             </table>
                         </div>
@@ -129,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.content-wrapper -->
 
             <!-- Main Footer -->
-            <?php include_once '/template/footer.php'; ?>
+<?php include_once '/template/footer.php'; ?>
             <!-- .Main Footer -->
 
             <!-- Control Sidebar -->
