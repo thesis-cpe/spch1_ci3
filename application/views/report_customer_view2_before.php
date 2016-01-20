@@ -174,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <th>ใช้ไป</th>
                                                         <th>เวลาตั้งต้น</th>
                                                         <th>คงเหลือ</th>
-                                                        <th>วันนี้</th>
+                                                        <th>ล่าสุด</th>
                                                         <th>รวม</th>
                                                         <th>โน้ต</th>
                                                     </tr>
