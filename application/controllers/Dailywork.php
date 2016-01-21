@@ -72,7 +72,8 @@ class Dailywork extends CI_Controller {
              }
              $dataDate['DateSelDetial'] = $DateSelDetial;
              //print_r($DateSelDetial)."<br>";
-             echo $dataDate['DateSelDetial'][0][1]['daily_id'];
+             //echo $dataDate['DateSelDetial'][0][1]['daily_id'];
+             /*วนตัวแปรมา explode*/
             
              
         }/*/.ถ้ามีการเลือกวันที่*/

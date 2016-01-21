@@ -82,7 +82,7 @@ class Daily_model extends CI_Model {
         for ($i = 0; $i < $countProid; $i++) {
             $query = $this->db->set('daily_dat', $dataToSql['daily_dat'])
                     ->set('daily_start_time', $dataToSql['daily_start_time'][$i] . "." . $dataToSql['daily_start_time_min'][$i])
-                    ->set('daily_end_time', $dataToSql['daily_end_time'][$i] . "." . $dataToSql['daily_end_time_min'][$i])
+                    ->set('daily_end_time', $dataToSql['daily_end_time'][$i] . ":" . $dataToSql['daily_end_time_min'][$i])
                     ->set('daily_use_time', $dataToSql['daily_use_time'][$i])
                     ->set('daily_rec_insert', $dataToSql['daily_rec_insert'][$i])
                     ->set('daily_note', $dataToSql['daily_note'][$i])

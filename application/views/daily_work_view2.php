@@ -197,7 +197,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         <td>
                                                                             <?php echo $rowteam_data['customer_name'];
                                                                             if(!empty($DateSelDetial[0][$j]['daily_id'])){
-                                                                                echo $DateSelDetial[0][$j]['daily_start_time'];
+                                                                                //echo $DateSelDetial[0][$j]['daily_start_time'];
                                                                             }
                                                                             
                                                                             ?>
@@ -227,8 +227,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                        <?php  endfor;?>
                                                                    </select>:  
                                                                    <select required="" disabled="" id="txtStartTimeMin<?php echo $i; ?>" name="txtStartTimeMin[]"   type="text" class="time start form-control input-sm" >
-                                                                        <?php for($minute=0;$minute<60;$minute++):?>
+                                                                        <?php for($minute=0;$minute<60;$minute++):
+                                                                            if(20 == $minute): //ส่งตัวแปรที่ผ่านการ explode มาตรงนี้
+                                                                            ?>
+                                                                            <option selected="" value="<?php echo $minute ?>"><?php echo $minute;?></option>
+                                                                       <?php else:?>
                                                                        <option value="<?php echo $minute ?>"><?php echo $minute;?></option>
+                                                                       <?php endif;?>
                                                                        <?php endfor;?>
                                                                    </select>-  
                                                                    <select required="" disabled id="txtEndTime<?php  echo $i; ?>" name="txtEndTime[]"  type="text" class="time end form-control input-sm" >
