@@ -178,6 +178,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <tbody><!--ตัวตาราง-->
                                                                 <?php
                                                                 $i = 1;   //วนตัว CheckBox 
+                                                                $j = 0; // วนตัวรายการเวลาที่ถูกเลือก
                                                                 /* วันที่ */
 
                                                                 foreach ($team_data as $rowteam_data):
@@ -194,7 +195,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         </td>
 
                                                                         <td>
-                                                                            <?php echo $rowteam_data['customer_name']; ?>
+                                                                            <?php echo $rowteam_data['customer_name'];
+                                                                            if(!empty($DateSelDetial[0][$j]['daily_id'])){
+                                                                                echo $DateSelDetial[0][$j]['daily_start_time'];
+                                                                            }
+                                                                            
+                                                                            ?>
                                                                         </td>
 
                                                                         <td>
@@ -206,9 +212,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         $dateSelected = $this->session->userdata('date_curent');
                                                                     }
                                                                     echo $dateSelected;
+                                                                    
                                                                     ?>
                                                                         
                                                                 </center>
+                                                                   
                                                                 </td>
 
                                                                 <td> 
@@ -238,7 +246,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 </td>
 
                                                                 <td>
-                                                                    <input required="" disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
+                                                                    <input  disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
                                                                 </td>
 
                                                                 <!--เวลายกมา-->
@@ -279,7 +287,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 </td>
 
                                                                 <td>
-                                                                    <input required="" disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
+                                                                    <input  disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
                                                                 </td>
                                                                 <!--โน้ต-->
                                                                 <td>
@@ -341,6 +349,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                                 <?php
                                                                 $i++;  // $i checkbox
+                                                                $j++;
                                                                 // foreach ใหญ่ มาวน
                                                             endforeach;
                                                             ?>            
@@ -348,7 +357,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                             <tfoot><!--ท้ายตาราง-->
                                                                 <!--input hidden-->
-                                                            <input type="hidden" name="hdfDateSel" value="<?php echo $dateSel ?>"/>
+                                                        <!--    <input type="hidden" name="hdfDateSel" value="<?php// echo $dateSel ?>"/>  -->
                                                             <input type="hidden" name="hdfDateSelected" value="<?php echo $dateSelected ?>"/>
                                                             <input type="hidden" name="hdfEmID" value="<?php echo $em_id ?>"/>  
 

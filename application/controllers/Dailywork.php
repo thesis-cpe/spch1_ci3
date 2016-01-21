@@ -45,8 +45,14 @@ class Dailywork extends CI_Controller {
     }
 
     public function dailywork2() {
-
+        
+         /* LOOP ใหญ่ เลือกโปรเจคจากทีม */
+        $em_id = $this->session->userdata('em_id');
+        $dataDate['team_data'] = $this->daily->_sel_work_team_em($em_id); //ได้ข้อมูลลูปใหญ่ ว่าอยู่ในทีมไหนบ้างรับผิดชอบรหัสงานไหนบ้าง
+// $dataDate['daily_data'] = $this->daily->_sel_data_daily_sum($dataDate['team_data'],$em_id);
         $dataDate['dateSel'] = "";
+        
+       
         if ($this->input->post('btnSelDate') != "") {
             $dateselFromView = $this->input->post('datInWork');
             $dateExplodeFromView = explode('/', $dateselFromView);
@@ -58,19 +64,19 @@ class Dailywork extends CI_Controller {
             $dataDate['dateSel'] = $dateBankFormat;
             
             
-        }
-        /* LOOP ใหญ่ เลือกโปรเจคจากทีม */
-
-        $em_id = $this->session->userdata('em_id');
-
-        $dataDate['team_data'] = $this->daily->_sel_work_team_em($em_id); //ได้ข้อมูลลูปใหญ่ ว่าอยู่ในทีมไหนบ้างรับผิดชอบรหัสงานไหนบ้าง
-// $dataDate['daily_data'] = $this->daily->_sel_data_daily_sum($dataDate['team_data'],$em_id);
-
-
-
-
-
-        $this->load->view('daily_work_view2', $dataDate);
+             
+             foreach ( $dataDate['team_data'] as $rowTeamdata){
+                   
+                   $DateSelDetial[] = $this->daily->sel_daily_datsel($em_id,$rowTeamdata['project_id'],$dataDate['dateSel']);
+                   
+             }
+             $dataDate['DateSelDetial'] = $DateSelDetial;
+             //print_r($DateSelDetial)."<br>";
+             echo $dataDate['DateSelDetial'][0][1]['daily_id'];
+            
+             
+        }/*/.ถ้ามีการเลือกวันที่*/
+       $this->load->view('daily_work_view2', $dataDate);
     }
 
     public function insert_daily() {
@@ -85,17 +91,15 @@ class Dailywork extends CI_Controller {
             'daily_note' => $this->input->post('areaNote[]'),
             'em_id' => $this->input->post('hdfEmID'),
             'project_id' => $this->input->post('hdfProId[]'),
-            /*ที่เพิ่มเข้ามา 2*/
+            /* ที่เพิ่มเข้ามา 2 */
             'daily_start_time_min' => $this->input->post('txtStartTimeMin[]'),
-                'daily_end_time_min' => $this->input->post('txtEndTimeMin[]')
+            'daily_end_time_min' => $this->input->post('txtEndTimeMin[]')
         );
         $countProid = count($dataDaily['project_id']); //จำนวนอาเรย์ที่รับมา
         /* insert */ //$insertDaily = $this->daily->_insert_daily($dataDaily, $countProid);
-         $insertDaily = $this->daily->_insert_daily2($dataDaily, $countProid);
-        
+        $insertDaily = $this->daily->_insert_daily2($dataDaily, $countProid);
+
         redirect('dailywork/dailywork2', 'refresh');
-        
-        
     }
 
 }
