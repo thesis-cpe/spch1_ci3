@@ -135,5 +135,12 @@ class Project extends CI_Controller {
             }
         }
     }
+    
+    public function close_open($command,$id)
+    {
+        $this->projects->_close_open($command,$id);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
 
 }

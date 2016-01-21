@@ -111,5 +111,16 @@ class Project_model extends CI_Model {
                 ->set('project_id', $dataInsertFile['project_id'])
                 ->insert('project_doc');
     }
+    
+    public function _close_open($command,$id){
+        if ($command == "open") {
+            $this->db->set('project_status', 'เปิดโครงการ');
+        } elseif ($command == "close") {
+            $this->db->set('project_status', '');
+        }
+
+        $this->db->where('project_id', $id);
+        $this->db->update('project');
+    }
 
 }
