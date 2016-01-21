@@ -34,6 +34,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <![endif]-->
         <!-- DataTables -->
         <link rel="stylesheet" href="<?php echo base_url('dashboard/lte/plugins/datatables/dataTables.bootstrap.css') ?>">
+        <!--Data Toogle-->
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
     </head>
     <!--
     BODY TAG OPTIONS:
@@ -107,24 +110,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 0; $usetime = 0; $recuse = 0;
-                                    foreach ($customer_pro_details as $rowcustomer_pro_details): ?>    
+                                    <?php $i = 0;
+                                    $usetime = 0;
+                                    $recuse = 0;
+                                    foreach ($customer_pro_details as $rowcustomer_pro_details):
+                                        ?>    
                                         <tr>
                                             <td><?php echo $rowcustomer_pro_details->daily_dat; ?></td>
                                             <td><?php echo $rowcustomer_pro_details->daily_start_time; ?></td>
                                             <td><?php echo $rowcustomer_pro_details->daily_end_time; ?></td>
-                                            <td><div style="float: right;"><?php echo number_format($rowcustomer_pro_details->daily_use_time); $usetime = $usetime+ $rowcustomer_pro_details->daily_use_time;  ?></div></td>
-                                            <td><div style="float: right;"><?php echo number_format($rowcustomer_pro_details->daily_rec_insert); $recuse = $recuse+ $rowcustomer_pro_details->daily_rec_insert;  ?></div></td>
+                                            <td><div style="float: right;"><?php echo number_format($rowcustomer_pro_details->daily_use_time);
+                                        $usetime = $usetime + $rowcustomer_pro_details->daily_use_time; ?></div></td>
+                                            <td><div style="float: right;"><?php echo number_format($rowcustomer_pro_details->daily_rec_insert);
+                                        $recuse = $recuse + $rowcustomer_pro_details->daily_rec_insert; ?></div></td>
                                             <td>
-                                                <?php if (!empty($rowcustomer_pro_details->daily_note)): ?>
+    <?php if (!empty($rowcustomer_pro_details->daily_note)): ?>
                                                     <button data-toggle="modal" data-target="#panelMsn<?php echo $i; ?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></span></button>
-                                                    <?php else: echo "-";
-                                                    endif; ?>
+                                        <?php else: echo "-";
+                                        endif;
+                                        ?>
                                             </td>
-                                            <td><input type="checkbox" name="ckecked[]" /></td>
+                                            <td>
+                                              <!--  <input type="checkbox" name="ckecked[]" /> -->
+                                             <!--   <input value="<?php echo $this->session->userdata('em_name');?>"  data-size="mini" type="checkbox" data-toggle="toggle" data-on="ยืนยัน" data-off="รอ"> -->
+                                                <?php if($rowcustomer_pro_details->validator == "ตรวจสอบ"):?>
+                                                <a title="ตรวจสอบแล้ว" href="<?php echo base_url();?>index.php/report/cheked/uncheck/<?php echo $rowcustomer_pro_details->daily_id; ?>" class="btn btn-xs btn-success"><span class="fa   fa-check-square-o"></span></a>
+                                                <?php else:?>
+                                                <a title="รอการตรวจสอบ" href="<?php echo base_url();?>index.php/report/cheked/check/<?php echo $rowcustomer_pro_details->daily_id; ?>" class="btn btn-xs btn-primary"><span class="fa  fa-check-square-o"></span></a>
+                                                <?php endif;?>
+                                            </td>  
                                         </tr>
 
-                            <?php if (!empty($rowcustomer_pro_details->daily_note)): ?>        
+    <?php if (!empty($rowcustomer_pro_details->daily_note)): ?>        
                                             <!--Modal-->
                                         <div  id="panelMsn<?php echo $i; ?>" class="modal fade" tabindex="-1" role="dialog">
                                             <div class="modal-dialog">
@@ -144,11 +161,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div><!-- /.modal-dialog -->
                                         </div><!-- /.modal -->
                                         <!--/Modal-->
-                                        <?php
-                                    endif;
-                                    $i++;
-                                endforeach;
-                                ?>
+        <?php
+    endif;
+    $i++;
+endforeach;
+?>
 
                                 </tbody>
                                 <tfoot>
@@ -156,8 +173,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <td colspan="2"></td>
 
                                         <th>รวม</th>
-                                        <td><div style="float: right;"><?php echo $usetime;?></div></td>
-                                        <td><div style="float: right;"><?php echo $recuse;?></div></td>
+                                        <td><div style="float: right;"><?php echo $usetime; ?></div></td>
+                                        <td><div style="float: right;"><?php echo $recuse; ?></div></td>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -236,7 +253,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="form-group">
                                 <label class="control-sidebar-subheading">
                                     Report panel usage
-                                    <input type="checkbox" class="pull-right" checked>
+                                    <input type="checkbox" class="pull-right" checked> 
                                 </label>
 
                                 <p>
@@ -271,6 +288,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
              Both of these plugins are recommended to enhance the
              user experience. Slimscroll is required when using the
              fixed layout. -->
+        <!--Data Toogle-->
+       
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
         <!--Data Table1-->
         <script>
             $(function () {

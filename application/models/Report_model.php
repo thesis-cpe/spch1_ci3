@@ -68,7 +68,7 @@ class Report_model extends CI_Model {
           $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.em_id = '$em_id' AND daily.daily_dat = '$date'";
           } */
         //$sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.daily_dat = '$date'";
-        
+
         $sqlSelRecToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
 
         if (!empty($dataL1['selProjectNumber'])) {
@@ -80,8 +80,8 @@ class Report_model extends CI_Model {
         if (!empty($dataL1['selYear'])) {
             $sqlSelRecToday = $sqlSelRecToday . " AND project.project_year = '$dataL1[selYear]'";
         }
-        /*ทีเพิ่มเข้ามา*/  $sqlSelRecToday = $sqlSelRecToday." ORDER BY daily_id DESC";
-        
+        /* ทีเพิ่มเข้ามา */ $sqlSelRecToday = $sqlSelRecToday . " ORDER BY daily_id DESC";
+
 
         //return $sqlSelRecToday; 
         $query = $this->db->query($sqlSelRecToday);
@@ -111,12 +111,24 @@ class Report_model extends CI_Model {
     }
 
     public function _sel_pro_customer_detail($data) {
-       $query = $this->db->where('em_id', $data['em_id'])
+        $query = $this->db->where('em_id', $data['em_id'])
                         ->where('project_id', $data['project_id'])
-                        ->get('daily')->result(); 
-        
-      
+                        ->get('daily')->result();
+
+
         return $query;
+    }
+
+    public function _checker_daily($check, $daily_id) {
+
+        if ($check == "check") {
+            $this->db->set('validator', 'ตรวจสอบ');
+        } elseif ($check == "uncheck") {
+            $this->db->set('validator', '');
+        }
+
+        $this->db->where('daily_id', $daily_id);
+        $this->db->update('daily');
     }
 
 }

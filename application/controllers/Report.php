@@ -103,5 +103,11 @@ class Report extends CI_Controller {
         
         $this->load->view('customer_rec_detail_view',$data);
     }
+    
+    public function cheked($check,$id){
+        $this->report->_checker_daily($check,$id);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit; 
+    }
 
 }
