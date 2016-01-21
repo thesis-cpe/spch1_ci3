@@ -56,6 +56,8 @@ class Dailywork extends CI_Controller {
 
             //$dataDate['dateSel'] = $this->input->post('btnSelDate');
             $dataDate['dateSel'] = $dateBankFormat;
+            
+            
         }
         /* LOOP ใหญ่ เลือกโปรเจคจากทีม */
 
@@ -72,6 +74,7 @@ class Dailywork extends CI_Controller {
     }
 
     public function insert_daily() {
+        /// insert ตรงนี้เราต้องเพิ่มวันที่เข้ามา
         $startTime = $this->input->post('txtStartTime[]');
         $dataDaily = array(
             'daily_dat' => $this->input->post('hdfDateSelected'),
@@ -82,10 +85,17 @@ class Dailywork extends CI_Controller {
             'daily_note' => $this->input->post('areaNote[]'),
             'em_id' => $this->input->post('hdfEmID'),
             'project_id' => $this->input->post('hdfProId[]'),
+            /*ที่เพิ่มเข้ามา 2*/
+            'daily_start_time_min' => $this->input->post('txtStartTimeMin[]'),
+                'daily_end_time_min' => $this->input->post('txtEndTimeMin[]')
         );
         $countProid = count($dataDaily['project_id']); //จำนวนอาเรย์ที่รับมา
-        /* insert */ $insertDaily = $this->daily->_insert_daily($dataDaily, $countProid);
+        /* insert */ //$insertDaily = $this->daily->_insert_daily($dataDaily, $countProid);
+         $insertDaily = $this->daily->_insert_daily2($dataDaily, $countProid);
+        
         redirect('dailywork/dailywork2', 'refresh');
+        
+        
     }
 
 }

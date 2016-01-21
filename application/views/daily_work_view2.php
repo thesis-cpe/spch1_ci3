@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -157,22 +155,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                                     <td width="130" rowspan="2" align="center"><p>cuscode</p>
                                                                         <p>รหัสงาน</p></td>
-                                                                    <td width="200"  rowspan="2" align="center"><p>cusname</p>
+                                                                    <td width="100"  rowspan="2" align="center"><p>cusname</p>
                                                                         <p>ชื่อบริษัท</p></td>
                                                                     <td width="100"  rowspan="2" align="center"><p>trndate</p>
                                                                         <p>วันที่</p></td>
-                                                                    <td  width="139" rowspan="2" align="center"><p>trntime</p>
+                                                                    <td  width="50" rowspan="2" align="center"><p>trntime</p>
                                                                         <p>ช่วงเวลา</p></td>
                                                                     <td colspan="3" align="center">เวลา</td>
                                                                     <td colspan="3" align="center">รายการบันทึก</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td width="20"  align="center">ใช้ไป</td>
-                                                                    <td  align="center">ยกมา</td>
-                                                                    <td  align="center">คงเหลือ</td>
-                                                                    <td  align="center">ยกมา</td>
+                                                                    <td width="30"  align="center">ใช้ไป</td>
+                                                                    <td width="30"  align="center">ยกมา</td>
+                                                                    <td  width="30"  align="center">เหลือ</td>
+                                                                    <td width="30"  align="center">ยกมา</td>
                                                                     <td width="20"  align="center">คีย์เข้า</td>
-                                                                    <td  align="center">โน้ต</td>
+                                                                    <td width="30" align="center">โน้ต</td>
                                                                 </tr>
                                                             </thead>
 
@@ -208,15 +206,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     }
                                                                     echo $dateSelected;
                                                                     ?>
-
+                                                                        
                                                                 </center>
                                                                 </td>
 
                                                                 <td> 
-                                                                    <div id="basicExample">
-                                                                        <input required="" disabled id="txtStartTime<?php echo $i; ?>" name="txtStartTime[]" size="7" placeholder="เริ่ม"  type="text" class="time start form-control input-sm" />
-                                                                        <input required="" disabled id="txtEndTime<?php echo $i; ?>" name="txtEndTime[]" size="7" placeholder="สิ้นสุด" type="text" class="time end form-control input-sm" />
-                                                                    </div>
+                                                                   <!-- <div id="basicExample">  -->
+                                                                   <select required="" disabled id="txtStartTime<?php echo $i; ?>" name="txtStartTime[]"  class="form-control input-sm" >
+                                                                       <?php for($hour=0;$hour<24;$hour++):?>
+                                                                            <option value="<?php echo $hour ?>"><?php echo $hour;?></option>
+                                                                       <?php  endfor;?>
+                                                                   </select>:  
+                                                                   <select required="" disabled="" id="txtStartTimeMin<?php echo $i; ?>" name="txtStartTimeMin[]"   type="text" class="time start form-control input-sm" >
+                                                                        <?php for($minute=0;$minute<60;$minute++):?>
+                                                                       <option value="<?php echo $minute ?>"><?php echo $minute;?></option>
+                                                                       <?php endfor;?>
+                                                                   </select>-  
+                                                                   <select required="" disabled id="txtEndTime<?php  echo $i; ?>" name="txtEndTime[]"  type="text" class="time end form-control input-sm" >
+                                                                       <?php for($hour2=0;$hour2<24;$hour2++):?>
+                                                                            <option value="<?php echo $hour2 ?>"><?php echo $hour2;?></option>
+                                                                           
+                                                                       <?php  endfor;?>
+                                                                   </select>:
+                                                                   <select required="" disabled id="txtEndTimeMin<?php  echo $i; ?>" name="txtEndTimeMin[]"   type="text" class="time end form-control input-sm" >
+                                                                   <?php for($minute2=0;$minute2<60;$minute2++):?>
+                                                                       <option value="<?php echo $minute2 ?>"><?php echo $minute2;?></option>
+                                                                       <?php endfor;?>
+                                                                   </select>  
+                                                                 <!--   </div>  -->
                                                                 </td>
 
                                                                 <td>
@@ -308,6 +325,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         document.getElementById('buttonNote<?php echo $i; ?>').disabled = !this.checked;
                                                                         document.getElementById('noteArea<?php echo $i; ?>').disabled = !this.checked;
                                                                         document.getElementById('hdfProId<?php echo $i ?>').disabled = !this.checked;
+                                                                        
+                                                                        document.getElementById('txtEndTimeMin<?php echo $i ?>').disabled = !this.checked;
+                                                                        document.getElementById('txtStartTimeMin<?php echo $i ?>').disabled = !this.checked;
 
                                                                     };
                                                                 </script>
@@ -502,7 +522,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 $(".timepicker").timepicker({
                     showInputs: false
                 });
+                
+                
             });
+            
+            
+});
         </script>
 
 
