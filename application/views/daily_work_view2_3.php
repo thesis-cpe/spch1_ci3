@@ -41,8 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!--css timepicker for timepiar-->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('dashboard/lte/plugins/datepair-this/jquery.timepicker.css') ?>" /> 
-        <!--jasny-bootstrap-->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>dashboard/jasny-bootstrap/jasny-bootstrap.min.css"/>
+
 
 
     </head>
@@ -155,11 +154,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         <p>เลือก</p>
                                                                     </td>
 
-                                                                    <td width="50" rowspan="2" align="center"><p>cuscode</p>
+                                                                    <td width="130" rowspan="2" align="center"><p>cuscode</p>
                                                                         <p>รหัสงาน</p></td>
                                                                     <td width="100"  rowspan="2" align="center"><p>cusname</p>
                                                                         <p>ชื่อบริษัท</p></td>
-                                                                    <td width="50"  rowspan="2" align="center"><p>trndate</p>
+                                                                    <td width="100"  rowspan="2" align="center"><p>trndate</p>
                                                                         <p>วันที่</p></td>
                                                                     <td  width="50" rowspan="2" align="center"><p>trntime</p>
                                                                         <p>ช่วงเวลา</p></td>
@@ -205,27 +204,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         </td>
 
                                                                         <td>
-                                                                            <center> 
-                                                                                <?php
-                                                                                if (!empty($dateSel)) {
-                                                                                    $dateSelected = $dateSel;
-                                                                                } else {
-                                                                                    $dateSelected = $this->session->userdata('date_curent');
-                                                                                }
-                                                                                echo $dateSelected;
-
-                                                                                ?>
-
-                                                                            </center>
+                                                                <center> 
+                                                                    <?php
+                                                                    if (!empty($dateSel)) {
+                                                                        $dateSelected = $dateSel;
+                                                                    } else {
+                                                                        $dateSelected = $this->session->userdata('date_curent');
+                                                                    }
+                                                                    echo $dateSelected;
+                                                                    
+                                                                    ?>
+                                                                        
+                                                                </center>
                                                                    
                                                                 </td>
 
-                                                                <td> <!--ช่วงเวลาที่กรอก-->
-                                                                  <!--  <input size="4" type="text" class="form-control input-sm" data-mask="99:99" placeholder="เริ่ม"> - 
-                                                                    <input size="4" type="text" class="form-control input-sm" data-mask="99:99" placeholder="สิ้นสุด"> -->
-                                                                  <!--  <input   size="9" type="text" class="form-control" data-mask="99:99-99:99" placeholder="เวลา"> -->
-                                                                    
-
+                                                                <td> 
+                                                                   <!-- <div id="basicExample">  -->
+                                                                   <select required="" disabled id="txtStartTime<?php echo $i; ?>" name="txtStartTime[]"  class="form-control input-sm" >
+                                                                       <?php for($hour=0;$hour<24;$hour++):?>
+                                                                            <option value="<?php echo $hour ?>"><?php echo $hour;?></option>
+                                                                       <?php  endfor;?>
+                                                                   </select>:  
+                                                                   <select required="" disabled="" id="txtStartTimeMin<?php echo $i; ?>" name="txtStartTimeMin[]"   type="text" class="time start form-control input-sm" >
+                                                                        <?php for($minute=0;$minute<60;$minute++):
+                                                                            if(20 == $minute): //ส่งตัวแปรที่ผ่านการ explode มาตรงนี้
+                                                                            ?>
+                                                                            <option selected="" value="<?php echo $minute ?>"><?php echo $minute;?></option>
+                                                                       <?php else:?>
+                                                                       <option value="<?php echo $minute ?>"><?php echo $minute;?></option>
+                                                                       <?php endif;?>
+                                                                       <?php endfor;?>
+                                                                   </select>-  
+                                                                   <select required="" disabled id="txtEndTime<?php  echo $i; ?>" name="txtEndTime[]"  type="text" class="time end form-control input-sm" >
+                                                                       <?php for($hour2=0;$hour2<24;$hour2++):?>
+                                                                            <option value="<?php echo $hour2 ?>"><?php echo $hour2;?></option>
+                                                                           
+                                                                       <?php  endfor;?>
+                                                                   </select>:
+                                                                   <select required="" disabled id="txtEndTimeMin<?php  echo $i; ?>" name="txtEndTimeMin[]"   type="text" class="time end form-control input-sm" >
+                                                                   <?php for($minute2=0;$minute2<60;$minute2++):?>
+                                                                       <option value="<?php echo $minute2 ?>"><?php echo $minute2;?></option>
+                                                                       <?php endfor;?>
+                                                                   </select>  
+                                                                 <!--   </div>  -->
                                                                 </td>
 
                                                                 <td>
@@ -308,7 +330,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <script>
 
                                                                     document.getElementById('chkBox<?php echo $i; ?>').onchange = function () {
-                                                                        
+                                                                        document.getElementById('txtStartTime<?php echo $i; ?>').disabled = !this.checked;
+                                                                        document.getElementById('txtEndTime<?php echo $i; ?>').disabled = !this.checked;
                                                                         document.getElementById('txtUseTime<?php echo $i; ?>').disabled = !this.checked;
                                                                         document.getElementById('txtCountRec<?php echo $i; ?>').disabled = !this.checked;
 
@@ -317,10 +340,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         document.getElementById('noteArea<?php echo $i; ?>').disabled = !this.checked;
                                                                         document.getElementById('hdfProId<?php echo $i ?>').disabled = !this.checked;
                                                                         
-                                                                        //document.getElementById('txtEndTimeMin<?php echo $i ?>').disabled = !this.checked;
-                                                                        //document.getElementById('txtStartTimeMin<?php echo $i ?>').disabled = !this.checked;
-                                                                        //document.getElementById('txtStartTime<?php echo $i; ?>').disabled = !this.checked;
-                                                                        //document.getElementById('txtEndTime<?php echo $i; ?>').disabled = !this.checked;
+                                                                        document.getElementById('txtEndTimeMin<?php echo $i ?>').disabled = !this.checked;
+                                                                        document.getElementById('txtStartTimeMin<?php echo $i ?>').disabled = !this.checked;
+
                                                                     };
                                                                 </script>
 
@@ -417,9 +439,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="<?php echo base_url(); ?>dashboard/lte/plugins/input-mask/jquery.inputmask.js"></script>
         <script src="<?php echo base_url(); ?>dashboard/lte/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
         <script src="<?php echo base_url(); ?>dashboard/lte/plugins/input-mask/jquery.inputmask.extensions.js"></script>
-        <!--jasny-bootstrap-->
-        <script src="<?php echo base_url();?>dashboard/jasny-bootstrap/jasny-bootstrap.min.js"></script>
-            
+
 
 
 

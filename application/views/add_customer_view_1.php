@@ -37,9 +37,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="<?php echo base_url(); ?>dashboard/lte/plugins/datepicker/datepicker3.css">
         <!--Googlemap-->
         <link rel="stylesheet" href="<?php echo base_url(); ?>dashboard/lte/plugins/googleMap/googlemap.css">
-
-        <!--jasny-bootstrap-->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>dashboard/jasny-bootstrap/jasny-bootstrap.min.css"/>
     </head>
     <!--
     BODY TAG OPTIONS:
@@ -234,10 +231,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <input name="txtContractMail" type="email" class="form-control" placeholder="exam@example.com"/>
                                     </div>
                                 </div>
-                               <!-- <div class="col-md-3">
+                                <div class="col-md-3">
                                     <label>รูปถ่าย:</label>
                                     <input type="file" class="form-control" name="fileImgCustomer">
-                                </div> -->
+                                </div>
                             </div>
 
                             <div class="row">
@@ -259,23 +256,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="row">
                                 <!--แผนที่-->
                                 <div class="col-sm-6">
-                                    
+                                    <label>แผนที่:</label>
                                     <div id="map_canvas"></div>
                                 </div>
                                 <!--รูป-->
                                 <div class="col-sm-6">
-                                    
-                                   <!-- <img title="รูปถ่ายสำนักงาน" class="img-responsive" style="height: 350px; width: 100%;" src="<?php //echo base_url();  ?>dashboard/lte/dist/img/boxed-bg.png">  -->
-                                    <!--image-->
-                                    
-                                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 430px; height: 320px;"></div>
-                                        <div>
-                                            <span class="btn btn-default btn-file btn-sm"><span class="fileinput-new">เลือกรูป</span><span class="fileinput-exists">เปลี่ยน</span><input type="file" name="fileImgCustomer"></span>
-                                            <a href="#" class="btn-sm btn btn-default fileinput-exists" data-dismiss="fileinput">ลบ</a>
-                                        </div>
-                                    </div>
-                                    <!--/.image-->
+                                    <label>รูปถ่าย:</label>
+                                    <img title="รูปถ่ายสำนักงาน" class="img-responsive" style="height: 350px; width: 100%;" src="<?php echo base_url(); ?>dashboard/lte/dist/img/boxed-bg.png">
                                 </div>
 
                             </div>
@@ -290,7 +277,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     </div>
                     <!-- /.box-body -->
-
+        
 
 
                     </form>
@@ -328,8 +315,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="<?php echo base_url(); ?>dashboard/lte/plugins/datepicker/bootstrap-datepicker.js"></script>
         <!--GoogleMap-->
         <script src="<?php echo base_url(); ?>dashboard/lte/plugins/googleMap/googlemap.js"></script>
-        <!--jasny-bootstrap-->
-        <script src="<?php echo base_url(); ?>dashboard/jasny-bootstrap/jasny-bootstrap.min.js"></script>
+
 
         <!--add element-->
         <script>
