@@ -80,10 +80,50 @@ class Customer_model extends CI_Model {
                 ->set('customer_id', $customer_id)
                 ->insert('file');
     }
-    
-    public function _sel_customer_details(){
+
+    public function _sel_customer_details() {
         $query = $this->db->get('customer')->result();
         return $query;
+    }
+
+    public function _sel_customer_details_by_id($id) {
+        $query = $this->db->where('customer_id', $id)
+                        ->get('customer')->result();
+        foreach ($query as $row) {
+            $dataReturn = array(
+                'customer_name' => $row->customer_name,
+                'customer_status' => $row->customer_status,
+                'customer_tax_id' => $row->customer_tax_id,
+                'customer_band_id' => $row->customer_band_id,
+                'customer_addr_th' => $row->customer_addr_th,
+                'customer_addr_en' => $row->customer_addr_en,
+                'customer_tel' => $row->customer_tel,
+                'customer_fax' => $row->customer_fax,
+                'customer_web' => $row->customer_web,
+                'customer_mail' => $row->customer_mail,
+                'customer_condition' => $row->customer_condition,
+                'customer_coor_name' => $row->customer_coor_name,
+                'customer_coor_tel' => $row->customer_coor_tel,
+                'customer_coor_mail' => $row->customer_coor_mail,
+                'customer_lat' => $row->customer_lat,
+                'customer_long' => $row->customer_long,
+                'customer_note' => $row->customer_note
+            );
+        }
+        return $dataReturn;
+    }
+
+    public function _update_customer_by_id($id) {
+        
+    }
+
+    public function _sel_file($id) {
+        $query = $this->db->where('customer_id', $id)
+                        ->get('file')->result();
+        foreach ($query as $row){
+            return $row->file_path;
+        }
+        
     }
 
 }

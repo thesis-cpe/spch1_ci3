@@ -172,8 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <th>เพิ่มเติม</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        
+                                    <tbody> 
                                         <?php for ($i = 1; $i <= 10; $i++) { ?>        
                                             <tr>
                                                 <!--สถานะ-->
@@ -215,7 +214,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </td>
                                         <!--เพิ่มเติม-->
                                         <td>
-                                          <a title="ลบรายการนี้" href="javascript:;" class="delete_single btn btn-sm btn-default"><span class="fa fa-trash"></span></a>
+                                            <a title="ลบรายการนี้" href="javascript:;" class="delete_single btn btn-sm btn-default"><span class="fa fa-trash"></span></a>
                                         </td>
                                         </tr>
                                         <!--CheckBox-->
@@ -235,8 +234,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <tfoot>
                                         <tr>
                                             <th><a href="javascript:;" class="deleteall btn btn-default btm-xs" title="ลบรายที่เลือก"><span class="fa fa-trash"></span></a></th>
-                                            <th colspan="6"></th>
-                                           
+                                            <th>ลำดับ</th>
+                                            <th>สถานะ</th>
+                                            <th>ชื่อ-นามสกุล</th>
+                                            <th>จำนวนนาที</th>
+                                            <th>บาท/นาที</th>
+                                            <th>เพิ่มเติม</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -484,8 +487,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     //toggle the selected class to all the trs
                     cbs.closest('tr').toggleClass('selected', checked);
                 });
-                //$('tbody tr').on('click', function () 
-                 $('tbody tr .checkbox').on('click', function (){ //แก้ไขโดยแบงค์ วิทยานิพนธ์ แท่นทอง เพื่อไม่ให้ คลิกตารางแล้วเกิด checkbox
+                $('tbody tr').on('click', function () {
                     var $this = $(this).toggleClass('selected');
                     $this.find('.checkbox').prop('checked', $this.hasClass('selected'));
                     if (!$this.hasClass('selected')) {
@@ -497,7 +499,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     //Dont let the click bubble up to the tr
                     e.stopPropagation();
                     var $this = $(this),
-                            c = confirm('ต้องการลบส่วนที่เลือกใช่หรือไม่?');
+                            c = confirm('Are you sure you want to delete this row?');
                     if (!c) {
                         return false;
                     }

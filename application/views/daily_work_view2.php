@@ -187,7 +187,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                                     <tr>
                                                                         <td>
-                                                                            <input id="chkBox<?php echo $i; ?>" name="chkBox1[]" type="checkbox"/>
+                                                                             <center> <input id="chkBox<?php echo $i; ?>" name="chkBox1[]" type="checkbox"/></center>
                                                                         </td>
 
                                                                         <td>

@@ -119,9 +119,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="col-sm-3">
                                             <label>ชื่อ:</label>
                                             <select class="form-control" name="selTitle">
-                                                <option value="นาย">นาย</option>
-                                                <option value="นาง">นาง</option>
-                                                <option value="นางสาว">นางสาว</option>
+                                                <option <?php if($em['nam'] == "นาย"){echo "selected";}?> value="นาย">นาย</option>
+                                                <option <?php if($em['nam'] == "นาง"){echo "selected";}?> value="นาง">นาง</option>
+                                                <option <?php if($em['nam'] == "นางสาว"){echo "selected";}?> value="นางสาว">นางสาว</option>
                                             </select>
 
                                             <!-- /input-group -->
@@ -129,22 +129,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                         <div class="col-sm-3">
                                             <label>&nbsp;</label>
-                                            <input name="txtEmName" type="text" class="form-control" placeholder="ชื่อ">
+                                            <input value="<?php echo $em['firstName'];?>" name="txtEmName" type="text" class="form-control" placeholder="ชื่อ">
 
                                             <!-- /input-group -->
                                         </div>
                                         <!-- /.col-lg-6 -->
                                         <div class="col-sm-3">
                                             <label>&nbsp;</label>
-                                            <input name="txtEmLastName" type="text" class="form-control " placeholder="นามสกุล">
+                                            <input value="<?php echo $em['lastName'];?>"  name="txtEmLastName" type="text" class="form-control " placeholder="นามสกุล">
                                             <!-- /input-group -->
                                         </div>
                                         
                                         <div class="col-sm-3">
                                             <label>สถานการทำงาน:</label>
                                             <select name="selStatus" class="form-control">
-                                                <option value="คงอยู่">คงอยู่</option>
-                                                <option value="ลาออก">ลาออก</option>
+                                                <option value="คงอยู่" <?php if($em['em_status'] == "คงอยู่"){echo "selected";}?>>คงอยู่</option>
+                                                <option value="ลาออก" <?php if($em['em_status'] == "ลาออก"){echo "selected";}?>>ลาออก</option>
                                             </select>
                                         </div>
                                         <!-- /.col-lg-6 -->
@@ -156,30 +156,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="col-sm-2">
                                             <label>สถานะในระบบ:</label>
                                             <select name="selRole" class="form-control">
-                                                <option value="ผู้ดูแลระบบ">ผู้ดูแลระบบ</option>
-                                                <option value="ผู้ใช้งาน">ผู้ใช้งาน</option>
+                                                <option <?php if($em['em_role'] == "ผู้ดูแลระบบ"){echo "selected";}?> value="ผู้ดูแลระบบ">ผู้ดูแลระบบ</option>
+                                                <option <?php if($em['em_role'] == "ผู้ใช้งาน"){echo "selected";}?> value="ผู้ใช้งาน">ผู้ใช้งาน</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-3">
                                             <label>&nbsp;</label>
-                                            <input type="text" class="form-control" name="txtEmId" placeholder="หมายเลขพนักงาน" required="">
+                                            <input value="<?php echo $em['em_number']?>" type="text" class="form-control" name="txtEmId" placeholder="หมายเลขพนักงาน" required="">
                                         </div>
                                         <div class="col-sm-3">
                                             <label>&nbsp;</label>
-                                            <input type="text" class="form-control" name="txtAuditId" placeholder="หมายเลขผู้ทำบัญชี" required="">
+                                            <input value="<?php echo $em['em_audit_number']?>" type="text" class="form-control" name="txtAuditId" placeholder="หมายเลขผู้ทำบัญชี" required="">
                                         </div>
                                         
                                         <!--PassWord-->
                                        <div class="col-sm-2">
-                                            <label>&nbsp;</label>
-                                            <input type="password" class="form-control" name="txtPassword" placeholder="รหัสผ่าน" required="">
+                                            <label>เปลี่ยนรหัสผ่าน:</label><br>
+                                            
+                                          <!--  ทำปุ่มแก้ไขรหัสผ่านแล้วลิงค์ไปอีกฟอร์มเลย -->
+                                          <button data-toggle="modal" data-target="#pnlChangPass" type="button" class="btn btn-primary btn-sm"><span class="fa fa-key"></span></button>
+                                          <!--  <input type="password" class="form-control" name="txtPassword" placeholder="รหัสผ่าน" required=""> -->
                                         </div>
                                         
-                                        <!--PassWord-->
-                                       <div class="col-sm-2">
-                                            <label>&nbsp;</label>
-                                            <input type="password" class="form-control" name="txtPassword2" placeholder="ยืนยันรหัสผ่าน" required="">
-                                       </div>
+                                       
 
                                     </div> 
                                       <!-- /.class row  สถานการทำงาน-->
@@ -203,23 +202,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label>เลขประจำตัวประชาชน:</label>
-                                    <input class="form-control" name="txtNationId" placeholder="หมายเลข 13 หลัก" maxlength="13">
+                                    <input value="<?php echo $em['em_nationn_id'];?>" class="form-control" name="txtNationId" placeholder="หมายเลข 13 หลัก" maxlength="13">
                                 </div>
                                 <div class="col-sm-3">
                                     <label>สถานะสมรส :</label>
                                     <select name="selMarieStatus" class="form-control">
-                                        <option value="โสด">โสด</option>
-                                        <option value="สมรส">สมรส</option>
-                                        <option value="หย่าร้าง">หย่าร้าง</option>
+                                        <option  <?php if($em['em_marie_status'] == "โสด"){echo "selected";}?> value="โสด">โสด</option>
+                                        <option <?php if($em['em_marie_status'] == "สมรส"){echo "selected";}?> value="สมรส">สมรส</option>
+                                        <option <?php if($em['em_marie_status'] == "หย่าร้าง"){echo "selected";}?> value="หย่าร้าง">หย่าร้าง</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
-                                    <textarea name="txtareaAddr1" rows="1" cols="40" class="form-control" placeholder="ที่อยู่ตามทะเบียนบ้าน"></textarea>
+                                    <textarea name="txtareaAddr1" rows="1" cols="40" class="form-control" placeholder="ที่อยู่ตามทะเบียนบ้าน"><?php echo $em['em_addr']?></textarea>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
-                                    <textarea name="txtareaAddr2" rows="1" cols="40" class="form-control" placeholder="ที่อยู่ปัจจุบัน"></textarea>
+                                    <textarea name="txtareaAddr2" rows="1" cols="40" class="form-control" placeholder="ที่อยู่ปัจจุบัน"><?php echo $em['em_addr_curent']?></textarea>
                                 </div>
                             </div>
                             <br>
@@ -230,7 +229,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <i class="fa fa-phone"></i>
                                         </div>
-                                        <input name="txtTel" type="text" class="form-control" placeholder="หมายเลขโทรศัพท์">
+                                        <input value="<?php echo $em['em_tel'];?>" name="txtTel" type="text" class="form-control" placeholder="หมายเลขโทรศัพท์">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -239,13 +238,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </div>
-                                        <input name="txtEmail" type="email" class="form-control" placeholder="example@exam.com">
+                                        <input value="<?php echo $em['em_mail'];?>" name="txtEmail" type="email" class="form-control" placeholder="example@exam.com">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>บุคคลที่ติดต่อได้:</label>
 
-                                    <input name="txtNameFriend" type="text" class="form-control" placeholder="ชื่อบุคคลที่ติดต่อได้">
+                                    <input value="<?php echo $em['em_friend_name'];?>" name="txtNameFriend" type="text" class="form-control" placeholder="ชื่อบุคคลที่ติดต่อได้">
 
                                 </div>
 
@@ -255,7 +254,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <i class="fa fa-phone"></i>
                                         </div>
-                                        <input name="txtTelFriend" type="text" class="form-control" placeholder="หมายเลขโทรศัพท์">
+                                        <input value="<?php echo $em['em_friend_tel'];?>" name="txtTelFriend" type="text" class="form-control" placeholder="หมายเลขโทรศัพท์">
                                     </div>
                                 </div>
                             </div>
@@ -266,34 +265,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-sm-3">
                                     <label>ระดับการศึกษา:</label>
                                     <select class="form-control" name="selGaduLevel">
-                                        <option value="ประถมต้น">ประถมต้น</option>
-                                        <option value="ประถมปลาย">ประถมปลาย</option>
-                                        <option value="มัธยมต้น">มัธยมต้น</option>
-                                        <option value="มัธยมปลาย">มัธยมปลาย</option>
-                                        <option value="ปวช">ปวช</option>
-                                        <option value="ปวส">ปวส</option>
-                                        <option value="ปริญญาตรี">ปริญญาตรี</option>
-                                        <option value="ปริญญาโท">ปริญญาโท</option>
-                                        <option value="ปริญญาเอก">ปริญญาเอก</option>
+                                        <option <?php if($em['em_level'] == "ประถมต้น"){echo "selected";}?> value="ประถมต้น">ประถมต้น</option>
+                                        <option <?php if($em['em_level'] == "ประถมปลาย"){echo "selected";}?> value="ประถมปลาย">ประถมปลาย</option>
+                                        <option <?php if($em['em_level'] == "มัธยมต้น"){echo "selected";}?> value="มัธยมต้น">มัธยมต้น</option>
+                                        <option <?php if($em['em_level'] == "มัธยมปลาย"){echo "selected";}?> value="มัธยมปลาย">มัธยมปลาย</option>
+                                        <option <?php if($em['em_level'] == "ปวช"){echo "selected";}?> value="ปวช">ปวช</option>
+                                        <option <?php if($em['em_level'] == "ปวส"){echo "selected";}?> value="ปวส">ปวส</option>
+                                        <option <?php if($em['em_level'] == "ปริญญาตรี"){echo "selected";}?> value="ปริญญาตรี">ปริญญาตรี</option>
+                                        <option <?php if($em['em_level'] == "ปริญญาโท"){echo "selected";}?> value="ปริญญาโท">ปริญญาโท</option>
+                                        <option <?php if($em['em_level'] == "ปริญญาเอก"){echo "selected";}?> value="ปริญญาเอก">ปริญญาเอก</option>
                                     </select>
                                 </div>
 
                                 <div class="col-sm-3">
                                     <label>สาขาที่จบ:</label>
 
-                                    <input name="txtMajor" type="text" class="form-control" placeholder="บัญชี">
+                                    <input value="<?php echo $em['em_major'];?>" name="txtMajor" type="text" class="form-control" placeholder="บัญชี">
 
                                 </div>
                                 <div class="col-sm-3">
                                     <label>เกรดเฉลี่ยรวม:</label>
 
-                                    <input name="txtGpa" type="text" class="form-control" placeholder="4.00">
+                                    <input value="<?php echo $em['em_gpa'];?>" name="txtGpa" type="text" class="form-control" placeholder="4.00">
 
                                 </div>
                                 <div class="col-sm-3">
                                     <label>สถาบัน:</label>
 
-                                    <input name="txtInstitute" type="text" class="form-control" placeholder="มหาวิทยาลัยเกษตรศาสตร์">
+                                    <input value="<?php echo $em['em_insutution'];?>"  name="txtInstitute" type="text" class="form-control" placeholder="มหาวิทยาลัยเกษตรศาสตร์">
 
                                 </div>
                             </div>
@@ -311,26 +310,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
-                                        <input name="datInWork" type="text" class="form-control" placeholder="01/01/2016">
+                                        <input value="<?php echo $em['em_start_work'];?> " name="datInWork" type="text" class="form-control" placeholder="01/01/2016">
 
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
 
-                                    <input name="txtCoast" type="text" class="form-control" placeholder="อัตราเงินเดือน">
+                                    <input value="<?php echo $em['em_salary_rate'];?>" name="txtCoast" type="text" class="form-control" placeholder="อัตราเงินเดือน">
 
                                 </div>
                                 <div class="col-sm-3">
                                     <label>ค่าแรงต่อวัน:</label>
 
-                                    <input name="txtRateCoast" type="text" class="form-control" placeholder="จำนวนบาทต่อวัน">
+                                    <input value="<?php echo $em['em_salary_day'];?>" name="txtRateCoast" type="text" class="form-control" placeholder="จำนวนบาทต่อวัน">
 
                                 </div>
                                 <div class="col-sm-3">
                                     <label>จำวนวนวันทำงาน:</label>
 
-                                    <input name="txtWorkDay" type="text" class="form-control" placeholder="จำนวนวันต่อเดือน">
+                                    <input value="<?php echo $em['em_day_work'];?>" name="txtWorkDay" type="text" class="form-control" placeholder="จำนวนวันต่อเดือน">
 
                                 </div>
                             </div>
@@ -341,12 +340,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>&nbsp;</label>
-                                    <textarea name="txtareaCondition" rows="3" cols="30" class="form-control" placeholder="เงื่อนไขวันหยุดและสวัสดิการ"></textarea>
+                                    <textarea name="txtareaCondition" rows="3" cols="30" class="form-control" placeholder="เงื่อนไขวันหยุดและสวัสดิการ"><?php echo $em['em_benefit'];?></textarea>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label>&nbsp;</label>
-                                    <textarea name="txtareaMark" rows="3" cols="30" class="form-control" placeholder="หมายเหตุ"></textarea>
+                                    <textarea name="txtareaMark" rows="3" cols="30" class="form-control" placeholder="หมายเหตุ"><?php echo $em['em_note'];?></textarea>
                                 </div>
 
                             </div>
@@ -377,6 +376,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.content-wrapper -->
        </form><!--Form-->
+       <!--Panel Chang Pass-->
+        <div id="pnlChangPass" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">เปลี่ยนรหัสผ่าน...</h4>
+                </div>
+                <div class="modal-body">
+                  <p>ฟอร์มเปลี่ยนรหัสผ่าน</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                  <button type="button" class="btn btn-primary">บันทึก</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+       <!--/.Panel Chang Pass-->
+       
+       
             <!-- Main Footer -->
             <?php include_once '/template/footer.php'; ?>
             <!-- .Main Footer -->

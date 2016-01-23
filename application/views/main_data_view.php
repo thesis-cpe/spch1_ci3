@@ -131,7 +131,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         <!--เลขประจำตัวผู้เสียภาษีอากร-->
                                                                         <td><?php echo $rowcustomer->customer_tax_id; ?></td>
                                                                         <!--ชื่อกิจการ-->
-                                                                        <td><a title="ดูข้อมูลลูกค้าอย่างละเอียด" href="#"><?php echo $rowcustomer->customer_name; ?></a></td>
+                                                                        <td><a title="ดูข้อมูลลูกค้าอย่างละเอียด" href="<?php echo base_url();?>index.php/main_data/edit_customer/<?php echo $rowcustomer->customer_id; ?>"><?php echo $rowcustomer->customer_name; ?></a></td>
                                                                         <!--โทรศัพท์-->
                                                                         <td><?php echo $rowcustomer->customer_tel; ?></td>
                                                                         <!--อีเมล์-->
@@ -191,7 +191,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <!--รหัสพนักงาน-->
                                                                 <td><?php echo $rowemployee->em_number; ?></td>
                                                                 <!--ชื่อ - นามสกุล-->
-                                                                <td><a title="ข้อมูลพนักงานอย่างระเอียด" href="#"><?php echo $rowemployee->em_name;?></a></td>
+                                                                <td><a title="ข้อมูลพนักงานอย่างระเอียด" href="<?php echo base_url();?>index.php/main_data/edit_emplyee/<?php echo $rowemployee->em_id; ?>"><?php echo $rowemployee->em_name;?></a></td>
                                                                 <!--โทรศัพท์-->
                                                                 <td><?php echo $rowemployee->em_tel;?></td>
                                                                 <!--อีเมล์-->
