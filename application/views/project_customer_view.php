@@ -136,7 +136,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <td><?php echo $rowdetails->project_end;?></td>
                                                                     
                                                                     <!--เพิ่มเติม-->
-                                                                    <td><a href="#" name="btnAddProject" title="ตั้งค่าโครงการ" class="btn btn-xs btn-default"><span class="fa  fa-gear"></span></a>
+                                                                    <td><a href="<?php echo base_url();?>index.php/project/edit_project/<?php echo $tax_id ?>/<?php echo $customer_name; ?>/<?php echo $rowdetails->project_id; ?>" name="btnEditProject" title="ตั้งค่าโครงการ" class="btn btn-xs btn-default"><span class="fa  fa-gear"></span></a>
                                                                         <!--ปิดโครงการ  ยังไม่ได้มี action เปิด/ปิด-->
                                                                        <?php if($rowdetails->project_status == "เปิดโครงการ"):?>
                                                                         <a href="<?php echo base_url()?>index.php/project/close_open/close/<?php echo $rowdetails->project_id;?>" name="btnCloseProject" title="คลิกปิดโครงการ" class="btn btn-xs btn-default"><span class="fa   fa-unlock"></span></a>

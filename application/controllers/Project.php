@@ -142,5 +142,16 @@ class Project extends CI_Controller {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
+    
+    public function edit_project($tax_id,$name,$project_id){
+       
+        $data = array(
+            'taxId' => $tax_id,
+            'projectId' => $project_id,
+            'customerName' => $name
+        );
+       
+        $this->load->view('edit_project_view',$data);
+    }
 
 }
