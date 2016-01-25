@@ -118,9 +118,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <table id="example1" class="table table-bordered table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>เลขประจำตัวผู้เสียภาษีอากร</th>
-                                                                    <th>ชื่อกิจการ</th>
-                                                                    <th>โทรศัพท์</th>
+                                                                    <th width="150">เลขผู้เสียภาษีอากร</th>
+                                                                    <th width="300">ชื่อกิจการ</th>
+                                                                    <th width="100">โทรศัพท์</th>
                                                                     <th>อีเมล์</th>
                                                                     <th>เพิ่มเติม</th>
                                                                 </tr>
