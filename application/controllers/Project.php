@@ -135,23 +135,33 @@ class Project extends CI_Controller {
             }
         }
     }
-    
-    public function close_open($command,$id)
-    {
-        $this->projects->_close_open($command,$id);
+
+    public function close_open($command, $id) {
+        $this->projects->_close_open($command, $id);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
-    
-    public function edit_project($tax_id,$name,$project_id){
-       
+
+    public function edit_project($tax_id, $name, $project_id) {
+
+        $projectDetail = $this->projects->_sel_pro_details($project_id); //รายละเอียดโปรเจค
+        $employeeDetail = $this->users->_sel_employee_details(); //รายละเอียดพนักงาน
+        $teamDetail = $this->projects->_sel_team_details($project_id); //รายละเอียดทีม
+        $proDocDetail =  $this->projects->_sel_pro_doc($project_id);
+        //print_r($proDocDetail);
         $data = array(
             'taxId' => $tax_id,
             'projectId' => $project_id,
-            'customerName' => $name
+            'customerName' => $name,
+            'project_detail' => $projectDetail,
+            'employeeDetail' => $employeeDetail,
+            'teamDetail' => $teamDetail,
+            'prodoc' => $proDocDetail 
         );
-       
-        $this->load->view('edit_project_view',$data);
+        //echo $data['teamDetail'][0]['team_role'];
+
+
+        $this->load->view('edit_project_view', $data);
     }
 
 }

@@ -111,8 +111,8 @@ class Project_model extends CI_Model {
                 ->set('project_id', $dataInsertFile['project_id'])
                 ->insert('project_doc');
     }
-    
-    public function _close_open($command,$id){
+
+    public function _close_open($command, $id) {
         if ($command == "open") {
             $this->db->set('project_status', 'เปิดโครงการ');
         } elseif ($command == "close") {
@@ -121,6 +121,64 @@ class Project_model extends CI_Model {
 
         $this->db->where('project_id', $id);
         $this->db->update('project');
+    }
+
+    public function _sel_pro_details($proId) {
+        $query = $this->db->where('project_id', $proId)
+                        ->get('project')->result();
+
+        foreach ($query as $row) {
+            $dataRe = array(
+                'project_number' => $row->project_number,
+                'project_income' => $row->project_income,
+                'project_coast' => $row->project_coast,
+                'project_note' => $row->project_note,
+                'prject_start' => $row->prject_start,
+                'project_end' => $row->project_end,
+                'project_receip' => $row->project_receip,
+                'project_rate' => $row->project_rate,
+                'project_coasts' => $row->project_coasts,
+                'project_period' => $row->project_period,
+                'project_status' => $row->project_status,
+                'project_year' => $row->project_year,
+                'customer_id' => $row->customer_id,
+            );
+        }
+        return $dataRe;
+    }
+
+    public function _sel_team_details($proId) {
+        $query = $this->db->where('project_id', $proId)
+                        ->get('team')->result();
+
+
+        foreach ($query as $row) {
+            $daRe[] = array(
+                'team_role' => $row->team_role,
+                'team_hour' => $row->team_hour,
+                'team_salary' => $row->team_hour,
+                'em_id' => $row->em_id,
+                'project_id' => $row->project_id,
+            );
+        }
+
+        return @$daRe; //ใส่ @ กันฟ้องเออเร่อ ในกรณีไม่มีทีม
+    }
+
+    public function _sel_pro_doc($proId) {
+        $query = $this->db->where('project_id', $proId)
+                        ->get('project_doc')->result();
+        foreach ($query as $row){
+            $dataRe[] = array(
+                'project_doc_name' => $row->project_doc_name,
+                'project_doc_qua_dat' => $row->project_doc_qua_dat,
+                'project_doc_money' => $row->project_doc_money,
+                'project_doc_no' => $row->project_doc_no,
+                'project_doc_path' => $row->project_doc_path,
+            );
+        }
+        return @$dataRe;
+        
     }
 
 }

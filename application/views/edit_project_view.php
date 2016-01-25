@@ -116,7 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!--รหัสงานที่ Gen ใหม่-->
                                 <div class="col-sm-3">
                                     <label>รหัสงาน:</label>
-                                    <input type="text" class="form-control" name="txtIdWorkCustomer"  value="" readonly=""/>
+                                    <input   type="text" class="form-control" name="txtIdWorkCustomer"  value="<?php echo $project_detail['project_number'];?>" readonly=""/>
                                 </div>
                                 <div class="col-sm-3">
                                     <!--echo ชื่อหน่วยงานลง value-->
@@ -130,20 +130,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-usd"></i>
                                         </div>
-                                        <input name="txtAssetProject" type="number" class="form-control" placeholder="รายได้โครงการ(บาท)"/>
+                                        <input value="<?php echo $project_detail['project_income'];?>" name="txtAssetProject" type="number" class="form-control" placeholder="รายได้โครงการ(บาท)"/>
                                     </div>
                                 </div>
                                 <!--ค่าใช้จ่ายสำนักงาน-->
                                 <div class="col-sm-3">
 
                                     <label>&nbsp;</label>
-                                    <input type="number"  class="form-control" name="txtCoastOffice" placeholder="ค่าใช้จ่ายสำนักงาน(บาท)"  />
+                                    <input value="<?php echo $project_detail['project_coast'];?>" type="number"  class="form-control" name="txtCoastOffice" placeholder="ค่าใช้จ่ายสำนักงาน(บาท)"  />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>&nbsp;</label>
-                                    <textarea class="form-control" name="txtMarkProject" placeholder="หมายเหตุ"></textarea>
+                                    <textarea class="form-control" name="txtMarkProject" placeholder="หมายเหตุ"><?php echo $project_detail['project_note']?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -174,24 +174,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </thead>
                                     <tbody>
                                         
-                                        <?php for ($i = 1; $i <= 10; $i++) { ?>        
-                                            <tr>
+                                        <?php for ($i = 1,$j=0; $i <= 10,$j<10; $i++,$j++): ?>        
+                                        <tr>
                                                 <!--สถานะ-->
                                                 <td><input type="checkbox" class="checkbox" id="chkBox<?php echo $i; ?>" /></td>
                                                 <td><center><?php echo $i; ?></center></td>
                                         <td>
                                             <select class="form-control" name="selEmRole[]" id="selEmRole<?php echo $i; ?>" disabled="">
                                                 <option value="" disabled selected>เลือกสถานะ</option>
-                                                <option value="ผู้ทำบัญชี">หัวหน้าทีม</option>
-                                                <option value="ผู้ปฏิบัติงาน">ผู้ปฏิบัติงาน</option>
+                                                <option <?php if(@$teamDetail[$j]['team_role'] == "ผู้ทำบัญชี"){echo "selected";}?> value="ผู้ทำบัญชี">หัวหน้าทีม</option>
+                                                <option <?php if(@$teamDetail[$j]['team_role'] == "ผู้ปฏิบัติงาน"){echo "selected";}?> value="ผู้ปฏิบัติงาน">ผู้ปฏิบัติงาน</option>
                                             </select>
                                         </td>
                                         <!--ชื่อ-นามสกุล-->
                                         <td>
                                             <select class="form-control" name="selEmName[]" id="selEmName<?php echo $i; ?>" disabled="">
                                                 <option value="" disabled selected>เลือกพนักงาน</option>
-                                                <?php foreach ($em_name as $rowem_name): ?>
-                                                    <option value="<?php echo $rowem_name->em_id; ?>" ><?php echo $rowem_name->em_name ?></option>
+                                                <?php foreach ($employeeDetail as $rowem_name): ?>
+                                                <option <?php if(@$teamDetail[$j]['em_id'] == $rowem_name->em_id){echo "selected";}?> value="<?php echo $rowem_name->em_id; ?>" ><?php echo $rowem_name->em_name ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </td>
@@ -201,7 +201,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
-                                                <input name="txtCountWorkHour[]" id="txtCountWorkHour<?php echo $i; ?>" type="number" class="form-control" placeholder="ชั่วโมงการทำงาน" disabled="" />
+                                                <input value="<?php echo @$teamDetail[$j]['team_hour']?>" name="txtCountWorkHour[]" id="txtCountWorkHour<?php echo $i; ?>" type="number" class="form-control" placeholder="ชั่วโมงการทำงาน" disabled="" />
                                             </div>
                                         </td>
                                         <!--บาท/ชั่วโมง-->
@@ -210,7 +210,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <div class="input-group-addon">
                                                     <i class="glyphicon glyphicon-usd"></i>
                                                 </div>
-                                                <input name="txtBathTime[]" id="txtBathTime<?php echo $i; ?>" type="number" class="form-control" placeholder="ค่าจ้าง" disabled="" />
+                                                <input value="<?php echo @$teamDetail[$j]['team_salary']?>" name="txtBathTime[]" id="txtBathTime<?php echo $i; ?>" type="number" class="form-control" placeholder="ค่าจ้าง" disabled="" />
                                             </div>
                                         </td>
                                         <!--เพิ่มเติม-->
@@ -229,7 +229,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             };
                                         </script>
                                         <!--.CheckBox-->
-                                    <?php } ?> 
+                                    <?php endfor; ?> 
 
                                     </tbody>
                                     <tfoot>
@@ -269,7 +269,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
-                                        <input name="datIntWork" type="text" class="form-control" placeholder="01/01/2016">
+                                        <input value="<?php echo $project_detail['prject_start']; ?>" name="datIntWork" type="text" class="form-control" placeholder="01/01/2016">
 
                                     </div>
                                 </div>
@@ -284,7 +284,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
-                                        <input name="datFinalWork" type="text" class="form-control" placeholder="01/01/2017">
+                                        <input value="<?php echo $project_detail['project_end']; ?>" name="datFinalWork" type="text" class="form-control" placeholder="01/01/2017">
 
                                     </div>
                                 </div>
@@ -298,7 +298,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
-                                        <input name="datAcepeWork" type="text" class="form-control" placeholder="01/01/2016">
+                                        <input value="<?php echo $project_detail['project_receip']; ?>" name="datAcepeWork" type="text" class="form-control" placeholder="01/01/2016">
 
                                     </div>
                                 </div>
@@ -311,19 +311,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <label>อัตราค่าทำบัญชี:</label>
                                     <select class="form-control" name="selRateCoast">
 
-                                        <option value="รายเดือน">รายเดือน</option>
-                                        <option value="รายครั้ง">รายครั้ง</option>
+                                        <option <?php if($project_detail['project_rate'] == "รายเดือน"){ echo "selected";}?> value="รายเดือน">รายเดือน</option>
+                                        <option <?php if($project_detail['project_rate'] == "รายครั้ง"){ echo "selected";}?>  value="รายครั้ง">รายครั้ง</option>
                                     </select>
                                 </div>
                                 <!--จำนวนเงินบาท-->
                                 <div class="col-sm-4">
                                     <label>&nbsp;</label>
-                                    <input class="form-control" name="txtRevenueAudit" type="number" placeholder="จำนวนเงิน(บาท)" />
+                                    <input value="<?php echo $project_detail['project_coasts'];?>" class="form-control" name="txtRevenueAudit" type="number"  placeholder="จำนวนเงิน(บาท)" />
                                 </div>
 
                                 <div class="col-sm-4">
                                     <label>&nbsp;</label>
-                                    <input class="form-control" name="txtInstallment" type="number" placeholder="จำนวนงวดงาน"/>
+                                    <input value="<?php echo $project_detail['project_period'];  ?>" class="form-control" name="txtInstallment" type="number"  placeholder="จำนวนงวดงาน"/>
                                 </div>
 
                             </div>
@@ -369,6 +369,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
 
                             </div>
+                            
 
                             <!--สัญญาจ้าง-->
                             <div class="row">
@@ -399,6 +400,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
 
                             </div>
+                            <!--รายละเอียดเอกสาร-->
+                           
+                            <hr>
+                            
+                          <?php for($y=0; $y<sizeof($prodoc);$y++):?>   
+                            
+                            <div class="row">
+                                <div class="col-sm-3"><label>วันที่:</label><?php echo nbs(3);echo $prodoc[$y]['project_doc_qua_dat'];?></div>
+                                <div class="col-sm-3"><label>ยอดเงิน:</label><?php echo nbs(3);echo $prodoc[$y]['project_doc_money'];?></div>
+                                <div class="col-sm-3"><label>เลขที่:</label><?php echo nbs(3);echo $prodoc[$y]['project_doc_no'];?></div>
+                                <div class="col-sm-3"><label>เอกสาร:</label><?php echo nbs(3);?><a target="_blank" href="<?php echo base_url()."uploads"."/".$prodoc[$y]['project_doc_path']; ?>"><?php echo $prodoc[$y]['project_doc_name']; ?></a></div>
+                            </div>
+                            <hr>
+                           <?php endfor;?>
+                            <!--.รายละเอียดเอกสาร-->
                         </div>
                         <!-- /.box-body -->
 
