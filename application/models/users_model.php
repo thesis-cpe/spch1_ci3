@@ -50,9 +50,6 @@ class Users_model extends CI_Model {
         $this->db->insert('employee', $dataEmployee);
     }
 
-    function _insert_employee_file() { //ใส่รูปพนักงน
-    }
-
     function _sel_employee_details() {
         $query = $this->db->get('employee')->result();
         return $query;
@@ -107,6 +104,24 @@ class Users_model extends CI_Model {
         }
 
         return $dataRetrun;
+    }
+
+    function _insert_file($file_name, $emId) { //ใส่รูปพนักงาน
+        $data = array(
+            'file_path' => $file_name,
+            'em_id' => $emId
+        );
+        $this->db->insert('file', $data);
+    }
+
+    function _sel_emid_by_em_number($em_number) {
+        $query = $this->db->where('em_number', $em_number)
+                        ->get('employee')->result();
+        foreach ($query as $row) {
+            $emId = $row->em_id;
+        }
+
+        return $emId;
     }
 
 }

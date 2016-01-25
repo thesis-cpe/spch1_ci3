@@ -21,10 +21,10 @@ class Main_data extends CI_Controller {
 
     public function index() {
         if ($this->session->userdata('logged')) {
-            /*เตรียมยัดข้อมูลลงตัวแปร*/
+            /* เตรียมยัดข้อมูลลงตัวแปร */
             $dataMain['customer'] = $this->customer->_sel_customer_details(); //ข้อมูลลูกค้า
             $dataMain['employee'] = $this->users->_sel_employee_details();
-            $this->load->view('main_data_view',$dataMain);
+            $this->load->view('main_data_view', $dataMain);
         } else {
             $this->load->view('template/404anime');
         }
@@ -78,6 +78,31 @@ class Main_data extends CI_Controller {
             /* วันหยุด */ $txtareaCondition = $this->input->post('txtareaCondition');
             /* หมายเหตุ */ $txtareaMark = $this->input->post('txtareaMark');
             $callModel = $this->users->_insert_em($txtName, $txtEmName, $txtEmlastName, $selStatus, $selRole, $txtEmId, $txtAuditId, $txtPassword, $txtNationId, $selMarieStatus, $txtareaAddr1, $txtareaAddr2, $txtTel, $txtEmail, $txtNameFriend, $txtTelFriend, $selGaduLevel, $txtMajor, $txtGpa, $txtInstitute, $datInWork, $txtCoast, $txtRateCoast, $txtWorkDay, $txtareaCondition, $txtareaMark);
+            /* config ไฟล์ */
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = 1000;
+            $config['max_width'] = 1024;
+            $config['max_height'] = 1000;
+            $this->upload->initialize($config);
+            $this->load->library('upload', $config);
+            
+            
+            $emId = $this->users->_sel_emid_by_em_number($txtEmId); //ค้นหา id พนักงานที่เพิ่งเข้า db ด้วยรหัสพนีกงาน
+            /* /.config ไฟล์ */
+            //ตรวจสอบฟิวล์
+            if (!empty($_FILES['fileEmPhoto']['name'])) {
+                if (!$this->upload->do_upload('fileEmPhoto')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    print_r($error);
+                } else {
+
+                    $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
+                    $file_name = $upload_data['file_name'];
+                    /* insertFile */
+                    $insertPhotoFile = $this->users->_insert_file($file_name, $emId);
+                }
+            }
         }
     }
 
@@ -135,29 +160,24 @@ class Main_data extends CI_Controller {
         }
         $this->load->view('maindata_view_load');
     }
-    
-    
-    public function edit_customer($customer_id){
-        
+
+    public function edit_customer($customer_id) {
+
         $data['customer_detail'] = $this->customer->_sel_customer_details_by_id($customer_id);
-      //echo   $data['customer_detail']['name'];
+        //echo   $data['customer_detail']['name'];
         //sel filepath
         $data['file'] = $this->customer->_sel_file($customer_id); //ได้ไฟล์
-        
-        $this->load->view('edit_customer_view',$data);
+
+        $this->load->view('edit_customer_view', $data);
     }
-    
-     public function update_customer(){
-        
+
+    public function update_customer() {
         
     }
-    
-    public function edit_emplyee($em_id){ 
+
+    public function edit_emplyee($em_id) {
         $data['em'] = $this->users->_sel_em_by_id($em_id);
-        $this->load->view('edit_employee_view',$data);
-        
+        $this->load->view('edit_employee_view', $data);
     }
-    
-    
 
 }
