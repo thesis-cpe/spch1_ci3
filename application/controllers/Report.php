@@ -16,6 +16,8 @@ class Report extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Report_model', 'report');
+    $this->load->model('users_model','users');
+    
     }
 
     public function index() {
@@ -83,7 +85,16 @@ class Report extends CI_Controller {
     public function employee() {
 
         if ($this->session->userdata('logged')) {
-            $this->load->view('report_employee_view2');
+            $emName = $this->users->_sel_employee_details();
+            
+            
+            
+            $data = array(
+                'emName' => $emName
+                
+            );
+            $this->load->view('report_employee_view2',$data);
+            
         } else {
             $this->load->view('template/404anime');
         }
