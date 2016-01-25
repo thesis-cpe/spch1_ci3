@@ -73,16 +73,18 @@ class Daily_model extends CI_Model {
             'em_id' => $dataDaily['em_id'],
             'project_id' => $dataDaily['project_id'],
             /* เพิ่มเข้ามา */
-            'daily_start_time_min' => $dataDaily['daily_start_time_min'],
-            'daily_end_time_min' => $dataDaily['daily_end_time_min'],
+            //'daily_start_time_min' => $dataDaily['daily_start_time_min'],
+            //'daily_end_time_min' => $dataDaily['daily_end_time_min'],
         );
 
 
         /* ของเก่าอ้างอิงจาก01 */
         for ($i = 0; $i < $countProid; $i++) {
             $query = $this->db->set('daily_dat', $dataToSql['daily_dat'])
-                    ->set('daily_start_time', $dataToSql['daily_start_time'][$i] . "." . $dataToSql['daily_start_time_min'][$i])
-                    ->set('daily_end_time', $dataToSql['daily_end_time'][$i] . ":" . $dataToSql['daily_end_time_min'][$i])
+                    //->set('daily_start_time', $dataToSql['daily_start_time'][$i] . "." . $dataToSql['daily_start_time_min'][$i])
+                    ->set('daily_start_time', $dataToSql['daily_start_time'][$i])
+                    //->set('daily_end_time', $dataToSql['daily_end_time'][$i] . ":" . $dataToSql['daily_end_time_min'][$i])
+                    ->set('daily_end_time', $dataToSql['daily_end_time'][$i])
                     ->set('daily_use_time', $dataToSql['daily_use_time'][$i])
                     ->set('daily_rec_insert', $dataToSql['daily_rec_insert'][$i])
                     ->set('daily_note', $dataToSql['daily_note'][$i])

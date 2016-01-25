@@ -86,8 +86,8 @@ class Main_data extends CI_Controller {
             $config['max_height'] = 1000;
             $this->upload->initialize($config);
             $this->load->library('upload', $config);
-            
-            
+
+
             $emId = $this->users->_sel_emid_by_em_number($txtEmId); //ค้นหา id พนักงานที่เพิ่งเข้า db ด้วยรหัสพนีกงาน
             /* /.config ไฟล์ */
             //ตรวจสอบฟิวล์

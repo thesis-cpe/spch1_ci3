@@ -225,7 +225,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <input size="4" type="text" class="form-control input-sm" data-mask="99:99" placeholder="สิ้นสุด"> -->
                                                                   <!--  <input   size="9" type="text" class="form-control" data-mask="99:99-99:99" placeholder="เวลา"> -->
                                                                     
-                                                                    <input disabled="" id="txtStartTime<?php echo $i;?>" type="time" name="txtStartTime[]"/> - <input disabled="" id="txtEndTime<?php echo $i;?>" type="time" name="txtEndTime"/>
+                                                                    <input disabled="" id="txtStartTime<?php echo $i;?>" type="time" name="txtStartTime[]"/> - <input disabled="" id="txtEndTime<?php echo $i;?>" type="time" name="txtEndTime[]"/>
                                                                 </td>
 
                                                                 <td>
