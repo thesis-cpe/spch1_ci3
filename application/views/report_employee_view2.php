@@ -109,8 +109,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="row">
 
                                             <div class="col-sm-2">
-                                                <select name="txtEmName"  class="form-control input-sm" placeholder="ชื่อพนักงาน" >
-                                                    <option selected="" disabled="">พนักงาน</option>
+                                                <select required="" name="txtEmName"  class="form-control input-sm" placeholder="ชื่อพนักงาน" >
+                                                   <!-- <option  disabled="">พนักงาน</option> -->
                                                     <?php foreach ($emName as $rowemName): ?>
                                                         <option value="<?php echo $rowemName->em_id; ?>"><?php echo $rowemName->em_name; ?></option>
                                                     <?php endforeach; ?>
@@ -190,11 +190,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <div style="float: right"><?php echo number_format($reportL2[$i]['team_hour'] - $rowreportL1['sum_use_time']);?></div>
                                                             </td>
                                                             <!--รายการบันทึกล่าสุด-->
-                                                            <td>&nbsp;</td>
-                                                            <!--คีย์เข้า-->
-                                                            <td>&nbsp;</td>
-                                                            <!--ยกไป-->
-                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                <div style="float: right"><?php echo number_format($reportL3[$i]['rec']);?></div>
+                                                            </td>
+                                                            <!--คีย์เข้าทั้งหมด-->
+                                                            <td><div style="float: right"><?php echo number_format($rowreportL1['sum_rec']);?></div></td>
+                                                            <!--โน้ต-->
+                                                            <td><a href="#" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
+                                                                <?php if(!empty($reportL3[$i]['note'])):?>
+                                                                <button data-toggle="modal" data-target="#pnlMsn<?php echo $i;?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></span></button>
+                                                                <!--Modal-->
+                                                                    <div id="pnlMsn<?php echo $i;?>" class="modal fade" tabindex="-1" role="dialog">
+                                                                        <div class="modal-dialog">
+                                                                          <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                              <h4 class="modal-title">ข้อความ...</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <a><?php echo $reportL3[$i]['note']; ?></a>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                              <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
+                                                                              
+                                                                            </div>
+                                                                          </div><!-- /.modal-content -->
+                                                                        </div><!-- /.modal-dialog -->
+                                                                    </div><!-- /.modal -->
+                                                                <!--.Modal-->
+                                                                <?php endif;?>
+                                                            </td>
                                                         </tr>
                                 <?php $i++; endforeach;?>
                                                     </tbody>

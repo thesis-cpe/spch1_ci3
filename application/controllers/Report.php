@@ -90,11 +90,12 @@ class Report extends CI_Controller {
                 /* หา loop1 */ $reportL1 = $this->report->_sel_em_L1($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
                 /*หา loop 2 */ $reportL2 = $this->report->_sel_em_L2($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
                 /*หา loop 3 */ $reportL3 = $this->report->_sel_em_L3($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
-                print_r($reportL3);
+                //print_r($reportL3);
                 $data = array(
                     'emName' => $emName,
                     'reportL1' => $reportL1,
-                    'reportL2' => $reportL2
+                    'reportL2' => $reportL2,
+                    'reportL3' => $reportL3
                 );
                 $this->load->view('report_employee_view2', $data);
             }else{

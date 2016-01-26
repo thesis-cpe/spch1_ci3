@@ -109,8 +109,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="row">
 
                                             <div class="col-sm-2">
-                                                <select name="txtEmName"  class="form-control input-sm" placeholder="ชื่อพนักงาน" >
-                                                    <option selected="" disabled="">พนักงาน</option>
+                                                <select required="" name="txtEmName"  class="form-control input-sm" placeholder="ชื่อพนักงาน" >
+                                                    <option  disabled="">พนักงาน</option>
                                                     <?php foreach ($emName as $rowemName): ?>
                                                         <option value="<?php echo $rowemName->em_id; ?>"><?php echo $rowemName->em_name; ?></option>
                                                     <?php endforeach; ?>

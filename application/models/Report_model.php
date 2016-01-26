@@ -252,7 +252,7 @@ class Report_model extends CI_Model {
             if ($year != "") {
                 $sqlToday = $sqlToday . " AND project_year = '$year'";
             }
-            $sqlToday = $sqlToday." ORDER BY daily_id DESC";
+            $sqlToday = $sqlToday." ORDER BY daily_id DESC limit 1"; //เลือค่าล่าสุดออกมาค่าเดียว คิดจาก ค่า id สูงสุด
             $query2 = $this->db->query($sqlToday);
             $res2 = $query2->result_array();
             foreach ($res2 as $rowres2):
