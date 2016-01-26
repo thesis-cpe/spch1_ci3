@@ -16,8 +16,7 @@ class Report extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Report_model', 'report');
-    $this->load->model('users_model','users');
-    
+        $this->load->model('users_model', 'users');
     }
 
     public function index() {
@@ -42,8 +41,8 @@ class Report extends CI_Controller {
                     'selCustomerName' => $this->input->post('selCustomerName'),
                     'selYear' => $this->input->post('selYear')
                 );
-/*เก็บ post $dataToSearchL1*/ $data['dataToSearchL1'] = $dataToSearchL1;
-                
+                /* เก็บ post $dataToSearchL1 */ $data['dataToSearchL1'] = $dataToSearchL1;
+
                 $data['searhL1'] = $this->report->_search_L1($dataToSearchL1);
 
                 $data['searhL2'] = $this->report->_search_L2($dataToSearchL1); //อาจมี bug L2
@@ -86,21 +85,32 @@ class Report extends CI_Controller {
 
         if ($this->session->userdata('logged')) {
             $emName = $this->users->_sel_employee_details();
-            
-            
-            
-            $data = array(
-                'emName' => $emName
+            //ตรวจการคลิกปุ่มค้นหาและดูค่าฟิวที่ส่งมา
+            if ($this->input->post('txtEmName') || $this->input->post('selProjectStatus') || $this->input->post('selYear') != "") {
+                /* หา loop1 */ $reportL1 = $this->report->_sel_em_L1($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
+                /*หา loop 2 */ $reportL2 = $this->report->_sel_em_L2($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
+                /*หา loop 3 */ $reportL3 = $this->report->_sel_em_L3($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
+                print_r($reportL3);
+                $data = array(
+                    'emName' => $emName,
+                    'reportL1' => $reportL1,
+                    'reportL2' => $reportL2
+                );
+                $this->load->view('report_employee_view2', $data);
+            }else{
+                 $data = array(
+                    'emName' => $emName,
+                   
+                );
+                $this->load->view('report_employee_view2_before',$data);
                 
-            );
-            $this->load->view('report_employee_view2',$data);
-            
+            } /*หากไม่มีการกดปุ่มค้นหา*/
         } else {
             $this->load->view('template/404anime');
         }
     }
-    
-    public function customer_record($em_number,$em_id,$em_name,$project_number,$project_id){  //เรคคอร์ดย่อย
+
+    public function customer_record($em_number, $em_id, $em_name, $project_number, $project_id) {  //เรคคอร์ดย่อย
         $data['argument'] = array(
             'em_number' => $em_number,
             'em_id' => $em_id,
@@ -108,17 +118,17 @@ class Report extends CI_Controller {
             'project_number' => $project_number,
             'project_id' => $project_id
         );
-        
+
         $data['customer_pro_details'] = $this->report->_sel_pro_customer_detail($data['argument']);
         //print_r($data['customer_pro_details']);
-        
-        $this->load->view('customer_rec_detail_view',$data);
+
+        $this->load->view('customer_rec_detail_view', $data);
     }
-    
-    public function cheked($check,$id){
-        $this->report->_checker_daily($check,$id);
+
+    public function cheked($check, $id) {
+        $this->report->_checker_daily($check, $id);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit; 
+        exit;
     }
 
 }

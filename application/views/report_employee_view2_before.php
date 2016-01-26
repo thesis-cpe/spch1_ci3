@@ -170,35 +170,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                <?php /*Loop1*/$i =0; foreach ($reportL1 as $rowreportL1):?>
+                             
                                                         <tr>
-                                                            <td>ใจเย็นๆ ก่อน</td>
+                                                            <td>พนักงาน</td>
                                                             <!--รหัสงานบริษัท-->
-                                                            <td><?php echo $rowreportL1['project_number']; ?></td>
+                                                            <td>&nbsp;</td>
                                                             <!--ชื่อบริษัท-->
-                                                            <td><?php echo $rowreportL1['customer_name']; ?></td>
+                                                            <td>&nbsp;</td>
                                                             <!--เวลาใช้ไป-->
-                                                            <td>
-                                                                <div style="float: right"><?php echo number_format($rowreportL1['sum_use_time']);?></div>
-                                                            </td>
-                                                            <!--เวลาตั้งต้น-->
-                                                            <td>
-                                                                <div style="float: right"><?php echo number_format($reportL2[$i]['team_hour']);?></div>
-                                                            </td>
+                                                            <td>&nbsp;</td>
+                                                            <!--เวลายกมา-->
+                                                            <td>&nbsp;</td>
                                                             <!--คงเหลือ-->
-                                                            <td>
-                                                                <div style="float: right"><?php echo number_format($reportL2[$i]['team_hour'] - $rowreportL1['sum_use_time']);?></div>
-                                                            </td>
-                                                            <!--รายการบันทึกล่าสุด-->
+                                                            <td>&nbsp;</td>
+                                                            <!--ยกมา-->
                                                             <td>&nbsp;</td>
                                                             <!--คีย์เข้า-->
                                                             <td>&nbsp;</td>
                                                             <!--ยกไป-->
                                                             <td>&nbsp;</td>
                                                         </tr>
-                                <?php $i++; endforeach;?>
+                              
                                                     </tbody>
-
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td colspan="9"><center>เลือกข้อมูลเพื่อค้นหา</center></td>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </div> 
                                         </div>

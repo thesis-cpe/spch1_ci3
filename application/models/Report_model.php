@@ -131,4 +131,138 @@ class Report_model extends CI_Model {
         $this->db->update('daily');
     }
 
+    public function _sel_em_L1($emId, $proStatus, $year) {
+        /* ควบคุมการค้นหา L1 */
+        $sqlSelCustomer = "SELECT project.project_id AS pro_id, project_number, customer_name, SUM(daily_use_time) AS sum_use_time, SUM(daily_rec_insert) AS sum_rec  FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
+        if ($emId != "") {
+            $sqlSelCustomer = $sqlSelCustomer . " AND employee.em_id = '$emId'";
+        }
+        if ($proStatus != "") {
+
+            /* สถานะทั้งหมด */
+            if ($proStatus == "ทั้งหมด") {
+                $sqlSelCustomer = $sqlSelCustomer;
+            } else {
+                $sqlSelCustomer = $sqlSelCustomer . " AND project.project_status = '$proStatus'";
+            }
+        }
+        if ($year != "") {
+            $sqlSelCustomer = $sqlSelCustomer . " AND project.project_year = '$year'";
+        }
+        /* ต่อท้ายด้วย GROUP BY */
+        $sqlSelCustomer = $sqlSelCustomer . " GROUP BY(project.project_id)";
+        $query = $this->db->query($sqlSelCustomer);
+        $res = $query->result_array();
+
+        return $res;
+    }
+
+    public function _sel_em_L2($emId, $proStatus, $year) {
+        /* ควบคุมการค้นหา L1 */
+        $sqlSelCustomer = "SELECT project.project_id AS pro_id, project_number, customer_name, SUM(daily_use_time) AS sum_use_time, SUM(daily_rec_insert) AS sum_rec  FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
+        if ($emId != "") {
+            $sqlSelCustomer = $sqlSelCustomer . " AND employee.em_id = '$emId'";
+        }
+        if ($proStatus != "") {
+
+            /* สถานะทั้งหมด */
+            if ($proStatus == "ทั้งหมด") {
+                $sqlSelCustomer = $sqlSelCustomer;
+            } else {
+                $sqlSelCustomer = $sqlSelCustomer . " AND project.project_status = '$proStatus'";
+            }
+        }
+        if ($year != "") {
+            $sqlSelCustomer = $sqlSelCustomer . " AND project.project_year = '$year'";
+        }
+        /* ต่อท้ายด้วย GROUP BY */
+        $sqlSelCustomer = $sqlSelCustomer . " GROUP BY(project.project_id)";
+        $query = $this->db->query($sqlSelCustomer);
+        $res = $query->result_array();
+
+        foreach ($res as $rowres):
+            $sqlSelTimeProect = "SELECT SUM(team_hour) AS team_hour FROM `team`JOIN project ON team.project_id = project.project_id";
+
+            if ($emId != "") {
+                $sqlSelTimeProect = $sqlSelTimeProect . " AND em_id = '$emId'";
+            }
+
+            if ($proStatus != "") {
+                /* สถานะทั้งหมด */
+                if ($proStatus == "ทั้งหมด") {
+                    $sqlSelTimeProect = $sqlSelTimeProect;
+                } else {
+                    $sqlSelTimeProect = $sqlSelTimeProect . " AND project_status = '$proStatus'";
+                }
+            }
+
+            if ($year != "") {
+                $sqlSelTimeProect = $sqlSelTimeProect . " AND project_year = '$year'";
+            }
+
+            $sqlSelTimeProect = $sqlSelTimeProect . " AND team.project_id = '$rowres[pro_id]'";
+            $query2 = $this->db->query($sqlSelTimeProect);
+            $res2 = $query2->result_array();
+            foreach ($res2 as $rowres2):
+                $dataRe[] = array(
+                    'team_hour' => $rowres2['team_hour']
+                );
+            endforeach; //l2
+        endforeach; //l1
+        return $dataRe;
+    }
+
+    public function _sel_em_L3($emId, $proStatus, $year) {
+        /* ควบคุมการค้นหา L1 */
+        $sqlSelCustomer = "SELECT project.project_id AS pro_id, project_number, customer_name, SUM(daily_use_time) AS sum_use_time, SUM(daily_rec_insert) AS sum_rec  FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
+        if ($emId != "") {
+            $sqlSelCustomer = $sqlSelCustomer . " AND employee.em_id = '$emId'";
+        }
+        if ($proStatus != "") {
+
+            /* สถานะทั้งหมด */
+            if ($proStatus == "ทั้งหมด") {
+                $sqlSelCustomer = $sqlSelCustomer;
+            } else {
+                $sqlSelCustomer = $sqlSelCustomer . " AND project.project_status = '$proStatus'";
+            }
+        }
+        if ($year != "") {
+            $sqlSelCustomer = $sqlSelCustomer . " AND project.project_year = '$year'";
+        }
+        /* ต่อท้ายด้วย GROUP BY */
+        $sqlSelCustomer = $sqlSelCustomer . " GROUP BY(project.project_id)";
+        $query = $this->db->query($sqlSelCustomer);
+        $res = $query->result_array();
+
+        foreach ($res as $rowres):
+            $sqlToday = "SELECT * FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id AND daily.project_id = '$rowres[pro_id]' ";
+            if ($emId != "") {
+                $sqlToday = $sqlToday . " AND daily.em_id = '$emId'";
+            }
+
+            if ($proStatus != "") {
+                if ($proStatus== "ทั้งหมด") {
+                    $sqlToday = $sqlToday;
+                } else {
+                    $sqlToday = $sqlToday . " AND project_status = '$proStatus'";
+                }
+            }
+
+            if ($year != "") {
+                $sqlToday = $sqlToday . " AND project_year = '$year'";
+            }
+            $sqlToday = $sqlToday." ORDER BY daily_id DESC";
+            $query2 = $this->db->query($sqlToday);
+            $res2 = $query2->result_array();
+            foreach ($res2 as $rowres2):
+                $dataRe[] = array(
+                    'note' => $rowres2['daily_note'],
+                    'rec' => $rowres2['daily_rec_insert']
+                );
+            endforeach;
+        endforeach;
+        return $dataRe;
+    }
+
 }
