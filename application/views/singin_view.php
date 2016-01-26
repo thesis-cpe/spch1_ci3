@@ -18,8 +18,6 @@
         <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/dist/css/AdminLTE.min.css">
         <!-- iCheck -->
         <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/plugins/iCheck/square/blue.css">
-        <!--reCAPTCHA-->
-         <script src='https://www.google.com/recaptcha/api.js'></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,9 +44,6 @@
                     <div class="form-group has-feedback">
                         <input name="pass" type="password" class="form-control" placeholder="password" required/>
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <div class="g-recaptcha" data-sitekey="6LcfABUTAAAAAMVUvAQTGMm1zhMr9dq379_s1Spk"></div>
                     </div>
                     <div class="row">
 
