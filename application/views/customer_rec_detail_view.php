@@ -100,13 +100,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>วันที่</th>
-                                        <th>เวลาเริ่ม</th>
-                                        <th>เวลาสิ้นสุด</th>
-                                        <th>เวลาที่ใช้(นาที)</th>
-                                        <th>รายการบันทึก</th>
-                                        <th>ข้อความ</th>
-                                        <th>ตรวจสอบ</th>
+                                        <th width="20"><center>วันที่</center></th>
+                                        <th width="50"><center>เวลาเริ่ม</center></th>
+                                        <th width="70"><center>เวลาสิ้นสุด</center></th>
+                                        <th width="100"><center>เวลาที่ใช้(นาที)</center></th>
+                                        <th width="100"><center>รายการบันทึก</center></th>
+                                        <th width="70"><center>ข้อความ</center></th>
+                                        <th><center>ตรวจสอบ</center></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -116,28 +116,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     foreach ($customer_pro_details as $rowcustomer_pro_details):
                                         ?>    
                                         <tr>
-                                            <td><?php echo $rowcustomer_pro_details->daily_dat; ?></td>
-                                            <td><?php echo $rowcustomer_pro_details->daily_start_time; ?></td>
-                                            <td><?php echo $rowcustomer_pro_details->daily_end_time; ?></td>
+                                            <td><div style="float: right;"><?php echo $rowcustomer_pro_details->daily_dat; ?></div></td>
+                                            <td><div style="float: right;"><?php echo $rowcustomer_pro_details->daily_start_time; ?></div></td>
+                                            <td><div style="float: right;"><?php echo $rowcustomer_pro_details->daily_end_time; ?></div></td>
                                             <td><div style="float: right;"><?php echo number_format($rowcustomer_pro_details->daily_use_time);
                                         $usetime = $usetime + $rowcustomer_pro_details->daily_use_time; ?></div></td>
                                             <td><div style="float: right;"><?php echo number_format($rowcustomer_pro_details->daily_rec_insert);
                                         $recuse = $recuse + $rowcustomer_pro_details->daily_rec_insert; ?></div></td>
                                             <td>
     <?php if (!empty($rowcustomer_pro_details->daily_note)): ?>
-                                                    <button data-toggle="modal" data-target="#panelMsn<?php echo $i; ?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></span></button>
-                                        <?php else: echo "-";
+                                <center> <button data-toggle="modal" data-target="#panelMsn<?php echo $i; ?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></span></button></center>
+                                        <?php else: echo "<center>"."-"."</center>";
                                         endif;
                                         ?>
                                             </td>
                                             <td>
                                               <!--  <input type="checkbox" name="ckecked[]" /> -->
                                              <!--   <input value="<?php echo $this->session->userdata('em_name');?>"  data-size="mini" type="checkbox" data-toggle="toggle" data-on="ยืนยัน" data-off="รอ"> -->
-                                                <?php if($rowcustomer_pro_details->validator == "ตรวจสอบ"):?>
+                                               <center> <?php if($rowcustomer_pro_details->validator == "ตรวจสอบ"):?>
                                                 <a title="ตรวจสอบแล้ว" href="<?php echo base_url();?>index.php/report/cheked/uncheck/<?php echo $rowcustomer_pro_details->daily_id; ?>" class="btn btn-xs btn-success"><span class="fa   fa-check-square-o"></span></a>
                                                 <?php else:?>
                                                 <a title="รอการตรวจสอบ" href="<?php echo base_url();?>index.php/report/cheked/check/<?php echo $rowcustomer_pro_details->daily_id; ?>" class="btn btn-xs btn-primary"><span class="fa  fa-check-square-o"></span></a>
-                                                <?php endif;?>
+                                                <?php endif;?> </center>
                                             </td>  
                                         </tr>
 
