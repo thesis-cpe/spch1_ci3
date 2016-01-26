@@ -95,7 +95,8 @@ class Report extends CI_Controller {
                     'emName' => $emName,
                     'reportL1' => $reportL1,
                     'reportL2' => $reportL2,
-                    'reportL3' => $reportL3
+                    'reportL3' => $reportL3,
+                    'emId' => $this->input->post('txtEmName')
                 );
                 $this->load->view('report_employee_view2', $data);
             }else{
@@ -111,12 +112,12 @@ class Report extends CI_Controller {
         }
     }
 
-    public function customer_record($em_number, $em_id, $em_name, $project_number, $project_id) {  //เรคคอร์ดย่อย
+    public function record($em_id , $project_id) {  //เรคคอร์ดย่อย
         $data['argument'] = array(
-            'em_number' => $em_number,
+            //'em_number' => $em_number,
             'em_id' => $em_id,
-            'em_name' => $em_name,
-            'project_number' => $project_number,
+            //'em_name' => $em_name,
+            //project_number' => $project_number,
             'project_id' => $project_id
         );
 

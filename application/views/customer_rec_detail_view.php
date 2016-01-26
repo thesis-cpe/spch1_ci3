@@ -78,8 +78,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        รายงานลูกค้าแบบละเอียด
-                        <small>รหัสงาน:<?php echo $argument['project_number'] ?> บริษัท: พนักงาน:<?php echo $argument['em_name']; ?></small>
+                        รายงานแบบละเอียด
+                        <small>รหัสงาน:<?php  ?> บริษัท: พนักงาน:<?php  ?></small>
                     </h1>
                     <!--    <ol class="breadcrumb">
                           <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>

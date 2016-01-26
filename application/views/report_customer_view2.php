@@ -77,7 +77,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <section class="content-header">
                     <h1>
                         รายงาน
-                        <small>แสดงข้อมูลรายงานลูกค้า วันที่วันนี้ </small>
+                        <small>แสดงข้อมูลรายงานลูกค้า</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> รายงาน</a></li>
@@ -236,7 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <td><div style="float: right"><?php echo number_format($rowsearhL1['sum_rec']); ?></div></td>
                                                             <!--โน้ต-->
                                                             <td>
-                                                                <a target="_blank" title="เพิ่มเติม" href="<?php echo base_url()?>index.php/report/customer_record/<?php echo $rowsearhL1['em_number']; ?>/<?php echo $rowsearhL1['em_id'];?>/<?php echo $rowsearhL1['em_name']; ?>/<?php echo $rowsearhL1['project_number']; ?>/<?php echo $rowsearhL1['project_id']; ?>" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
+                                                                <a target="_blank" title="เพิ่มเติม" href="<?php echo base_url()?>index.php/report/record/<?php echo $rowsearhL1['em_id'];?>/<?php echo $rowsearhL1['project_id']; ?>" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
                                                                 <?php if(!empty($dailyNoteInsert[$i])):?>
                                                                 <button type="button" title="ข้อความวันนี้" data-toggle="modal" data-target="#pnlMsn<?php echo $i; ?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></button>
                                                                 <?php endif;?>

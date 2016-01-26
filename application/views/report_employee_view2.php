@@ -76,7 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <section class="content-header">
                     <h1>
                         รายงาน
-                        <small>แสดงข้อมูลรายงานลูกค้าและพนักงาน</small>
+                        <small>แสดงข้อมูลรายงานพนักงาน</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> รายงาน</a></li>
@@ -104,7 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!--Conten Tab1-->
                                 <section class="content">
                                     <!--ส่วนค้นหาตามพนักงาน-->
-                                  <!--  <form name="formEmployee" action="<?php //echo $_SERVER['PHP_SELF']; ?>" method="POST"> -->
+                                 
                                     <?php echo form_open('report/employee');?>
                                         <div class="row">
 
@@ -196,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <!--คีย์เข้าทั้งหมด-->
                                                             <td><div style="float: right"><?php echo number_format($rowreportL1['sum_rec']);?></div></td>
                                                             <!--โน้ต-->
-                                                            <td><a href="#" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
+                                                            <td><a target="_blank" href="<?php echo base_url();?>index.php/report/record/<?php echo $emId;?>/<?php echo $rowreportL1['pro_id']; ?>" class="btn btn-xs btn-default"><span class="fa fa-bars"></span></a>
                                                                 <?php if(!empty($reportL3[$i]['note'])):?>
                                                                 <button data-toggle="modal" data-target="#pnlMsn<?php echo $i;?>" class="btn btn-xs btn-default"><span class="fa fa-envelope"></span></button>
                                                                 <!--Modal-->
