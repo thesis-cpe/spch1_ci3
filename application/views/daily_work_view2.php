@@ -283,7 +283,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 </td>
 
                                                                 <td>
-                                                                    <input value="<?php echo $dataInsert['rec'] ?>"  disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
+                                                                    <input value="<?php echo @$dataInsert['rec'] ?>"  disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
                                                                 </td>
                                                                 <!--โน้ต-->
                                                                 <td>
