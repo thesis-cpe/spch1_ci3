@@ -219,13 +219,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                         ->where('project_id',$rowteam_data['project_id'])
                                                                                         ->get('daily')->result();
                                                                                 foreach ($sqlselDataInsert as $rowDataInsert){
-                                                                                    $dataInsert = array(
+                                                                                    $dataInsert[] = array(
                                                                                         'rec' => $rowDataInsert->daily_rec_insert,
                                                                                         'start' => $rowDataInsert->daily_start_time,
                                                                                         'end' => $rowDataInsert->daily_end_time,
-                                                                                        'dr' => $rowDataInsert->daily_use_time
+                                                                                        'dr' => $rowDataInsert->daily_use_time,
+                                                                                        'id' => $rowDataInsert->daily_id
                                                                                     );  //น่าจะได้นะ ><
+                                                                                } 
+                                                                                if(empty($dataInsert[$j]['id'])){
+                                                                                    $dataInsert[$j]['id'] = "ว่าง";
+                                                                                }else{
+                                                                                    $dataInsert[$j]['id'] = $dataInsert[$j]['id'];
                                                                                 }
+                                                                                echo @$dataInsert[$j]['id']; //ทดสอบค่า
                                                                                 /*.หาค่าที่กรอกจากวันที่เลือก*/
                                                                                 ?>
 
@@ -238,11 +245,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <input size="4" type="text" class="form-control input-sm" data-mask="99:99" placeholder="สิ้นสุด"> -->
                                                                   <!--  <input   size="9" type="text" class="form-control" data-mask="99:99-99:99" placeholder="เวลา"> -->
                                                                     
-                                                                    <input value="<?php echo @$dataInsert['start'];?>" disabled="" id="txtStartTime<?php echo $i;?>" type="time" name="txtStartTime[]"/> - <input value="<?php echo @$dataInsert['end']; ?>" disabled="" id="txtEndTime<?php echo $i;?>" type="time" name="txtEndTime[]"/>
+                                                                    <input value="<?php echo @$dataInsert[$j]['start'];?>" disabled="" id="txtStartTime<?php echo $i;?>" type="time" name="txtStartTime[]"/> - <input value="<?php echo @$dataInsert[$j]['end']; ?>" disabled="" id="txtEndTime<?php echo $i;?>" type="time" name="txtEndTime[]"/>
                                                                 </td>
 
                                                                 <td>
-                                                                    <input value="<?php echo @$dataInsert['dr'];?>"   disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
+                                                                    <input value="<?php echo @$dataInsert[$j]['dr'];?>"   disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
                                                                 </td>
 
                                                                 <!--เวลายกมา-->
@@ -318,6 +325,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <!--CheckBox-->
                                                                 <!--ProID-->
                                                                 <input disabled="" id="hdfProId<?php echo $i ?>" type="hidden" name="hdfProId[]" value="<?php echo $projectID ?>"/>
+                                                                <input disabled="" type="hidden" name="hdfDrId[]" id="hdfDrId<?php echo $i?>" value="<?php echo $dataInsert[$j]['id']; ?>"/>
                                                                 <script>
 
                                                                     document.getElementById('chkBox<?php echo $i; ?>').onchange = function () {
@@ -334,6 +342,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         //document.getElementById('txtStartTimeMin<?php echo $i ?>').disabled = !this.checked;
                                                                         document.getElementById('txtStartTime<?php echo $i; ?>').disabled = !this.checked;
                                                                         document.getElementById('txtEndTime<?php echo $i; ?>').disabled = !this.checked;
+                                                                         document.getElementById('hdfDrId<?php echo $i?>').disabled = !this.checked;
                                                                     };
                                                                 </script>
 
