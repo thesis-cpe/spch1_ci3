@@ -212,8 +212,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                 } else {
                                                                                     $dateSelected = $this->session->userdata('date_curent');
                                                                                 }
-                                                                                echo $dateSelected;
-
+                                                                                echo $dateSelected; //วันที่ ถ้าไม่มีการเลือกเอาเวลาจากเครื่อง ถ้ามีการเลือกจะเอาเวลาที่เลือก
+                                                                                /*หาค่าที่กรอกจากวันที่เลือก*/
+                                                                                $sqlselDataInsert = $this->db->where('daily_dat',$dateSelected)
+                                                                                        ->where('em_id',$this->session->userdata('em_id'))
+                                                                                        ->where('project_id',$rowteam_data['project_id'])
+                                                                                        ->get('daily')->result();
+                                                                                foreach ($sqlselDataInsert as $rowDataInsert){
+                                                                                    $dataInsert = array(
+                                                                                        'rec' => $rowDataInsert->daily_rec_insert,
+                                                                                        'start' => $rowDataInsert->daily_start_time,
+                                                                                        'end' => $rowDataInsert->daily_end_time,
+                                                                                        'dr' => $rowDataInsert->daily_use_time
+                                                                                    );  //น่าจะได้นะ ><
+                                                                                }
+                                                                                /*.หาค่าที่กรอกจากวันที่เลือก*/
                                                                                 ?>
 
                                                                             </center>
@@ -225,11 +238,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <input size="4" type="text" class="form-control input-sm" data-mask="99:99" placeholder="สิ้นสุด"> -->
                                                                   <!--  <input   size="9" type="text" class="form-control" data-mask="99:99-99:99" placeholder="เวลา"> -->
                                                                     
-                                                                    <input disabled="" id="txtStartTime<?php echo $i;?>" type="time" name="txtStartTime[]"/> - <input disabled="" id="txtEndTime<?php echo $i;?>" type="time" name="txtEndTime[]"/>
+                                                                    <input value="<?php echo @$dataInsert['start'];?>" disabled="" id="txtStartTime<?php echo $i;?>" type="time" name="txtStartTime[]"/> - <input value="<?php echo @$dataInsert['end']; ?>" disabled="" id="txtEndTime<?php echo $i;?>" type="time" name="txtEndTime[]"/>
                                                                 </td>
 
                                                                 <td>
-                                                                    <input   disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
+                                                                    <input value="<?php echo @$dataInsert['dr'];?>"   disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
                                                                 </td>
 
                                                                 <!--เวลายกมา-->
@@ -270,7 +283,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 </td>
 
                                                                 <td>
-                                                                    <input  disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
+                                                                    <input value="<?php echo $dataInsert['rec'] ?>"  disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
                                                                 </td>
                                                                 <!--โน้ต-->
                                                                 <td>
