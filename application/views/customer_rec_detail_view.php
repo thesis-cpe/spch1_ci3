@@ -151,7 +151,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <h4 class="modal-title">ข้อความ...</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p><?php echo $rowcustomer_pro_details->daily_note; ?></p>
+                                                        <a><?php echo $rowcustomer_pro_details->daily_note; ?></a>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
