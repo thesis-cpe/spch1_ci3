@@ -172,13 +172,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <!--PassWord-->
                                        <div class="col-sm-2">
                                             <label>&nbsp;</label>
-                                            <input type="password" class="form-control" name="txtPassword" placeholder="รหัสผ่าน" required="">
+                                            <input maxlength="16" minlength="6" type="password" class="form-control" name="txtPassword" placeholder="รหัสผ่าน" required="">
                                         </div>
                                         
                                         <!--PassWord-->
                                        <div class="col-sm-2">
                                             <label>&nbsp;</label>
-                                            <input type="password" class="form-control" name="txtPassword2" placeholder="ยืนยันรหัสผ่าน" required="">
+                                            <input maxlength="16" minlength="6" type="password" class="form-control" name="txtPassword2" placeholder="ยืนยันรหัสผ่าน" required="">
                                        </div>
 
                                     </div> 

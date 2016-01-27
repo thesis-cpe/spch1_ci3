@@ -165,6 +165,7 @@ class Main_data extends CI_Controller {
     public function edit_customer($customer_id) {
 
         $data['customer_detail'] = $this->customer->_sel_customer_details_by_id($customer_id);
+       // $data['id'] = $customer_id;
         //echo   $data['customer_detail']['name'];
         //sel filepath
         $data['file'] = $this->customer->_sel_file($customer_id); //ได้ไฟล์
@@ -178,7 +179,12 @@ class Main_data extends CI_Controller {
 
     public function edit_emplyee($em_id) {
         $data['em'] = $this->users->_sel_em_by_id($em_id);
+        $data['id'] = $em_id;
         $this->load->view('edit_employee_view', $data);
+    }
+    
+    public function chang_pass(){
+        
     }
 
 }
