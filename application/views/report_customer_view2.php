@@ -148,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="col-sm-2">
                                             <?php
-                                            if ($dataToSearchL1['selProjectNumber'] || $dataToSearchL1['selCustomerName'] || $dataToSearchL1['selYear'] != "") {
+                                           /* if ($dataToSearchL1['selProjectNumber'] || $dataToSearchL1['selCustomerName'] || $dataToSearchL1['selYear'] != "") {
                                             $stringOutPut = "";
                                             if (!empty($dataToSearchL1['selProjectNumber'])) {
                                             $stringOutPut = "รหัสงาน : " . $dataToSearchL1['selProjectNumber'];
@@ -160,7 +160,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             $stringOutPut = $stringOutPut . " ปีบัญชี : " . $dataToSearchL1['selYear'];
                                             }
                                             echo $stringOutPut;
-                                            }
+                                            } */
                                             ?>
                                         </div>
 
