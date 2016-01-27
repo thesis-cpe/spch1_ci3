@@ -103,7 +103,7 @@ class Main_data extends CI_Controller {
                     $insertPhotoFile = $this->users->_insert_file($file_name, $emId);
                 }
             }
-            redirect('main_data','refresh');
+            redirect('main_data', 'refresh');
         }
     }
 
@@ -165,7 +165,7 @@ class Main_data extends CI_Controller {
     public function edit_customer($customer_id) {
 
         $data['customer_detail'] = $this->customer->_sel_customer_details_by_id($customer_id);
-       // $data['id'] = $customer_id;
+        // $data['id'] = $customer_id;
         //echo   $data['customer_detail']['name'];
         //sel filepath
         $data['file'] = $this->customer->_sel_file($customer_id); //ได้ไฟล์
@@ -182,13 +182,44 @@ class Main_data extends CI_Controller {
         $data['id'] = $em_id;
         $this->load->view('edit_employee_view', $data);
     }
-    
-    public function chang_pass(){
+
+    public function chang_pass() {
         $data = array(
             'em_id' => $this->input->post('hdf'),
             'pass' => $this->input->post('txtPassword')
         );
         $changPass = $this->users->_chang_pass($data);
+    }
+
+    public function update_emp() {
+        $dataUpdate = array(
+            /* คำนำหน้า */ 'txtName' => $this->input->post('selTitle'),
+            /* ชื่อ */ 'txtEmName' => $this->input->post('txtEmName'),
+            /* นามสกุล */ 'txtEmlastName' => $this->input->post('txtEmLastName'),
+            /* สถานะการทำงาน */ 'selStatus' => $this->input->post('selStatus'),
+            /* สถานะในระบบ */ 'selRole' => $this->input->post('selRole'),
+            /* หมายเลขพนักงาน */ 'txtEmId' => $this->input->post('txtEmId'),
+            /* หมายเลขผู้ทำบัญชี */ 'txtAuditId' => $this->input->post('txtAuditId'),
+            /* Nation Id */ 'txtNationId' => $this->input->post('txtNationId'),
+            /* สมรส */ 'selMarieStatus' => $this->input->post('selMarieStatus'),
+            /* ที่อยู่ */ 'txtareaAddr1' => $this->input->post('txtareaAddr1'),
+            /* ที่อยู่2 */ 'txtareaAddr2' => $this->input->post('txtareaAddr2'),
+            /* โทร */ 'txtTel' => $this->input->post('txtTel'),
+            /* mail */ 'txtEmail' => $this->input->post('txtEmail'),
+            /* ติดต่อได้ */ 'txtNameFriend' => $this->input->post('txtNameFriend'),
+            /* เบอร์เพื่อน */ 'txtTelFriend' => $this->input->post('txtTelFriend'),
+            /* การศึกษา */ 'selGaduLevel' => $this->input->post('selGaduLevel'),
+            /* สาขา */ 'txtMajor' => $this->input->post('txtMajor'),
+            /* เกรด */ 'txtGpa' => $this->input->post('txtGpa'),
+            /* สถาบัน */ 'txtInstitute' => $this->input->post('txtInstitute'),
+            /* เริ่มทำ */ 'datInWork' => $this->input->post('datInWork'),
+            /* ค่าแรง */ 'txtCoast' => $this->input->post('txtCoast'),
+            /* บาท/วัน */ 'txtRateCoast' => $this->input->post('txtRateCoast'),
+            /* วัน / เดือน */ 'txtWorkDay' => $this->input->post('txtWorkDay'),
+            /* วันหยุด */ 'txtareaCondition' => $this->input->post('txtareaCondition'),
+            /* หมายเหตุ */ 'txtareaMark' => $this->input->post('txtareaMark')
+        );
+        $callUpdateEm = $this->users->__update_em_detail($dataUpdate);
     }
 
 }

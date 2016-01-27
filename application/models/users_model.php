@@ -134,5 +134,9 @@ class Users_model extends CI_Model {
         
         header('Location: ' . $_SERVER['HTTP_REFERER']); //กลับก่อนหน้า
     }
+    
+    function _update_em_detail($data){
+        
+    }
 
 }
