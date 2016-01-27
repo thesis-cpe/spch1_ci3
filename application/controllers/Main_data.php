@@ -103,6 +103,7 @@ class Main_data extends CI_Controller {
                     $insertPhotoFile = $this->users->_insert_file($file_name, $emId);
                 }
             }
+            redirect('main_data','refresh');
         }
     }
 

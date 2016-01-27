@@ -70,8 +70,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <?php include_once '/template/side_bar.php'; ?>
                 <!-- /.sidebar -->
             </aside>
-     <!--  <form action="" method="post">      -->  
-     <?php echo form_open_multipart('main_data/insert_emp') ?>
+            <form name="formAddEm" action="<?php echo base_url();?>index.php/main_data/insert_emp" method="POST" enctype="multipart/form-data" OnSubmit="return fncSubmit();" >
+     <?php //echo form_open_multipart('main_data/insert_emp') ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
@@ -403,5 +403,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
              fixed layout. -->
         <!--Datpicker-->
         <script src="<?php echo base_url();?>dashboard/lte/plugins/datepicker/bootstrap-datepicker.js"></script>
+        <!-- Check PassWord-->
+        <script>
+                            function fncSubmit()
+                            {
+                                if (document.formAddEm.txtPassword.value == "")
+                                {
+                                alert('โปรดสร้างรหัสผ่าน');
+                                        document.formAddEm.txtPassword.focus();
+                                        return false;
+                                }
+                                if (document.formAddEm.txtPassword2.value == "")
+                                {
+                                alert('โปรดยืนยันรหัสผ่าน');
+                                        document.formAddEm.txtPassword2.focus();
+                                        return false;
+                                }
+                                if (document.formAddEm.txtPassword.value != document.formAddEm.txtPassword2.value)
+                                {
+                                alert('โปรดยืนยันรหัสผ่านอีกครั้ง');
+                                        document.formAddEm.txtPassword.focus();
+                                        return false;
+                                }
+                                document.formAddEm.submit();
+                                
+                            }
+        </script>
     </body>
 </html>
