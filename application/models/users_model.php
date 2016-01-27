@@ -124,4 +124,15 @@ class Users_model extends CI_Model {
         return $emId;
     }
 
+    function _chang_pass($data) {
+        $txtPasswordSecret = $data['pass'] . "bmpkobroTN";
+        $dataUpdate = array(
+            'em_password' => md5($txtPasswordSecret)
+        );
+        $this->db->where('em_id', $data['em_id']);
+        $this->db->update('employee', $dataUpdate);
+        
+        header('Location: ' . $_SERVER['HTTP_REFERER']); //กลับก่อนหน้า
+    }
+
 }

@@ -184,7 +184,11 @@ class Main_data extends CI_Controller {
     }
     
     public function chang_pass(){
-        
+        $data = array(
+            'em_id' => $this->input->post('hdf'),
+            'pass' => $this->input->post('txtPassword')
+        );
+        $changPass = $this->users->_chang_pass($data);
     }
 
 }
