@@ -101,20 +101,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                          <?php echo form_open("report/record/$argument[em_id]/$argument[project_id]");?>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-offset-5 col-sm-2">
                                     <!--Date Rang-->
                                     <div class="form-group">
-                                        <label>ช่วงเวลา:</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="reservation">
+                                            
+                                            <input required=""  name="rangDate" type="text" class="form-control input-sm" id="reservation">
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                     <!--.Date Rang-->
                                 </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-sm btn-default" type="submit" name="btnRang"><span class="fa fa-search"></span></button>
+                                </div>
+                            <?php echo form_close();?>
                             </div>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>

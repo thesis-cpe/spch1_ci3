@@ -111,12 +111,49 @@ class Report_model extends CI_Model {
     }
 
     public function _sel_pro_customer_detail($data) {
-        $query = $this->db->where('em_id', $data['em_id'])
-                        ->where('project_id', $data['project_id'])
-                        ->get('daily')->result();
+
+        if (!empty($data['rang_date'])) { //ถ้ามีการเลือกฃ่วงเวลาให้เข้าวงนี้
+            $rangDateEx = explode("-", $data['rang_date']);
+
+            $dateFirst = $rangDateEx[0];
+            $dateEnd = $rangDateEx[1];
+            $dateFirstEx = explode("/", $dateFirst);
+            $dateEndEx = explode("/", $dateEnd);
+            $yearFirst = $dateFirstEx[2] + 543;
+            $yearEnd = $dateEndEx[2] + 543; //ได้ปี พ.ศ. เริ่ม กับสิ้นสุด
+            $dateFirstUse = $dateFirstEx[0] . "/" . $dateFirstEx[1] . "/" . $yearFirst; //ใฃ้อันนี้ไปหานะ
+            $dateEndUse = $dateEndEx[0] . "/" . $dateEndEx[1] . "/" . $yearEnd;
+            //echo "ทดสอบ" . $dateEndUse . "<br>";
+            /* ตัดช่องว่างออก */
+            @$newdateEndUse = ereg_replace('[[:space:]]+', '', trim($dateEndUse));
+            //echo "ทดสอบ".$newdateEndUse."<br>";
+            //AND daily_dat <= '$dateEndUse'  เกิดช่อวงวางต้องหา
+            if ($yearFirst == $yearEnd) {
+                /*  $query = $this->db->where('em_id', $data['em_id'])
+                  ->where('project_id', $data['project_id'])
+                  //->where("(daily_dat >= '$dateFirstUse' AND daily_dat LIKE '%$yearFirst' AND daily_dat <= '$dateEndUse')")
+                  ->where("(daily_dat >= '$dateFirstUse' AND daily_dat <= '$dateEndUse' AND daily_dat LIKE '%2559')")
+                  ->get('daily')->result(); */
+                $data['em_id'] . "<br>";
+                $data['project_id'] . "<br>";
+                $dateFirstUse . "<br>";
+                $dateEndUse . "<br>";
+                $sql = "SELECT * FROM `daily` WHERE daily_dat >= '$dateFirstUse' AND daily_dat LIKE '%$yearFirst' AND em_id = '$data[em_id]' AND project_id = '$data[project_id]' AND daily_dat <= '$newdateEndUse'";
+                $query = $this->db->query($sql);
+            }elseif($yearFirst != $yearEnd){
+                $sql = "SELECT * FROM `daily` WHERE daily_dat >= '$dateFirstUse' AND em_id = '$data[em_id]' AND project_id = '$data[project_id]' AND daily_dat <= '$newdateEndUse'";
+                $query = $this->db->query($sql);
+            }
+        } else {
+            $query = $this->db->where('em_id', $data['em_id'])
+                    ->where('project_id', $data['project_id'])
+                    //->get('daily')->result();
+                    ->get('daily');
+        }
 
 
-        return $query;
+        return $query->result();
+        //return $query;
     }
 
     public function _checker_daily($check, $daily_id) {
@@ -242,7 +279,7 @@ class Report_model extends CI_Model {
             }
 
             if ($proStatus != "") {
-                if ($proStatus== "ทั้งหมด") {
+                if ($proStatus == "ทั้งหมด") {
                     $sqlToday = $sqlToday;
                 } else {
                     $sqlToday = $sqlToday . " AND project_status = '$proStatus'";
@@ -252,7 +289,7 @@ class Report_model extends CI_Model {
             if ($year != "") {
                 $sqlToday = $sqlToday . " AND project_year = '$year'";
             }
-            $sqlToday = $sqlToday." ORDER BY daily_id DESC limit 1"; //เลือค่าล่าสุดออกมาค่าเดียว คิดจาก ค่า id สูงสุด
+            $sqlToday = $sqlToday . " ORDER BY daily_id DESC limit 1"; //เลือค่าล่าสุดออกมาค่าเดียว คิดจาก ค่า id สูงสุด
             $query2 = $this->db->query($sqlToday);
             $res2 = $query2->result_array();
             foreach ($res2 as $rowres2):

@@ -118,7 +118,8 @@ class Report extends CI_Controller {
             'em_id' => $em_id,
             //'em_name' => $em_name,
             //project_number' => $project_number,
-            'project_id' => $project_id
+            'project_id' => $project_id,
+            'rang_date' => $this->input->post('rangDate')
         );
 
         $data['customer_pro_details'] = $this->report->_sel_pro_customer_detail($data['argument']);
