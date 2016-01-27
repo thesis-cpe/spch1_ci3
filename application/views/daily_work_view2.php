@@ -40,9 +40,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/plugins/datepicker/datepicker3.css">
 
         <!--css timepicker for timepiar-->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('dashboard/lte/plugins/datepair-this/jquery.timepicker.css') ?>" /> 
-        <!--jasny-bootstrap-->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>dashboard/jasny-bootstrap/jasny-bootstrap.min.css"/>
+     <!--   <link rel="stylesheet" type="text/css" href="<?php //echo base_url('dashboard/lte/plugins/datepair-this/jquery.timepicker.css') ?>" /> -->
+        <!--jasny-bootstrap
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>dashboard/jasny-bootstrap/jasny-bootstrap.min.css"/> -->
 
 
     </head>
@@ -433,12 +433,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="<?php echo base_url('dashboard/lte/plugins/fastclick/fastclick.js') ?>"></script>
         <!--DatePicker-->
         <script src="<?php echo base_url('dashboard/lte/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>
-        <script src="<?php echo base_url('dashboard/lte/plugins/timepicker/bootstrap-timepicker.min.js'); ?>"></script>
+     <!--  <script src="<?php //echo base_url('dashboard/lte/plugins/timepicker/bootstrap-timepicker.min.js'); ?>"></script> -->
         <!--DatePair-->
-        <script src="<?php echo base_url('dashboard/lte/plugins/datepair-this/jquery.timepicker.js'); ?>"></script>
-        <script src="<?php echo base_url('dashboard/lte/plugins/datepair-this/bootstrap-datepicker.js'); ?>"></script>
-        <script src="<?php echo base_url('dashboard/lte/plugins/datepair-this/datepair.js'); ?>"></script>
-        <script src="<?php echo base_url('dashboard/lte/plugins/datepair-this/jquery.datepair.js'); ?>"></script>
+      <!--  <script src="<?php //echo base_url('dashboard/lte/plugins/datepair-this/jquery.timepicker.js'); ?>"></script>
+        <script src="<?php //echo base_url('dashboard/lte/plugins/datepair-this/bootstrap-datepicker.js'); ?>"></script>
+        <script src="<?php //echo base_url('dashboard/lte/plugins/datepair-this/datepair.js'); ?>"></script>
+        <script src="<?php //echo base_url('dashboard/lte/plugins/datepair-this/jquery.datepair.js'); ?>"></script> -->
         <!-- InputMask -->
         <script src="<?php echo base_url(); ?>dashboard/lte/plugins/input-mask/jquery.inputmask.js"></script>
         <script src="<?php echo base_url(); ?>dashboard/lte/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
@@ -469,7 +469,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!--timePair-->
         <script>
-            $('#basicExample .time').timepicker({
+          /*  $('#basicExample .time').timepicker({
                 'showDuration': true,
                 'timeFormat': 'g:ia'
             });
@@ -480,11 +480,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             });
 
             var basicExampleEl = document.getElementById('basicExample');
-            var datepair = new Datepair(basicExampleEl);
+            var datepair = new Datepair(basicExampleEl); */
         </script>
 
         <script>
-            $(function () {
+        /*    $(function () {
                 //Initialize Select2 Elements
                 $(".select2").select2();
 
@@ -545,7 +545,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 });
                 
                 
-            });
+            });*/
             
             
 });
