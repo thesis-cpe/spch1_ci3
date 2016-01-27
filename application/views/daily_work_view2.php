@@ -37,7 +37,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!--Datpicker-->
-        <link rel="stylesheet" href="http://127.0.0.1/spch1_ci3/dashboard/lte/plugins/datepicker/datepicker3.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>dashboard/lte/plugins/datepicker/datepicker3.css">
 
         <!--css timepicker for timepiar-->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('dashboard/lte/plugins/datepair-this/jquery.timepicker.css') ?>" /> 
@@ -224,7 +224,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                         'start' => $rowDataInsert->daily_start_time,
                                                                                         'end' => $rowDataInsert->daily_end_time,
                                                                                         'dr' => $rowDataInsert->daily_use_time,
-                                                                                        'id' => $rowDataInsert->daily_id
+                                                                                        'id' => $rowDataInsert->daily_id,
+                                                                                        'note' => $rowDataInsert->daily_note,
+                                                                                        'validator' => $rowDataInsert->validator
+                                                                                        
                                                                                     );  //น่าจะได้นะ ><
                                                                                 } 
                                                                                 if(empty($dataInsert[$j]['id'])){
@@ -232,7 +235,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                 }else{
                                                                                     $dataInsert[$j]['id'] = $dataInsert[$j]['id'];
                                                                                 }
-                                                                                echo @$dataInsert[$j]['id']; //ทดสอบค่า
+                                                                                //echo @$dataInsert[$j]['id']; //ทดสอบค่า
                                                                                 /*.หาค่าที่กรอกจากวันที่เลือก*/
                                                                                 ?>
 
@@ -290,7 +293,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 </td>
 
                                                                 <td>
-                                                                    <input value="<?php echo @$dataInsert['rec'] ?>"  disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
+                                                                    <input value="<?php echo @$dataInsert[$j]['rec'] ?>"  disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
                                                                 </td>
                                                                 <!--โน้ต-->
                                                                 <td>
@@ -307,7 +310,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                 <div class="modal-body">
                                                                                     <!--Editor-->
 
-                                                                                    <textarea placeholder="แทรกข้อความ...ข้อความจะถูกเก็บเมื่อกดบันทึก" disabled=""   name="areaNote[]" id="noteArea<?php echo $i; ?>" rows="5" cols="90"></textarea>
+                                                                                    <textarea placeholder="แทรกข้อความ...ข้อความจะถูกเก็บเมื่อกดบันทึก" disabled=""   name="areaNote[]" id="noteArea<?php echo $i; ?>" rows="5" cols="90"><?php  echo @$dataInsert[$j]['note'] ?></textarea>
 
 
                                                                                     <!--.Editor-->
@@ -325,6 +328,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <!--CheckBox-->
                                                                 <!--ProID-->
                                                                 <input disabled="" id="hdfProId<?php echo $i ?>" type="hidden" name="hdfProId[]" value="<?php echo $projectID ?>"/>
+                                                                <!--หากมีการ set ค่า dr id-->
                                                                 <input disabled="" type="hidden" name="hdfDrId[]" id="hdfDrId<?php echo $i?>" value="<?php echo $dataInsert[$j]['id']; ?>"/>
                                                                 <script>
 

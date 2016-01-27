@@ -73,38 +73,59 @@ class Daily_model extends CI_Model {
             'em_id' => $dataDaily['em_id'],
             'project_id' => $dataDaily['project_id'],
             /* เพิ่มเข้ามา */
-            //'daily_start_time_min' => $dataDaily['daily_start_time_min'],
-            //'daily_end_time_min' => $dataDaily['daily_end_time_min'],
+            'dr_id' => $dataDaily['dr_id']
         );
 
 
         /* ของเก่าอ้างอิงจาก01 */
+        /* for ($i = 0; $i < $countProid; $i++) {
+          $query = $this->db->set('daily_dat', $dataToSql['daily_dat'])
+          ->set('daily_start_time', $dataToSql['daily_start_time'][$i])
+          ->set('daily_end_time', $dataToSql['daily_end_time'][$i])
+          ->set('daily_use_time', $dataToSql['daily_use_time'][$i])
+          ->set('daily_rec_insert', $dataToSql['daily_rec_insert'][$i])
+          ->set('daily_note', $dataToSql['daily_note'][$i])
+          ->set('em_id', $dataToSql['em_id'])
+          ->set('project_id', $dataToSql['project_id'][$i])
+          ->insert('daily');
+          } */
         for ($i = 0; $i < $countProid; $i++) {
-            $query = $this->db->set('daily_dat', $dataToSql['daily_dat'])
-                    //->set('daily_start_time', $dataToSql['daily_start_time'][$i] . "." . $dataToSql['daily_start_time_min'][$i])
-                    ->set('daily_start_time', $dataToSql['daily_start_time'][$i])
-                    //->set('daily_end_time', $dataToSql['daily_end_time'][$i] . ":" . $dataToSql['daily_end_time_min'][$i])
-                    ->set('daily_end_time', $dataToSql['daily_end_time'][$i])
-                    ->set('daily_use_time', $dataToSql['daily_use_time'][$i])
-                    ->set('daily_rec_insert', $dataToSql['daily_rec_insert'][$i])
-                    ->set('daily_note', $dataToSql['daily_note'][$i])
-                    ->set('em_id', $dataToSql['em_id'])
-                    ->set('project_id', $dataToSql['project_id'][$i])
-                    ->insert('daily');
-        }
+            if ($dataToSql['dr_id'][$i] == "ว่าง") { //ถ้าอเรย์ไหนไม่มี dr_id ให้ทำการ indert
+                $query = $this->db->set('daily_dat', $dataToSql['daily_dat'])
+                        ->set('daily_start_time', $dataToSql['daily_start_time'][$i])
+                        ->set('daily_end_time', $dataToSql['daily_end_time'][$i])
+                        ->set('daily_use_time', $dataToSql['daily_use_time'][$i])
+                        ->set('daily_rec_insert', $dataToSql['daily_rec_insert'][$i])
+                        ->set('daily_note', $dataToSql['daily_note'][$i])
+                        ->set('em_id', $dataToSql['em_id'])
+                        ->set('project_id', $dataToSql['project_id'][$i])
+                        ->insert('daily');
+            } else {
+                $dataUpdate = array(
+                    'daily_dat' => $dataToSql['daily_dat'],
+                    'daily_start_time' => $dataToSql['daily_start_time'][$i],
+                    'daily_end_time' => $dataToSql['daily_end_time'][$i],
+                    'daily_use_time' => $dataToSql['daily_use_time'][$i],
+                    'daily_rec_insert' => $dataToSql['daily_rec_insert'][$i],
+                    'daily_note' => $dataToSql['daily_note'][$i]
+                );
+                $this->db->where('daily_id', $dataToSql['dr_id'][$i]);
+                $this->db->update('daily', $dataUpdate);
+            }
+        }/* .for */
     }
 
     public function sel_daily_datsel($em_id, $pro_id, $date) {
-        /*$query = $this->db->where('daily_dat', $date)
-                        ->where('em_id', $em_id)
-                        ->where('project_id', $pro_id)
-                        ->get('daily')->result();
-        return $query; */
-      //echo $em_id."<br>"; echo $pro_id."<br>";  echo $date."<br>";
-      $sql = "SELECT * FROM daily WHERE daily_dat = '$date' AND project_id = '$pro_id' AND em_id = '$em_id'";
-      $query = $this->db->query($sql);
-      $res = $query->result_array();
-      return $res;
-    } 
+        /* $query = $this->db->where('daily_dat', $date)
+          ->where('em_id', $em_id)
+          ->where('project_id', $pro_id)
+          ->get('daily')->result();
+          return $query; */
+        //echo $em_id."<br>"; echo $pro_id."<br>";  echo $date."<br>";
+        $sql = "SELECT * FROM daily WHERE daily_dat = '$date' AND project_id = '$pro_id' AND em_id = '$em_id'";
+        $query = $this->db->query($sql);
+        $res = $query->result_array();
+        return $res;
+    }
 
 }

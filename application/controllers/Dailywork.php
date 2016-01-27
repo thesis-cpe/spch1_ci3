@@ -95,12 +95,14 @@ class Dailywork extends CI_Controller {
             'project_id' => $this->input->post('hdfProId[]'),
             /* ที่เพิ่มเข้ามา 2 */
             'daily_start_time_min' => $this->input->post('txtStartTimeMin[]'),
-            'daily_end_time_min' => $this->input->post('txtEndTimeMin[]')
+            'daily_end_time_min' => $this->input->post('txtEndTimeMin[]'),
+            /*เพิ่มเข้ามา 3 */
+            'dr_id' => $this->input->post('hdfDrId[]')
         );
         $countProid = count($dataDaily['project_id']); //จำนวนอาเรย์ที่รับมา
         /* insert */ //$insertDaily = $this->daily->_insert_daily($dataDaily, $countProid);
-        $insertDaily = $this->daily->_insert_daily2($dataDaily, $countProid);
-
+        $insertDaily = $this->daily->_insert_daily2($dataDaily, $countProid); //insert ใหม่
+       // print_r($dataDaily['dr_id']);
         redirect('dailywork/dailywork2', 'refresh');
     }
 
