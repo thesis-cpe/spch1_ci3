@@ -136,7 +136,36 @@ class Users_model extends CI_Model {
     }
     
     function _update_em_detail($data){
-        $dataEmployee = array(
+        
+        
+        if($this->session->userdata('em_role')== "ผู้ใช้งาน"){
+            $dataEmployee = array(
+            'em_name' => "$data[txtName]" . " $data[txtEmName]" . " $data[txtEmlastName]",
+            //'em_status' => $data['selStatus'],
+            //'em_role' => $data['selRole'],
+            //'em_number' => $data['txtEmId'],
+           // 'em_audit_number' => $data['txtAuditId'],
+            'em_nationn_id' => $data['txtNationId'],
+            'em_marie_status' => $data['selMarieStatus'],
+            'em_addr' => $data['txtareaAddr1'],
+            'em_addr_curent' => $data['txtareaAddr2'],
+            'em_tel' => $data['txtTel'],
+            'em_mail' => $data['txtEmail'],
+            'em_friend_name' => $data['txtNameFriend'],
+            'em_friend_tel' => $data['txtTelFriend'],
+            'em_level' => $data['selGaduLevel'],
+            'em_major' => $data['txtMajor'],
+            'em_gpa' => $data['txtGpa'],
+            'em_insutution' => $data['txtInstitute']
+            //'em_start_work' => $data['datInWork'],
+            //'em_salary_rate' => $data['txtCoast'],
+            //'em_salary_day' => $data['txtRateCoast'],
+            //'em_day_work' => $data['txtWorkDay'],
+            //'em_benefit' => $data['txtareaCondition'],
+           // 'em_note' => $data['txtareaMark']
+        );
+        }elseif($this->session->userdata('em_role') == "ผู้ดูแลระบบ"){
+            $dataEmployee = array(
             'em_name' => "$data[txtName]" . " $data[txtEmName]" . " $data[txtEmlastName]",
             'em_status' => $data['selStatus'],
             'em_role' => $data['selRole'],
@@ -161,6 +190,8 @@ class Users_model extends CI_Model {
             'em_benefit' => $data['txtareaCondition'],
             'em_note' => $data['txtareaMark']
         );
+        }
+        
         $this->db->where('em_id',$data['em_id']);
         $this->db->update('employee',$dataEmployee);
     }

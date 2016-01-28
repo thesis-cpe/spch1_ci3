@@ -164,8 +164,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                         <div class="col-sm-3">
                                             <label>สถานการทำงาน:</label>
-                                            <select name="selStatus" class="form-control">
-                                                <option value="คงอยู่" <?php
+                                            <select  <?php if($this->session->userdata('em_role') == "ผู้ใช้งาน"){echo "disabled";}?> name="selStatus" class="form-control">
+                                                <option  value="คงอยู่" <?php
                                                     if ($em['em_status'] == "คงอยู่") {
                                                         echo "selected";
                                                     }
@@ -185,7 +185,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                         <div class="col-sm-2">
                                             <label>สถานะในระบบ:</label>
-                                            <select name="selRole" class="form-control">
+                                            <select  <?php if($this->session->userdata('em_role') == "ผู้ใช้งาน"){echo "disabled";}?> name="selRole" class="form-control">
                                                 <option <?php
                                                     if ($em['em_role'] == "ผู้ดูแลระบบ") {
                                                         echo "selected";
@@ -200,11 +200,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="col-sm-3">
                                             <label>&nbsp;</label>
-                                            <input value="<?php echo $em['em_number'] ?>" type="text" class="form-control" name="txtEmId" placeholder="หมายเลขพนักงาน" required="">
+                                            <input <?php if($this->session->userdata('em_role') == "ผู้ใช้งาน"){echo "disabled";}?> value="<?php echo $em['em_number'] ?>" type="text" class="form-control" name="txtEmId" placeholder="หมายเลขพนักงาน" required="">
                                         </div>
                                         <div class="col-sm-3">
                                             <label>&nbsp;</label>
-                                            <input value="<?php echo $em['em_audit_number'] ?>" type="text" class="form-control" name="txtAuditId" placeholder="หมายเลขผู้ทำบัญชี" required="">
+                                            <input  <?php if($this->session->userdata('em_role') == "ผู้ใช้งาน"){echo "disabled";}?> value="<?php echo $em['em_audit_number'] ?>" type="text" class="form-control" name="txtAuditId" placeholder="หมายเลขผู้ทำบัญชี" required="">
                                         </div>
 
                                         <!--PassWord-->
@@ -396,26 +396,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
-                                        <input value="<?php echo $em['em_start_work']; ?> " name="datInWork" type="text" class="form-control" placeholder="01/01/2016">
+                                        <input <?php if($this->session->userdata('em_role') == "ผู้ใช้งาน"){echo "disabled";}?> value="<?php echo $em['em_start_work']; ?> " name="datInWork" type="text" class="form-control" placeholder="01/01/2016">
 
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
 
-                                    <input value="<?php echo $em['em_salary_rate']; ?>" name="txtCoast" type="text" class="form-control" placeholder="อัตราเงินเดือน">
+                                    <input <?php if($this->session->userdata('em_role') == "ผู้ใช้งาน"){echo "disabled";}?> value="<?php echo $em['em_salary_rate']; ?>" name="txtCoast" type="text" class="form-control" placeholder="อัตราเงินเดือน">
 
                                 </div>
                                 <div class="col-sm-3">
                                     <label>ค่าแรงต่อวัน:</label>
 
-                                    <input value="<?php echo $em['em_salary_day']; ?>" name="txtRateCoast" type="text" class="form-control" placeholder="จำนวนบาทต่อวัน">
+                                    <input <?php if($this->session->userdata('em_role') == "ผู้ใช้งาน"){echo "disabled";}?> value="<?php echo $em['em_salary_day']; ?>" name="txtRateCoast" type="text" class="form-control" placeholder="จำนวนบาทต่อวัน">
 
                                 </div>
                                 <div class="col-sm-3">
                                     <label>จำวนวนวันทำงาน:</label>
 
-                                    <input value="<?php echo $em['em_day_work']; ?>" name="txtWorkDay" type="text" class="form-control" placeholder="จำนวนวันต่อเดือน">
+                                    <input <?php if($this->session->userdata('em_role') == "ผู้ใช้งาน"){echo "disabled";}?> value="<?php echo $em['em_day_work']; ?>" name="txtWorkDay" type="text" class="form-control" placeholder="จำนวนวันต่อเดือน">
 
                                 </div>
                             </div>
@@ -426,12 +426,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>&nbsp;</label>
-                                    <textarea name="txtareaCondition" rows="3" cols="30" class="form-control" placeholder="เงื่อนไขวันหยุดและสวัสดิการ"><?php echo $em['em_benefit']; ?></textarea>
+                                    <textarea <?php if($this->session->userdata('em_role') == "ผู้ใช้งาน"){echo "disabled";}?> name="txtareaCondition" rows="3" cols="30" class="form-control" placeholder="เงื่อนไขวันหยุดและสวัสดิการ"><?php echo $em['em_benefit']; ?></textarea>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label>&nbsp;</label>
-                                    <textarea name="txtareaMark" rows="3" cols="30" class="form-control" placeholder="หมายเหตุ"><?php echo $em['em_note']; ?></textarea>
+                                    <textarea <?php if($this->session->userdata('em_role') == "ผู้ใช้งาน"){echo "disabled";}?> name="txtareaMark" rows="3" cols="30" class="form-control" placeholder="หมายเหตุ"><?php echo $em['em_note']; ?></textarea>
                                 </div>
 
                             </div>
