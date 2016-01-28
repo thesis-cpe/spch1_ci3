@@ -191,7 +191,7 @@ class Main_data extends CI_Controller {
         $changPass = $this->users->_chang_pass($data);
     }
 
-    public function update_emp() {
+    public function update_emp() { //อัพเดจข้อมูลส่วนตัว
         $dataUpdate = array(
             /* คำนำหน้า */ 'txtName' => $this->input->post('selTitle'),
             /* ชื่อ */ 'txtEmName' => $this->input->post('txtEmName'),
@@ -223,6 +223,12 @@ class Main_data extends CI_Controller {
         $callUpdateEm = $this->users->_update_em_detail($dataUpdate);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
+    }
+    
+    public function profile(){ /*หน้าโปรไฟล์แต่ละคน*/
+        $data['em'] = $this->users->_sel_em_by_id($this->session->userdata('em_id'));
+        $data['id'] = $this->session->userdata('em_id');
+        $this->load->view('edit_employee_view', $data);
     }
 
 }
