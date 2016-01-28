@@ -113,8 +113,6 @@ class Customer_model extends CI_Model {
         return $dataReturn;
     }
 
-    
-
     public function _sel_file($id) {
         $query = $this->db->where('customer_id', $id)
                         ->get('file')->result();
@@ -127,14 +125,14 @@ class Customer_model extends CI_Model {
         $qyery = $this->db->where('customer_id', $id)
                         ->get('sign')->result();
         foreach ($qyery as $row) {
-            $dataRe[] =array(
+            $dataRe[] = array(
                 'name' => $row->sing_name,
                 'status' => $row->sign_status
             );
         }
         return $dataRe;
     }
-    
+
     public function _update_customer_by_id($customer) {
         $dataCustomer = array(
             'customer_name' => $customer['txtCusname'],
@@ -155,8 +153,20 @@ class Customer_model extends CI_Model {
             'customer_long' => $customer['txtLong'],
             'customer_note' => $customer['txtCustomerMark']
         );
-        $this->db->where('customer_id',$customer['customer_id']);
-        $this->db->update('customer',$dataCustomer);
+        $this->db->where('customer_id', $customer['customer_id']);
+        $this->db->update('customer', $dataCustomer);
+    }
+
+    public function _del_sign($customer) {
+        $this->db->where('customer_id', $customer['customer_id']);
+        $this->db->from('sign');
+
+        if (!empty($this->db->count_all_results())) {
+            $this->db->where('customer_id', $customer['customer_id']);
+            $this->db->delete('sign');
+        }
+        
+        
     }
 
 }

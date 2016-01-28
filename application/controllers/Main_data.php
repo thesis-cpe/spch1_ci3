@@ -291,8 +291,13 @@ class Main_data extends CI_Controller {
         );
         /*update ข้อมูลทั่วไป*/
         $updateInfo = $this->customer->_update_customer_by_id($customer);
+        
+        /*ลบผู้ลงนามเดิม*/ $deleteSign = $this->customer->_del_sign($customer);
+        /*เอาข้อมูลใหม่ใส่*/ $countofTxtSign = count($customer['txtNameCon']);
+                        $insertSing = $this->customer->_insert_sign($customer, $customer['customer_id'], $countofTxtSign);
+        /*รีไดเรค*/
         header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
+        exit; 
     }
 
 }
