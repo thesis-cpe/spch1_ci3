@@ -120,10 +120,21 @@ class Customer_model extends CI_Model {
     public function _sel_file($id) {
         $query = $this->db->where('customer_id', $id)
                         ->get('file')->result();
-        foreach ($query as $row){
+        foreach ($query as $row) {
             return $row->file_path;
         }
-        
+    }
+
+    public function _sel_sign($id) {
+        $qyery = $this->db->where('customer_id', $id)
+                        ->get('sign')->result();
+        foreach ($qyery as $row) {
+            $dataRe[] =array(
+                'name' => $row->sing_name,
+                'status' => $row->sign_status
+            );
+        }
+        return $dataRe;
     }
 
 }

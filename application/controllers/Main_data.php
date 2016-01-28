@@ -169,7 +169,7 @@ class Main_data extends CI_Controller {
         //echo   $data['customer_detail']['name'];
         //sel filepath
         $data['file'] = $this->customer->_sel_file($customer_id); //ได้ไฟล์
-
+        $data['sing'] = $this->customer->_sel_sign($customer_id); //ได้ผู้ลงนาม
         $this->load->view('edit_customer_view', $data);
     }
 
