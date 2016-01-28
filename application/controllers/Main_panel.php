@@ -20,6 +20,7 @@ class Main_panel extends CI_Controller {
     public function index(){
         
         if($this->session->userdata('logged')){ //ถ้ามี session
+            
             $this->load->view('main_panel_view');
         }else{
             $this->load->view('template/404anime');

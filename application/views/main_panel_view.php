@@ -98,6 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="box-body">
                             
                             <div class="row">
+                               <?php if($this->session->userdata('em_role')== "ผู้ดูแลระบบ"):?> 
                                 <!--ข้อมูลหลัก-->
                                 <div class="col-sm-3">
                                     <div class="small-box bg-aqua">
@@ -114,6 +115,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </a>
                                     </div>
                                 </div>
+                                <?php endif;?>
+                                <?php if($this->session->userdata('em_role')== "ผู้ดูแลระบบ"):?> 
                                 <!--เปิดงาน-->
                                 <div class="col-sm-3">
                                     <div class="small-box bg-aqua">
@@ -130,6 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </a>
                                     </div>
                                 </div>
+                                <?php endif;?>
                                 <!--งานประจำวัน-->
                                  <div class="col-sm-3">
                                     <div class="small-box bg-aqua">
@@ -164,6 +168,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 
                             </div>
+                            <?php if($this->session->userdata('em_role')== "ผู้ดูแลระบบ"):?> 
                             <div class="row">
                                    <!--เพิ่มข้อมูลลูกค้า-->
                                 <div class="col-sm-3">
@@ -198,6 +203,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </div>
                                 </div>
                             </div>
+                            <?php endif;?>
                         </div>
                         <!-- /.box-body -->
                     </div>
