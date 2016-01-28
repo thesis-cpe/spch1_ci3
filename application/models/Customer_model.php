@@ -130,7 +130,7 @@ class Customer_model extends CI_Model {
                 'status' => $row->sign_status
             );
         }
-        return $dataRe;
+        return @$dataRe;
     }
 
     public function _update_customer_by_id($customer) {

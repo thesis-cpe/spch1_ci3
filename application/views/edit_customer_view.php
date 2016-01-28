@@ -197,9 +197,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
                                     <div id="olNameCon">
-                                      <?php foreach ($sing as $rowSign):?>  
+                                      <?php
+                                      if(!empty($sing)):
+                                      
+                                      foreach ($sing as $rowSign):?>  
                                         <input value="<?php echo $rowSign['name']; ?>" type="text" name="txtNameCon[]" id="txtNameCon1" class="form-control" placeholder="ชื่อผู้มีอำนาจลงนาม"/><label id="lb1">&nbsp;</label>
-                                       <?php endforeach;?>
+                                       <?php endforeach;
+                                       else: ?>
+                                        <input  type="text" name="txtNameCon[]"  class="form-control" placeholder="ชื่อผู้มีอำนาจลงนาม"/><label >&nbsp;</label>
+                                     <?php endif;  ?>
+                                      
                                     </div>
 
                                 </div>
@@ -207,13 +214,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-sm-2">
                                     <label>สถานะ:</label>
                                     <div id="selStatus">
-                                    <?php foreach ($sing as $rowSign):?>    
+                                    <?php 
+                                    if(!empty($sing)){
+                                    foreach ($sing as $rowSign):?>    
                                         <select class="form-control" name="selStatusCondition[]" id="selStatusCondition1">
                                             <option <?php if($rowSign['status'] == "เจ้าของกิจการ"){echo "selected";}?> value="เจ้าของกิจการ">เจ้าของกิจการ</option>
                                             <option <?php if($rowSign['status'] == "หุ้นส่วนผู้จัดการ"){echo "selected";}?> value="หุ้นส่วนผู้จัดการ">หุ้นส่วนผู้จัดการ</option>
                                             <option <?php if($rowSign['status'] == "กรรมการผู้จัดการ"){echo "selected";}?> value="กรรมการผู้จัดการ">กรรมการผู้จัดการ</option>
                                         </select><label id="lb2">&nbsp;</label>
-                                    <?php endforeach;?>
+                                    <?php endforeach;
+                                    }else{ ?>
+                                            <select class="form-control" name="selStatusCondition[]" >
+                                            <option  value="เจ้าของกิจการ">เจ้าของกิจการ</option>
+                                            <option value="หุ้นส่วนผู้จัดการ">หุ้นส่วนผู้จัดการ</option>
+                                            <option  value="กรรมการผู้จัดการ">กรรมการผู้จัดการ</option>
+                                        </select><label >&nbsp;</label>
+                                   <?php }
+                                    ?>
                                     </div>
                                 </div>
 
