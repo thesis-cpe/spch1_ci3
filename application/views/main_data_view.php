@@ -137,7 +137,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         <!--อีเมล์-->
                                                                         <td><?php echo $rowcustomer->customer_mail; ?></td>
                                                                         <!--เพิ่มเติม-->
-                                                                        <td></td>
+                                                                        <td><button data-toggle="modal" data-target="#pnlDelCus<?php echo $rowcustomer->customer_id; ?>" title="ลบข้อมูลลุกค้า" name="btndelEm<?php echo $rowcustomer->customer_id; ?>" class="btn btn-xs btn-default"><span class="fa fa-trash"></span></button></td>
+                                                                    <!--Modal ลบ cus-->
+                                                                        <div id="pnlDelCus<?php echo $rowcustomer->customer_id; ?>" class="modal fade" tabindex="-1" role="dialog">
+                                                                        <div class="modal-dialog">
+                                                                          <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                              <h4 class="modal-title">ลบ...</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <a>ต้องการลบข้อมูลลูกค้าของ <?php  echo nbs(2);echo $rowcustomer->customer_name;echo nbs(2); ?>?</a><br>
+                                                                                <a style="color: #343131;">ข้อมูลบันทึกประจำวันรวมถึงข้อมูลโครงการจะถูกลบตามไปด้วย!!</a>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                              <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
+                                                                              <a href="<?php echo base_url();?>index.php/main_data/del_cus/<?php echo $rowcustomer->customer_id;?>"  class="btn btn-danger btn-sm">ยืนยัน</a>
+                                                                            </div>
+                                                                          </div><!-- /.modal-content -->
+                                                                        </div><!-- /.modal-dialog -->
+                                                                      </div><!-- /.modal -->
+                                                                    <!--.Modal ลบ cus-->
                                                                     </tr>
                                                                 <?php endforeach; ?>  
                                                             </tbody>
@@ -197,7 +217,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <!--อีเมล์-->
                                                                 <td><?php echo $rowemployee->em_mail;?></td>
                                                                 <!--เพิ่มเติม-->
-                                                                <td></td>
+                                                                <td><button data-toggle="modal" data-target="#pnlDelEm<?php echo $rowemployee->em_id; ?>" title="ลบพนักงาน" name="btndelEm<?php echo $rowemployee->em_id; ?>" class="btn btn-xs btn-default"><span class="fa fa-trash"></span></button></td>
+                                                                <!--Modal เตือนลบพนักงาน-->
+                                                        <div id="pnlDelEm<?php echo $rowemployee->em_id; ?>" class="modal fade" tabindex="-1" role="dialog">
+                                                                        <div class="modal-dialog">
+                                                                          <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                              <h4 class="modal-title">ลบ...</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <a>ต้องการลบข้อมูลพนักงานของ <?php  echo nbs(2); echo $rowemployee->em_name;echo nbs(2); ?>?</a><br>
+                                                                                <a style="color: #343131;">ข้อมูลบันทึกประจำวันจะถูกลบตามไปด้วย!!</a>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                              <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
+                                                                              <a href="<?php echo base_url();?>index.php/main_data/del_em/<?php echo $rowemployee->em_id;?>"  class="btn btn-danger btn-sm">ยืนยัน</a>
+                                                                            </div>
+                                                                          </div><!-- /.modal-content -->
+                                                                        </div><!-- /.modal-dialog -->
+                                                                      </div><!-- /.modal -->
+                                                                <!--/.Modal เตือน-->
+                                                            
                                                             </tr>
                                                             <?php endforeach; ?>
                                                         </tbody>
