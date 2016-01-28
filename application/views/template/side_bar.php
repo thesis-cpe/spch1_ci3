@@ -1,7 +1,7 @@
 <section class="sidebar">
 
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel">
+      <div  class="user-panel">
         <div class="pull-left image">
           <img src="<?php echo base_url();?>dashboard/lte/dist/img/avatar5.png"/>
         </div>
@@ -15,7 +15,7 @@
     
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
+      <ul  class="sidebar-menu">
         <li class="header">เมนูหลัก</li>
         <!-- Optionally, you can add icons to the links -->
         <li><a href="<?php echo base_url()?>index.php/main_panel"><i class="fa fa-tachometer"></i> <span>ส่วนควบคุมหลัก</span></a></li>

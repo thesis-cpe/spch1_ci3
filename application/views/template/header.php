@@ -1,17 +1,17 @@
 
 
     <!-- Logo -->
-    <a href="<?php echo base_url()?>index.php/main_panel" class="logo">
+    <a style="background-color: #03A9F4;"  href="<?php echo base_url()?>index.php/main_panel" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>S</b>PC</span>
+      <span style="background-color: #03A9F4;" class="logo-mini"><b>S</b>PC</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>S.AUDITOR</b></span>
+      <span style="background-color: #03A9F4;" class="logo-lg"><b>S.AUDITOR</b></span>
     </a>
 
     <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
+    <nav style="background-color: #03A9F4;" class="navbar navbar-static-top" role="navigation">
       <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <a style="background-color: #03A9F4;" href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
       <!-- Navbar Right Menu -->
@@ -36,7 +36,7 @@
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
-              <li class="user-header">
+              <li class="user-header" style="background-color: #03A9F4;">
                   <img src="<?php echo base_url();?>dashboard/lte/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
