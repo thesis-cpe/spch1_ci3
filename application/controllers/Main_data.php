@@ -218,17 +218,54 @@ class Main_data extends CI_Controller {
             /* วัน / เดือน */ 'txtWorkDay' => $this->input->post('txtWorkDay'),
             /* วันหยุด */ 'txtareaCondition' => $this->input->post('txtareaCondition'),
             /* หมายเหตุ */ 'txtareaMark' => $this->input->post('txtareaMark'),
-            /*em_id*/ 'em_id' => $this->input->post('hdf')
+            /* em_id */ 'em_id' => $this->input->post('hdf')
         );
         $callUpdateEm = $this->users->_update_em_detail($dataUpdate);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
-    
-    public function profile(){ /*หน้าโปรไฟล์แต่ละคน*/
+
+    public function profile() { /* หน้าโปรไฟล์แต่ละคน + แก้ไข */
         $data['em'] = $this->users->_sel_em_by_id($this->session->userdata('em_id'));
         $data['id'] = $this->session->userdata('em_id');
         $this->load->view('edit_employee_view', $data);
+    }
+
+    public function update_pic_emp() {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 1000;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 1000;
+        $this->upload->initialize($config);
+        $this->load->library('upload', $config);
+        
+        
+        $emId = $this->input->post('hdf');
+        $selFileEmp = $this->users->_sel_photo($emId);
+        if (!empty($_FILES['fileEmPhoto']['name'])) {
+            if(file_exists("uploads/$selFileEmp[file_path]")){ //ถ้ามีไฟล์ให้เอาออก
+               unlink("uploads/$selFileEmp[file_path]");
+            }
+            
+            /*upload*/
+            if (!$this->upload->do_upload('fileEmPhoto')) {
+                $error = array('error' => $this->upload->display_errors());
+                print_r($error);
+            } else {
+
+                $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
+                $file_path = $upload_data['file_name'];
+                /* insertFile */
+                //$insertPhotoFile = $this->customer->_insert_file($file_name, $tbCustomerId);
+               $update_photo  = $this->users->_update_photo($selFileEmp['file_id'],$file_path);
+            }
+            
+            
+            
+        }
+         header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
     }
 
 }

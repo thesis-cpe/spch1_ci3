@@ -90,7 +90,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <section class="content">
                     <div class="row">
                         <!--รูปประจำตัว-->
-                     <?php echo form_open('main_data/update_pic_emp')?>   
+                     <?php echo form_open_multipart('main_data/update_pic_emp')?>   
                          <input type="hidden" name="hdf" value="<?php echo $id; ?>">
                         <div class="col-sm-3">
                             <div class="box box-info">
@@ -103,7 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     
                                     
                                     <ul class="list-inline">
-                                        <li><input  type="file" class="input-sm" name="fileEmPhoto"/></li>
+                                        <li><input required=""  type="file" class="input-sm" name="fileEmPhoto"/></li>
                                         <li><button type="submit" name="btnUppic" class="btn btn-sm btn-default"><span class="fa fa-save"></span></button></li>
                                       </ul>
                                 </div>

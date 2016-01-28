@@ -131,69 +131,89 @@ class Users_model extends CI_Model {
         );
         $this->db->where('em_id', $data['em_id']);
         $this->db->update('employee', $dataUpdate);
-        
+
         header('Location: ' . $_SERVER['HTTP_REFERER']); //กลับก่อนหน้า
     }
-    
-    function _update_em_detail($data){
-        
-        
-        if($this->session->userdata('em_role')== "ผู้ใช้งาน"){
+
+    function _update_em_detail($data) {
+
+
+        if ($this->session->userdata('em_role') == "ผู้ใช้งาน") {
             $dataEmployee = array(
-            'em_name' => "$data[txtName]" . " $data[txtEmName]" . " $data[txtEmlastName]",
-            //'em_status' => $data['selStatus'],
-            //'em_role' => $data['selRole'],
-            //'em_number' => $data['txtEmId'],
-           // 'em_audit_number' => $data['txtAuditId'],
-            'em_nationn_id' => $data['txtNationId'],
-            'em_marie_status' => $data['selMarieStatus'],
-            'em_addr' => $data['txtareaAddr1'],
-            'em_addr_curent' => $data['txtareaAddr2'],
-            'em_tel' => $data['txtTel'],
-            'em_mail' => $data['txtEmail'],
-            'em_friend_name' => $data['txtNameFriend'],
-            'em_friend_tel' => $data['txtTelFriend'],
-            'em_level' => $data['selGaduLevel'],
-            'em_major' => $data['txtMajor'],
-            'em_gpa' => $data['txtGpa'],
-            'em_insutution' => $data['txtInstitute']
-            //'em_start_work' => $data['datInWork'],
-            //'em_salary_rate' => $data['txtCoast'],
-            //'em_salary_day' => $data['txtRateCoast'],
-            //'em_day_work' => $data['txtWorkDay'],
-            //'em_benefit' => $data['txtareaCondition'],
-           // 'em_note' => $data['txtareaMark']
-        );
-        }elseif($this->session->userdata('em_role') == "ผู้ดูแลระบบ"){
+                'em_name' => "$data[txtName]" . " $data[txtEmName]" . " $data[txtEmlastName]",
+                //'em_status' => $data['selStatus'],
+                //'em_role' => $data['selRole'],
+                //'em_number' => $data['txtEmId'],
+                // 'em_audit_number' => $data['txtAuditId'],
+                'em_nationn_id' => $data['txtNationId'],
+                'em_marie_status' => $data['selMarieStatus'],
+                'em_addr' => $data['txtareaAddr1'],
+                'em_addr_curent' => $data['txtareaAddr2'],
+                'em_tel' => $data['txtTel'],
+                'em_mail' => $data['txtEmail'],
+                'em_friend_name' => $data['txtNameFriend'],
+                'em_friend_tel' => $data['txtTelFriend'],
+                'em_level' => $data['selGaduLevel'],
+                'em_major' => $data['txtMajor'],
+                'em_gpa' => $data['txtGpa'],
+                'em_insutution' => $data['txtInstitute']
+                    //'em_start_work' => $data['datInWork'],
+                    //'em_salary_rate' => $data['txtCoast'],
+                    //'em_salary_day' => $data['txtRateCoast'],
+                    //'em_day_work' => $data['txtWorkDay'],
+                    //'em_benefit' => $data['txtareaCondition'],
+                    // 'em_note' => $data['txtareaMark']
+            );
+        } elseif ($this->session->userdata('em_role') == "ผู้ดูแลระบบ") {
             $dataEmployee = array(
-            'em_name' => "$data[txtName]" . " $data[txtEmName]" . " $data[txtEmlastName]",
-            'em_status' => $data['selStatus'],
-            'em_role' => $data['selRole'],
-            'em_number' => $data['txtEmId'],
-            'em_audit_number' => $data['txtAuditId'],
-            'em_nationn_id' => $data['txtNationId'],
-            'em_marie_status' => $data['selMarieStatus'],
-            'em_addr' => $data['txtareaAddr1'],
-            'em_addr_curent' => $data['txtareaAddr2'],
-            'em_tel' => $data['txtTel'],
-            'em_mail' => $data['txtEmail'],
-            'em_friend_name' => $data['txtNameFriend'],
-            'em_friend_tel' => $data['txtTelFriend'],
-            'em_level' => $data['selGaduLevel'],
-            'em_major' => $data['txtMajor'],
-            'em_gpa' => $data['txtGpa'],
-            'em_insutution' => $data['txtInstitute'],
-            'em_start_work' => $data['datInWork'],
-            'em_salary_rate' => $data['txtCoast'],
-            'em_salary_day' => $data['txtRateCoast'],
-            'em_day_work' => $data['txtWorkDay'],
-            'em_benefit' => $data['txtareaCondition'],
-            'em_note' => $data['txtareaMark']
-        );
+                'em_name' => "$data[txtName]" . " $data[txtEmName]" . " $data[txtEmlastName]",
+                'em_status' => $data['selStatus'],
+                'em_role' => $data['selRole'],
+                'em_number' => $data['txtEmId'],
+                'em_audit_number' => $data['txtAuditId'],
+                'em_nationn_id' => $data['txtNationId'],
+                'em_marie_status' => $data['selMarieStatus'],
+                'em_addr' => $data['txtareaAddr1'],
+                'em_addr_curent' => $data['txtareaAddr2'],
+                'em_tel' => $data['txtTel'],
+                'em_mail' => $data['txtEmail'],
+                'em_friend_name' => $data['txtNameFriend'],
+                'em_friend_tel' => $data['txtTelFriend'],
+                'em_level' => $data['selGaduLevel'],
+                'em_major' => $data['txtMajor'],
+                'em_gpa' => $data['txtGpa'],
+                'em_insutution' => $data['txtInstitute'],
+                'em_start_work' => $data['datInWork'],
+                'em_salary_rate' => $data['txtCoast'],
+                'em_salary_day' => $data['txtRateCoast'],
+                'em_day_work' => $data['txtWorkDay'],
+                'em_benefit' => $data['txtareaCondition'],
+                'em_note' => $data['txtareaMark']
+            );
         }
-        
-        $this->db->where('em_id',$data['em_id']);
-        $this->db->update('employee',$dataEmployee);
+
+        $this->db->where('em_id', $data['em_id']);
+        $this->db->update('employee', $dataEmployee);
+    }
+
+    function _sel_photo($emId) {
+        $query = $this->db->where('em_id', $emId)
+                        ->get('file')->result();
+        foreach ($query as $row){
+            $dataRe = array(
+                'file_id' => $row->file_id,
+                'file_path' => $row->file_path
+            );
+        }
+        return $dataRe;
+    }
+    
+    function _update_photo($file_id,$file_path){
+        $dataUp = array(
+            'file_path' => $file_path
+        );
+        $this->db->where('file_id',$file_id);
+        $this->db->update('file',$dataUp);
     }
 
 }
