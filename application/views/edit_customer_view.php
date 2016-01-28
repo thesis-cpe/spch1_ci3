@@ -93,6 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Main content -->
                 <section class="content">
                     <?php echo form_open_multipart('main_data/update_customer') ?>
+                    <input type="hidden"name="hdf" value="<?php echo $id;?>">
                     <!-- Your Page Content Here -->
                     <!--ข้อมูลองค์กร-->
                     <div class="box box-info">

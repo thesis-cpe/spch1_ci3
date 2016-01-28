@@ -165,7 +165,7 @@ class Main_data extends CI_Controller {
     public function edit_customer($customer_id) {
 
         $data['customer_detail'] = $this->customer->_sel_customer_details_by_id($customer_id);
-        // $data['id'] = $customer_id;
+        $data['id'] = $customer_id;
         //echo   $data['customer_detail']['name'];
         //sel filepath
         $data['file'] = $this->customer->_sel_file($customer_id); //ได้ไฟล์
@@ -173,9 +173,7 @@ class Main_data extends CI_Controller {
         $this->load->view('edit_customer_view', $data);
     }
 
-    public function update_customer() {
-        
-    }
+   
 
     public function edit_emplyee($em_id) {
         $data['em'] = $this->users->_sel_em_by_id($em_id);
@@ -265,6 +263,35 @@ class Main_data extends CI_Controller {
             
         }
          header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+    
+     public function update_customer() {
+        $customer = array(
+            'txtCusname' => $this->input->post('txtCusname'),
+            'selCusStatus' => $this->input->post('selCusStatus'),
+            'txtNumTax' => $this->input->post('txtNumTax'),
+            'txtNumBand' => $this->input->post('txtNumBand'),
+            'txtAddrTh' => $this->input->post('txtAddrTh'),
+            'txtAddrEn' => $this->input->post('txtAddrEn'),
+            'txtCusTel' => $this->input->post('txtCusTel'),
+            'txtCusFax' => $this->input->post('txtCusFax'),
+            'txtCusWeb' => $this->input->post('txtCusWeb'),
+            'txtCusMail' => $this->input->post('txtCusMail'),
+            'txtConditionNam' => $this->input->post('txtConditionNam'),
+            'txtContractName' => $this->input->post('txtContractName'),
+            'txtContractTel' => $this->input->post('txtContractTel'),
+            'txtContractMail' => $this->input->post('txtContractMail'),
+            'txtLat' => $this->input->post('txtLat'),
+            'txtLong' => $this->input->post('txtLong'),
+            'txtCustomerMark' => $this->input->post('txtCustomerMark'),
+            'txtNameCon' => $this->input->post('txtNameCon[]'), 
+            'selStatusCondition' => $this->input->post('selStatusCondition[]'),
+            'customer_id' => $this->input->post('hdf')
+        );
+        /*update ข้อมูลทั่วไป*/
+        $updateInfo = $this->customer->_update_customer_by_id($customer);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
 

@@ -113,9 +113,7 @@ class Customer_model extends CI_Model {
         return $dataReturn;
     }
 
-    public function _update_customer_by_id($id) {
-        
-    }
+    
 
     public function _sel_file($id) {
         $query = $this->db->where('customer_id', $id)
@@ -135,6 +133,30 @@ class Customer_model extends CI_Model {
             );
         }
         return $dataRe;
+    }
+    
+    public function _update_customer_by_id($customer) {
+        $dataCustomer = array(
+            'customer_name' => $customer['txtCusname'],
+            'customer_status' => $customer['selCusStatus'],
+            'customer_tax_id' => $customer['txtNumTax'],
+            'customer_band_id' => $customer['txtNumBand'],
+            'customer_addr_th' => $customer['txtAddrTh'],
+            'customer_addr_en' => $customer['txtAddrEn'],
+            'customer_tel' => $customer['txtCusTel'],
+            'customer_fax' => $customer['txtCusFax'],
+            'customer_web' => $customer['txtCusWeb'],
+            'customer_mail' => $customer['txtCusMail'],
+            'customer_condition' => $customer['txtConditionNam'],
+            'customer_coor_name' => $customer['txtContractName'],
+            'customer_coor_tel' => $customer['txtContractTel'],
+            'customer_coor_mail' => $customer['txtContractMail'],
+            'customer_lat' => $customer['txtLat'],
+            'customer_long' => $customer['txtLong'],
+            'customer_note' => $customer['txtCustomerMark']
+        );
+        $this->db->where('customer_id',$customer['customer_id']);
+        $this->db->update('customer',$dataCustomer);
     }
 
 }
