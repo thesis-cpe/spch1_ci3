@@ -173,8 +173,6 @@ class Main_data extends CI_Controller {
         $this->load->view('edit_customer_view', $data);
     }
 
-   
-
     public function edit_emplyee($em_id) {
         $data['em'] = $this->users->_sel_em_by_id($em_id);
         $data['id'] = $em_id;
@@ -237,16 +235,16 @@ class Main_data extends CI_Controller {
         $config['max_height'] = 1000;
         $this->upload->initialize($config);
         $this->load->library('upload', $config);
-        
-        
+
+
         $emId = $this->input->post('hdf');
         $selFileEmp = $this->users->_sel_photo($emId);
         if (!empty($_FILES['fileEmPhoto']['name'])) {
-            if(file_exists("uploads/$selFileEmp[file_path]")){ //ถ้ามีไฟล์ให้เอาออก
-               unlink("uploads/$selFileEmp[file_path]");
+            if (file_exists("uploads/$selFileEmp[file_path]")) { //ถ้ามีไฟล์ให้เอาออก
+                unlink("uploads/$selFileEmp[file_path]");
             }
-            
-            /*upload*/
+
+            /* upload */
             if (!$this->upload->do_upload('fileEmPhoto')) {
                 $error = array('error' => $this->upload->display_errors());
                 print_r($error);
@@ -256,17 +254,23 @@ class Main_data extends CI_Controller {
                 $file_path = $upload_data['file_name'];
                 /* insertFile */
                 //$insertPhotoFile = $this->customer->_insert_file($file_name, $tbCustomerId);
-               $update_photo  = $this->users->_update_photo($selFileEmp['file_id'],$file_path);
+                $update_photo = $this->users->_update_photo($selFileEmp['file_id'], $file_path);
             }
-            
-            
-            
         }
-         header('Location: ' . $_SERVER['HTTP_REFERER']);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
-    
-     public function update_customer() {
+
+    public function update_customer() {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 1000;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 1000;
+        $this->upload->initialize($config);
+        $this->load->library('upload', $config);
+
+
         $customer = array(
             'txtCusname' => $this->input->post('txtCusname'),
             'selCusStatus' => $this->input->post('selCusStatus'),
@@ -285,19 +289,45 @@ class Main_data extends CI_Controller {
             'txtLat' => $this->input->post('txtLat'),
             'txtLong' => $this->input->post('txtLong'),
             'txtCustomerMark' => $this->input->post('txtCustomerMark'),
-            'txtNameCon' => $this->input->post('txtNameCon[]'), 
+            'txtNameCon' => $this->input->post('txtNameCon[]'),
             'selStatusCondition' => $this->input->post('selStatusCondition[]'),
             'customer_id' => $this->input->post('hdf')
         );
-        /*update ข้อมูลทั่วไป*/
+        /* update ข้อมูลทั่วไป */
         $updateInfo = $this->customer->_update_customer_by_id($customer);
-        
-        /*ลบผู้ลงนามเดิม*/ $deleteSign = $this->customer->_del_sign($customer);
-        /*เอาข้อมูลใหม่ใส่*/ $countofTxtSign = count($customer['txtNameCon']);
-                        $insertSing = $this->customer->_insert_sign($customer, $customer['customer_id'], $countofTxtSign);
-        /*รีไดเรค*/
+
+        /* ลบผู้ลงนามเดิม */ $deleteSign = $this->customer->_del_sign($customer);
+        /* เอาข้อมูลใหม่ใส่ */ $countofTxtSign = count($customer['txtNameCon']);
+        $insertSing = $this->customer->_insert_sign($customer, $customer['customer_id'], $countofTxtSign);
+        /* แก้รูป */
+        if (!empty($_FILES['fileImgCustomer']['name'])) {
+            /* เลือกรุปเก่ามาลบก่อน */
+            $oldPhoto = $this->customer->_sel_file($customer['customer_id']);
+
+            if (!empty($oldPhoto)) {
+                if (file_exists("uploads/$oldPhoto")) {
+                    unlink($oldPhoto);
+                }
+                $deleteOldPhoto = $this->customer->_delete_photo($customer['customer_id']);
+            }
+
+            /* เอารูปใหม่ลง */
+            if (!$this->upload->do_upload('fileImgCustomer')) {
+                $error = array('error' => $this->upload->display_errors());
+                print_r($error);
+            } else {
+
+                $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
+                $file_name = $upload_data['file_name'];
+                /* insertFile */
+                $insertPhotoFile = $this->customer->_insert_file($file_name, $customer['customer_id']);
+            }
+            
+        }
+
+        /* รีไดเรค */
         header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit; 
+        exit;
     }
 
 }

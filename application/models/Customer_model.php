@@ -165,8 +165,11 @@ class Customer_model extends CI_Model {
             $this->db->where('customer_id', $customer['customer_id']);
             $this->db->delete('sign');
         }
-        
-        
+    }
+
+    public function _delete_photo($customer_id) {
+        $this->db->where('customer_id', $customer_id)
+                ->delete('file');
     }
 
 }
