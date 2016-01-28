@@ -217,9 +217,12 @@ class Main_data extends CI_Controller {
             /* บาท/วัน */ 'txtRateCoast' => $this->input->post('txtRateCoast'),
             /* วัน / เดือน */ 'txtWorkDay' => $this->input->post('txtWorkDay'),
             /* วันหยุด */ 'txtareaCondition' => $this->input->post('txtareaCondition'),
-            /* หมายเหตุ */ 'txtareaMark' => $this->input->post('txtareaMark')
+            /* หมายเหตุ */ 'txtareaMark' => $this->input->post('txtareaMark'),
+            /*em_id*/ 'em_id' => $this->input->post('hdf')
         );
-        $callUpdateEm = $this->users->__update_em_detail($dataUpdate);
+        $callUpdateEm = $this->users->_update_em_detail($dataUpdate);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
     }
 
 }

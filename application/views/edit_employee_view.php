@@ -71,7 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- /.sidebar -->
             </aside>
             <!--  <form action="" method="post">      -->  
-            <?php echo form_open_multipart('main_data/update_emp') ?>
+            
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
@@ -90,6 +90,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <section class="content">
                     <div class="row">
                         <!--รูปประจำตัว-->
+                     <?php echo form_open('main_data/update_pic_emp')?>   
+                         <input type="hidden" name="hdf" value="<?php echo $id; ?>">
                         <div class="col-sm-3">
                             <div class="box box-info">
                                 <div class="box-header with-border">
@@ -98,14 +100,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="box-body box-profile">
                                     <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url(); ?>dashboard/lte/dist/img/avatar5.png" title="รูปประจำตัว">
                                     <div style="padding-top: 9px"></div>
-                                    <input type="file" class="form-control input-sm" name="fileEmPhoto"/>
+                                    
+                                    
+                                    <ul class="list-inline">
+                                        <li><input  type="file" class="input-sm" name="fileEmPhoto"/></li>
+                                        <li><button type="submit" name="btnUppic" class="btn btn-sm btn-default"><span class="fa fa-save"></span></button></li>
+                                      </ul>
                                 </div>
                             </div>
-
+                            
 
 
                         </div>
+                    <?php echo form_close();?>
                         <!--ข้อมูลพนักงาน-->
+                      <?php echo form_open('main_data/update_emp') ?>  
+                        <input type="hidden" name="hdf" value="<?php echo $id; ?>">
                         <div class="col-sm-9">
                             <div class="box box-info">
                                 <div class="box-header with-border">
