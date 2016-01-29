@@ -316,7 +316,7 @@ class Report_model extends CI_Model {
     public function _checker_daily2($data) {
         $update = array(
             'validator' => $data['selCheck'],
-            'comment' => $data['txtComment']
+            'comment' => $data['txtComment']." "."โดย"." ". $this->session->userdata('em_name')." "."วันที่:".$this->session->userdata('date_curent')
         );
         
 

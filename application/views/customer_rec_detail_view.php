@@ -172,7 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <?php //endif; ?> </center>  -->
                                         <!--ตรวจสอบ-->
                                         
-                                        <?php if ($pro_role == "ผู้ปฏิบัติงาน"): ?>
+                                        <?php if ($pro_role == "ผู้ปฏิบัติงาน" || $this->session->userdata('em_role') == "ผู้ดูแลระบบ"): ?>
                                         <button data-toggle="modal" data-target="#pnlCheck<?php echo $rowcustomer_pro_details->daily_id;?>" class="btn btn-xs btn-default"><span class="fa fa-eye"></span></button> 
                                        
                                         <?php endif; ?>
