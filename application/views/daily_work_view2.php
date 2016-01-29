@@ -312,7 +312,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                                                     <textarea placeholder="แทรกข้อความ...ข้อความจะถูกเก็บเมื่อกดบันทึก" disabled=""   name="areaNote[]" id="noteArea<?php echo $i; ?>" rows="5" cols="90"><?php  echo @$dataInsert[$j]['note'] ?></textarea>
 
-
+                                                                                    
                                                                                     <!--.Editor-->
                                                                                 </div>
                                                                                 <div class="modal-footer">

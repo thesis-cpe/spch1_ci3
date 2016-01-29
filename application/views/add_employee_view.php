@@ -129,14 +129,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                         <div class="col-sm-3">
                                             <label>&nbsp;</label>
-                                            <input name="txtEmName" type="text" class="form-control" placeholder="ชื่อ">
+                                            <input required="" name="txtEmName" type="text" class="form-control" placeholder="ชื่อ">
 
                                             <!-- /input-group -->
                                         </div>
                                         <!-- /.col-lg-6 -->
                                         <div class="col-sm-3">
                                             <label>&nbsp;</label>
-                                            <input name="txtEmLastName" type="text" class="form-control " placeholder="นามสกุล">
+                                            <input required="" name="txtEmLastName" type="text" class="form-control " placeholder="นามสกุล">
                                             <!-- /input-group -->
                                         </div>
                                         
@@ -311,7 +311,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
-                                        <input name="datInWork" type="text" class="form-control" placeholder="01/01/2016">
+                                        <input required="" name="datInWork" type="text" class="form-control" placeholder="01/01/2016">
 
                                     </div>
                                 </div>
