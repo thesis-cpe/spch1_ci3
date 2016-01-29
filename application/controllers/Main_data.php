@@ -329,5 +329,9 @@ class Main_data extends CI_Controller {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
+    
+    public function delcus(){
+       echo $customerId = $this->input->post('hdf1');
+    }
 
 }
