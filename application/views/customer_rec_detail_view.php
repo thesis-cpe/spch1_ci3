@@ -101,7 +101,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                          <?php echo form_open("report/record/$argument[em_id]/$argument[project_id]");?>
+                            <?php echo form_open("report/record/$argument[em_id]/$argument[project_id]"); ?>
                             <div class="row">
                                 <div class="col-sm-offset-5 col-sm-2">
                                     <!--Date Rang-->
@@ -110,7 +110,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            
+
                                             <input required=""  name="rangDate" type="text" class="form-control input-sm" id="reservation">
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
@@ -119,7 +119,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-sm-2">
                                     <button class="btn btn-sm btn-default" type="submit" name="btnRang"><span class="fa fa-search"></span></button>
                                 </div>
-                            <?php echo form_close();?>
+                                <?php echo form_close(); ?>
                             </div>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
@@ -162,12 +162,54 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </td>
                                     <td>
                                       <!--  <input type="checkbox" name="ckecked[]" /> -->
-                                     <!--   <input value="<?php echo $this->session->userdata('em_name'); ?>"  data-size="mini" type="checkbox" data-toggle="toggle" data-on="ยืนยัน" data-off="รอ"> -->
-                                    <center> <?php if ($rowcustomer_pro_details->validator == "ตรวจสอบ"): ?>
-                                            <a title="ตรวจสอบแล้ว" href="<?php echo base_url(); ?>index.php/report/cheked/uncheck/<?php echo $rowcustomer_pro_details->daily_id; ?>" class="btn btn-xs btn-success"><span class="fa   fa-check-square-o"></span></a>
-                                        <?php else: ?>
-                                            <a title="รอการตรวจสอบ" href="<?php echo base_url(); ?>index.php/report/cheked/check/<?php echo $rowcustomer_pro_details->daily_id; ?>" class="btn btn-xs btn-primary"><span class="fa  fa-check-square-o"></span></a>
-                                        <?php endif; ?> </center>
+                                     <!--   <input value="<?php // echo $this->session->userdata('em_name');  ?>"  data-size="mini" type="checkbox" data-toggle="toggle" data-on="ยืนยัน" data-off="รอ"> -->
+                                   <!-- <center>
+                                        <?php //if ($rowcustomer_pro_details->validator == "ตรวจสอบ"): ?>
+                                            <a title="ตรวจสอบแล้ว" href="<?php //echo base_url();  ?>index.php/report/cheked/uncheck/<?php //echo $rowcustomer_pro_details->daily_id;  ?>" class="btn btn-xs btn-success"><span class="fa   fa-check-square-o"></span></a>
+                                        <?php //else: ?>
+                                            <a title="รอการตรวจสอบ" href="<?php //echo base_url();  ?>index.php/report/cheked/check/<?php // echo $rowcustomer_pro_details->daily_id;  ?>" class="btn btn-xs btn-primary"><span class="fa  fa-check-square-o"></span></a>
+                                        
+                                        <?php //endif; ?> </center>  -->
+                                        <!--ตรวจสอบ-->
+                                        
+                                        <?php if ($pro_role == "ผู้ปฏิบัติงาน"): ?>
+                                        <button data-toggle="modal" data-target="#pnlCheck<?php echo $rowcustomer_pro_details->daily_id;?>" class="btn btn-xs btn-default"><span class="fa fa-eye"></span></button> 
+                                       
+                                        <?php endif; ?>
+                                        <?php if(!empty($rowcustomer_pro_details->validator)): echo "$rowcustomer_pro_details->validator";else: echo "-";endif;?>
+                                         <!--Modal ตรวจ-->
+                                           <?php //echo form_open('report/cheked2');?>
+                                         <form action="<?php echo base_url();?>index.php/report/cheked2" method="post" name="form<?php echo $rowcustomer_pro_details->daily_id;?>">
+                                            <div id="pnlCheck<?php echo $rowcustomer_pro_details->daily_id;?>" class="modal fade" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                      <h4 class="modal-title">ตรวจสอบ...</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                      <?php //echo $rowcustomer_pro_details->daily_id;?>
+                                                        <select required="" class="form form-control" name="selCheck">
+                                                            <option value="">ผลการตวจ</option>
+                                                            <option value="ตรวจสอบ">ตรวจสอบแล้ว</option>
+                                                            <option value="พิจารณา">พิจารณา</option>
+                                                            <option value="ไม่ผ่าน">ไม่ผ่าน</option>
+                                                            
+                                                        </select><br><br>
+                                                        <textarea class="form form-control" name="txtComment" cols="60" rows="3"></textarea>
+                                                        <input type="hidden" name="hdf" value="<?php echo $rowcustomer_pro_details->daily_id; ?>">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
+                                                      <button type="submit" class="btn btn-primary btn-sm">บันทึก</button>
+                                                    </div>
+                                                  </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                              </div><!-- /.modal -->
+                                         </form>
+                                        <!--/.Modal ตรวจ-->
+                                        
+                                        <!--.ตรวจสอบ-->
                                     </td>  
                                     </tr>
 

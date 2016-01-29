@@ -88,8 +88,8 @@ class Report extends CI_Controller {
             //ตรวจการคลิกปุ่มค้นหาและดูค่าฟิวที่ส่งมา
             if ($this->input->post('txtEmName') || $this->input->post('selProjectStatus') || $this->input->post('selYear') != "") {
                 /* หา loop1 */ $reportL1 = $this->report->_sel_em_L1($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
-                /*หา loop 2 */ $reportL2 = $this->report->_sel_em_L2($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
-                /*หา loop 3 */ $reportL3 = $this->report->_sel_em_L3($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
+                /* หา loop 2 */ $reportL2 = $this->report->_sel_em_L2($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
+                /* หา loop 3 */ $reportL3 = $this->report->_sel_em_L3($this->input->post('txtEmName'), $this->input->post('selProjectStatus'), $this->input->post('selYear'));
                 //print_r($reportL3);
                 $data = array(
                     'emName' => $emName,
@@ -99,20 +99,18 @@ class Report extends CI_Controller {
                     'emId' => $this->input->post('txtEmName')
                 );
                 $this->load->view('report_employee_view2', $data);
-            }else{
-                 $data = array(
+            } else {
+                $data = array(
                     'emName' => $emName,
-                   
                 );
-                $this->load->view('report_employee_view2_before',$data);
-                
-            } /*หากไม่มีการกดปุ่มค้นหา*/
+                $this->load->view('report_employee_view2_before', $data);
+            } /* หากไม่มีการกดปุ่มค้นหา */
         } else {
             $this->load->view('template/404anime');
         }
     }
 
-    public function record($em_id , $project_id) {  //เรคคอร์ดย่อย
+    public function record($em_id, $project_id) {  //เรคคอร์ดย่อย
         $data['argument'] = array(
             //'em_number' => $em_number,
             'em_id' => $em_id,
@@ -124,12 +122,26 @@ class Report extends CI_Controller {
 
         $data['customer_pro_details'] = $this->report->_sel_pro_customer_detail($data['argument']);
         //print_r($data['customer_pro_details']);
-
+        $data['pro_role'] = $this->report->_sel_role_team($this->session->userdata('em_id'), $project_id);
+        
         $this->load->view('customer_rec_detail_view', $data);
     }
 
     public function cheked($check, $id) {
         $this->report->_checker_daily($check, $id);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
+    public function cheked2() {
+        $data = array(
+          'selCheck' => $this->input->post('selCheck'),
+           'txtComment' => $this->input->post('txtComment'),
+            'id' => $this->input->post('hdf')
+        );
+        
+        $this->report->_checker_daily2($data);  //อัพเดต
+        
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }

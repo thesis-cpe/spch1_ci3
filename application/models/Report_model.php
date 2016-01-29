@@ -140,7 +140,7 @@ class Report_model extends CI_Model {
                 $dateEndUse . "<br>";
                 $sql = "SELECT * FROM `daily` WHERE daily_dat >= '$dateFirstUse' AND daily_dat LIKE '%$yearFirst' AND em_id = '$data[em_id]' AND project_id = '$data[project_id]' AND daily_dat <= '$newdateEndUse'";
                 $query = $this->db->query($sql);
-            }elseif($yearFirst != $yearEnd){
+            } elseif ($yearFirst != $yearEnd) {
                 $sql = "SELECT * FROM `daily` WHERE daily_dat >= '$dateFirstUse' AND em_id = '$data[em_id]' AND project_id = '$data[project_id]' AND daily_dat <= '$newdateEndUse'";
                 $query = $this->db->query($sql);
             }
@@ -300,6 +300,28 @@ class Report_model extends CI_Model {
             endforeach;
         endforeach;
         return @$dataRe;
+    }
+
+    public function _sel_role_team($em_id, $project_id) {
+        $query = $this->db->where('project_id', $project_id)
+                        ->where('em_id', $em_id)
+                        ->get('team')->result();
+        foreach ($query as $row){
+            $roleTeam = $row->team_role;
+        }
+        
+        return @$roleTeam;
+    }
+    
+    public function _checker_daily2($data) {
+        $update = array(
+            'validator' => $data['selCheck'],
+            'comment' => $data['txtComment']
+        );
+        
+
+        $this->db->where('daily_id', $data['id']);
+        $this->db->update('daily',$update);
     }
 
 }
