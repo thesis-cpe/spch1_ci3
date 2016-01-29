@@ -17,6 +17,8 @@ class Main_data extends CI_Controller {
         parent::__construct();
         $this->load->model('users_model', 'users');
         $this->load->model('Customer_model', 'customer');
+        $this->load->model('project_model','project');
+        $this->load->model('daily_model','daily');
     }
 
     public function index() {
@@ -331,7 +333,16 @@ class Main_data extends CI_Controller {
     }
     
     public function delcus(){
-       echo $customerId = $this->input->post('hdf1');
+        $customerId = $this->input->post('hdf1');
+        $selSign = $this->customer->_sel_sign($customerId);
+        
+        
+        if(!empty($selSign)){
+          $delFile =   $this->customer->_del_sign2($customerId);
+        }
+        
+       header('Location: ' . $_SERVER['HTTP_REFERER']);
+       exit;
     }
 
 }

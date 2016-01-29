@@ -171,5 +171,16 @@ class Customer_model extends CI_Model {
         $this->db->where('customer_id', $customer_id)
                 ->delete('file');
     }
+    
+    public function _del_file($cusotmer_id){
+        $this->db->where('customer_id',$cusotmer_id);
+        $this->db->delete('file');
+    }
+    
+    public function _del_sign2($customer_id) {
+            $this->db->where('customer_id', $customer_id);
+            $this->db->delete('sign');
+        
+    }
 
 }
