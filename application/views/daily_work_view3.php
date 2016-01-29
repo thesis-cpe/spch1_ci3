@@ -247,12 +247,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                   <!--  <input size="4" type="text" class="form-control input-sm" data-mask="99:99" placeholder="เริ่ม"> - 
                                                                     <input size="4" type="text" class="form-control input-sm" data-mask="99:99" placeholder="สิ้นสุด"> -->
                                                                   <!--  <input   size="9" type="text" class="form-control" data-mask="99:99-99:99" placeholder="เวลา"> -->
+                                                                    <?php if(!empty($dataInsert[$j]['validator']) && ($dataInsert[$j]['validator'] == "ตรวจสอบ")){
+                                                                        echo "<center>".@$dataInsert[$j]['start']." - ".@$dataInsert[$j]['end']."</center>";
+                                                                        ?>
+                                                                    <input value="<?php echo @$dataInsert[$j]['start'];?>" disabled="" id="txtStartTime<?php echo $i;?>" type="hidden" name="txtStartTime[]"/>  <input value="<?php echo @$dataInsert[$j]['end']; ?>" disabled="" id="txtEndTime<?php echo $i;?>" type="hidden" name="txtEndTime[]"/>   
+                                                                    <?php }else{?>
+                                                                        <input value="<?php echo @$dataInsert[$j]['start'];?>" disabled="" id="txtStartTime<?php echo $i;?>" type="time" name="txtStartTime[]"/> - <input value="<?php echo @$dataInsert[$j]['end']; ?>" disabled="" id="txtEndTime<?php echo $i;?>" type="time" name="txtEndTime[]"/>
+                                                                    <?php }?>
                                                                     
-                                                                    <input value="<?php echo @$dataInsert[$j]['start'];?>" disabled="" id="txtStartTime<?php echo $i;?>" type="time" name="txtStartTime[]"/> - <input value="<?php echo @$dataInsert[$j]['end']; ?>" disabled="" id="txtEndTime<?php echo $i;?>" type="time" name="txtEndTime[]"/>
                                                                 </td>
 
                                                                 <td>
-                                                                    <input value="<?php echo @$dataInsert[$j]['dr'];?>"   disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
+                                                                    <?php if((!empty($dataInsert[$j]['validator'])) && ($dataInsert[$j]['validator'] == "ตรวจสอบ")){?>
+                                                                    <div style="float: right"><?php echo @$dataInsert[$j]['dr']; ?></div>
+                                                                    <input value="<?php echo @$dataInsert[$j]['dr'];?>"   disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="hidden" placeholder="นาที" size="5"/>
+                                                                    <?php }else{?>
+                                                                         <input value="<?php echo @$dataInsert[$j]['dr'];?>"   disabled id="txtUseTime<?php echo $i; ?>" name="txtUseTime[]" class="form-control input-sm" type="text" placeholder="นาที" size="5"/>
+                                                                    <?php }?>
+                                                                    
+                                                                   
                                                                 </td>
 
                                                                 <!--เวลายกมา-->
@@ -293,7 +306,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 </td>
 
                                                                 <td>
-                                                                    <input value="<?php echo @$dataInsert[$j]['rec'] ?>"  disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
+                                                                    <?php if((!empty($dataInsert[$j]['validator'])) && ($dataInsert[$j]['validator'] == "ตรวจสอบ")){?>
+                                                                    <div style="float: right"><?php echo @$dataInsert[$j]['rec'] ?></div>
+                                                                    <input value="<?php echo @$dataInsert[$j]['rec'] ?>"  disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="hidden" placeholder="จำนวน" size="5"/>
+                                              
+                                                                    <?php }else{?>
+                                                                        <input value="<?php echo @$dataInsert[$j]['rec'] ?>"  disabled id="txtCountRec<?php echo $i; ?>" name="txtCountRec[]" class="form-control input-sm" type="text" placeholder="จำนวน" size="5"/>
+                                                                    <?php }?>
+                                                                    
+                                                                    
                                                                 </td>
                                                                 <!--โน้ต-->
                                                                 <td>
@@ -342,11 +363,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         document.getElementById('noteArea<?php echo $i; ?>').disabled = !this.checked;
                                                                         document.getElementById('hdfProId<?php echo $i ?>').disabled = !this.checked;
                                                                         
-                                                                        //document.getElementById('txtEndTimeMin<?php echo $i ?>').disabled = !this.checked;
-                                                                        //document.getElementById('txtStartTimeMin<?php echo $i ?>').disabled = !this.checked;
+                                                                        
                                                                         document.getElementById('txtStartTime<?php echo $i; ?>').disabled = !this.checked;
                                                                         document.getElementById('txtEndTime<?php echo $i; ?>').disabled = !this.checked;
-                                                                         document.getElementById('hdfDrId<?php echo $i?>').disabled = !this.checked;
+                                                                        
+                                                                        document.getElementById('hdfDrId<?php echo $i?>').disabled = !this.checked;
                                                                     };
                                                                 </script>
 

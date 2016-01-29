@@ -33,7 +33,8 @@ class Dailywork extends CI_Controller {
 
             $dataDate['team_data'] = $this->daily->_sel_work_team_em($em_id); //ได้ข้อมูลลูปใหญ่ ว่าอยู่ในทีมไหนบ้างรับผิดชอบรหัสงานไหนบ้าง
 
-            redirect('dailywork/dailywork2', 'refresh');  //ย้ายไป v2
+            //redirect('dailywork/dailywork2', 'refresh');  //ย้ายไป v2
+            redirect('dailywork/dailywork3', 'refresh'); //ย้ายไป v3
             /*  foreach ($dataDate['team_data']->result() as $row){
               echo  $row->project_number;
               } */
@@ -166,7 +167,7 @@ class Dailywork extends CI_Controller {
         /* insert */ //$insertDaily = $this->daily->_insert_daily($dataDaily, $countProid);
         $insertDaily = $this->daily->_insert_daily2($dataDaily, $countProid); //insert ใหม่
        // print_r($dataDaily['dr_id']);
-        redirect('dailywork/dailywork2', 'refresh');
+        redirect('dailywork/dailywork3', 'refresh');
     }
 /*/.ทดสอบ dailyWork3*/
 }
