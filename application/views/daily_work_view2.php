@@ -181,7 +181,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 $i = 1;   //วนตัว CheckBox 
                                                                 $j = 0; // วนตัวรายการเวลาที่ถูกเลือก
                                                                 /* วันที่ */
-
+                                                                if(!empty($team_data)):
                                                                 foreach ($team_data as $rowteam_data):
                                                                     ?>
 
@@ -361,15 +361,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 $j++;
                                                                 // foreach ใหญ่ มาวน
                                                             endforeach;
+                                                            
+                                                            endif;
+                                                            
                                                             ?>            
                                                             </tbody>
 
                                                             <tfoot><!--ท้ายตาราง-->
                                                                 <!--input hidden-->
                                                         <!--    <input type="hidden" name="hdfDateSel" value="<?php// echo $dateSel ?>"/>  -->
-                                                            <input type="hidden" name="hdfDateSelected" value="<?php echo $dateSelected ?>"/>
-                                                            <input type="hidden" name="hdfEmID" value="<?php echo $em_id ?>"/>  
-
+                                                            <input type="hidden" name="hdfDateSelected" value="<?php echo @$dateSelected ?>"/>
+                                                            <input type="hidden" name="hdfEmID" value="<?php echo @$em_id ?>"/>  
+                                                            <?php if(empty($team_data)):?>
+                                                            <tr>
+                                                                <td colspan="11"><center>ไม่พบงานที่รับผิดชอบ</center></td>
+                                                            </tr>
+                                                            <?php endif;?>
                                                             <!---->
                                                             </tfoot>
                                                         </table>

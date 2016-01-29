@@ -246,7 +246,7 @@ class Report_model extends CI_Model {
                 );
             endforeach; //l2
         endforeach; //l1
-        return $dataRe;
+        return @$dataRe;
     }
 
     public function _sel_em_L3($emId, $proStatus, $year) {
@@ -299,7 +299,7 @@ class Report_model extends CI_Model {
                 );
             endforeach;
         endforeach;
-        return $dataRe;
+        return @$dataRe;
     }
 
 }
