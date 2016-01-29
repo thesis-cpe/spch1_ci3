@@ -272,7 +272,7 @@ endforeach;
                                         <td><div style="float: right;"><?php echo $usetime; ?></div></td>
                                         <td><div style="float: right;"><?php echo $recuse; ?></div></td>
                                         <th></th>
-                                        <th></th>
+                                        <td><span class="fa fa-check"></span>: ผ่าน <span class="fa fa-question"></span>: รอพิจารณา <span class="fa fa-close"></span>: ไม่ผ่าน</td>
                                     </tr>
                                 </tfoot>
 
