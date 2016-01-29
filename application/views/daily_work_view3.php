@@ -191,7 +191,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         </td>
 
                                                                         <td>
-                                                                            <?php echo $rowteam_data['project_number']; ?>
+                                                                            <?php  echo $rowteam_data['project_number']; ?>
                                                                             <input disabled="" id="hdfProjectNumber<?php echo $i; ?>" type="hidden" name="hdfProjectNumber[]" value="<?php echo $rowteam_data['project_number']; ?>">
                                                                         </td>
 
@@ -248,7 +248,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <input size="4" type="text" class="form-control input-sm" data-mask="99:99" placeholder="สิ้นสุด"> -->
                                                                   <!--  <input   size="9" type="text" class="form-control" data-mask="99:99-99:99" placeholder="เวลา"> -->
                                                                     <?php if(!empty($dataInsert[$j]['validator']) && ($dataInsert[$j]['validator'] == "ตรวจสอบ")){
-                                                                        echo "<center>".@$dataInsert[$j]['start']." - ".@$dataInsert[$j]['end']."</center>";
+                                                                        echo "<center>"." ".@$dataInsert[$j]['start']." - ".@$dataInsert[$j]['end']."</center>";
                                                                         ?>
                                                                     <input value="<?php echo @$dataInsert[$j]['start'];?>" disabled="" id="txtStartTime<?php echo $i;?>" type="hidden" name="txtStartTime[]"/>  <input value="<?php echo @$dataInsert[$j]['end']; ?>" disabled="" id="txtEndTime<?php echo $i;?>" type="hidden" name="txtEndTime[]"/>   
                                                                     <?php }else{?>
@@ -319,7 +319,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <!--โน้ต-->
                                                                 <td>
                                                                     <button disabled="" id="buttonNote<?php echo $i; ?>" data-toggle="modal" data-target="#pnlNote<?php echo $i; ?>" type="button" class="btn btn-xs btn-default"><span class="fa fa-pencil-square-o"></span></button>
-
+                                                                    
+                           
                                                                     <!--Modal-->
                                                                     <div class="modal fade" id="pnlNote<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                                         <div class="modal-dialog" role="document">
