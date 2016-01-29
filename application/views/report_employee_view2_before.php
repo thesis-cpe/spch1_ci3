@@ -151,13 +151,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <thead>
 
                                                         <tr>
-                                                            <th colspan="3"><center>ข้อมูล</center></th>
+                                                            <th colspan="2"><center>ข้อมูล</center></th>
                                                     <th colspan="3"><center>เวลา</center></th>
                                                     <th colspan="3"><center>รายการบันทึก</center></th>
                                                     </tr> 
 
                                                     <tr>
-                                                        <th>พนักงาน</th>
+                                                   <!--     <th>พนักงาน</th> -->
                                                         <th>รหัสงานบริษัท</th>
                                                         <th>ชื่อบริษัท</th>
                                                         <th>ใช้ไป</th>
@@ -172,7 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <tbody>
                              
                                                         <tr>
-                                                            <td>พนักงาน</td>
+                                                         <!--   <td>พนักงาน</td> -->
                                                             <!--รหัสงานบริษัท-->
                                                             <td>&nbsp;</td>
                                                             <!--ชื่อบริษัท-->
