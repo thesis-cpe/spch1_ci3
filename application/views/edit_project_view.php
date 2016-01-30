@@ -441,31 +441,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <?php endif; }else{ ?>
                                               <input name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016">
                                             <?php }?>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-
-                                    </div>
+                                        </div>
                                 </div>
                                 <!--ยอดเงินรวม-->  
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
-                                    <input class="form-control" name="txtSumMoneyEmploy" type="number" placeholder="ยอดเงินรวม"/>
+                                    <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "สัญญาจ้าง") ||($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"))){
+                                              if($prodoc[0]['project_doc_name'] == "สัญญาจ้าง"):  ?>
+                                                <input value="<?php echo @$prodoc[0]['project_doc_money']; ?>" class="form-control" name="txtSumMoneyEmploy" type="number" placeholder="ยอดเงินรวม"/>  
+                                            <?php endif;
+                                              if($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"): ?>
+                                    <input value="<?php echo @$prodoc[1]['project_doc_money']; ?>" class="form-control" name="txtSumMoneyEmploy" type="number" placeholder="ยอดเงินรวม" />
+                                            <?php endif; }else{ ?>
+                                              <input class="form-control" name="txtSumMoneyEmploy" type="number" placeholder="ยอดเงินรวม"/>
+                                            <?php }?>
                                 </div>
                                 <!--เลขที่สัญญาจ้าง--->  
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
-                                    <input class="form-control" name="txtNoEmploy" type="number" placeholder="เลขที่ใบสัญญา"/>
-                                </div>
+                                    
+                                    <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "สัญญาจ้าง") ||($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"))){
+                                              if($prodoc[0]['project_doc_name'] == "สัญญาจ้าง"):  ?>
+                                                <input value="<?php echo @$prodoc[0]['project_doc_no']; ?>" class="form-control" name="txtNoEmploy" type="number" placeholder="เลขที่ใบสัญญา"/>  
+                                            <?php endif;
+                                              if($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"): ?>
+                                    <input value="<?php echo @$prodoc[1]['project_doc_no']; ?>" class="form-control" name="txtNoEmploy" type="number" placeholder="เลขที่ใบสัญญา" />
+                                            <?php endif; }else{ ?>
+                                               <input class="form-control" name="txtNoEmploy" type="number" placeholder="เลขที่ใบสัญญา"/>
+                                            <?php }?>
+                                 </div>
                                 <!--ไฟล์สัญญาจ้าง--->  
                                 <div class="col-sm-2">
                                     <label>&nbsp;</label>
@@ -475,17 +479,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                  <div class="col-sm-1">
                                     
                                     
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    <div style="padding-top: 21px">
-                                        <a title="สัญญาจ้าง" class="btn btn-sm btn-default" ><span class="fa fa-download"></span></a>
-                                    </div>
-                                    
-                                 </div>
+                                    <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "สัญญาจ้าง") ||($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"))){
+                                              if($prodoc[0]['project_doc_name'] == "สัญญาจ้าง"):  ?>
+                                                <div style="padding-top: 21px">
+                                                <a href="<?php echo base_url();?>uploads/<?php echo $prodoc[0]['project_doc_path'] ?>" target="_blank" itle="สัญญาจ้าง" class="btn btn-sm btn-default" ><span class="fa fa-download"></span></a>
+                                                 </div>
+                                            <?php endif;
+                                              if($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"): ?>
+                                                 <div style="padding-top: 21px">
+                                                <a href="<?php echo base_url();?>uploads/<?php echo $prodoc[1]['project_doc_path'] ?>" target="_blank" itle="สัญญาจ้าง" class="btn btn-sm btn-default" ><span class="fa fa-download"></span></a>
+                                                 </div>
+                                         <?php endif; }else{ ?>
+                                                 <div style="padding-top: 21px">
+                                              <a title="ไม่พบไฟล์" class="btn btn-sm btn-default" >-</a>
+                                                 </div>
+                                            <?php }?>
+                                     </div>
 
                             </div>
                             <!--รายละเอียดเอกสาร-->
