@@ -348,7 +348,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
-                                        <input name="datOffers" type="text" class="form-control" placeholder="วันที่เสนอราคา 01/01/2016">
+                                          <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "ใบเสนอราคา") ||($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"))){
+                                              if($prodoc[0]['project_doc_name'] == "ใบเสนอราคา"){
+                                                  echo "<input value='"; echo$prodoc[0]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
+                                              }
+                                              if($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"){
+                                                  echo "<input value='"; echo$prodoc[1]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
+                                              }
+                                              
+                                          }else{
+                                              echo "<input  name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
+                                          }?>
+                                       <!--   <input  name="datOffers" type="text" class="form-control" placeholder="วันที่เสนอราคา 01/01/2016"> -->
 
                                     </div>
                                 </div>

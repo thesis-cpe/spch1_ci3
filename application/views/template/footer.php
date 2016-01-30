@@ -4,5 +4,5 @@
       Stay hungry, stay foolish. (cr. Steve Jobs).
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2015 <a href="main_panel">ศุภโชค ออดิเตอร์ จำกัด</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2015 <a href="<?php echo base_url();?>index.php/main_panel">ศุภโชค ออดิเตอร์ จำกัด</a>.</strong> All rights reserved.
   </footer>
