@@ -210,6 +210,11 @@ class Project extends CI_Controller {
             /*เพิ่มของใหม่*/ $insertNewTeam = $this->projects->_insert_team($projectData['hdfProId'], $projectData, $countEm);
                        $countEm = 0;
         
+        
+        /*อัพเดตไฟล์*/
+                  
+        /*.อัพเดตไฟล์*/
+                       
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
         

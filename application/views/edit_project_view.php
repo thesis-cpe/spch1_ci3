@@ -350,14 +350,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                           <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "ใบเสนอราคา") ||($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"))){
                                               if($prodoc[0]['project_doc_name'] == "ใบเสนอราคา"){
-                                                  echo "<input value='"; echo @$prodoc[0]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
+                                                  echo "<input required value='"; echo @$prodoc[0]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
                                               }
                                               if($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"){
-                                                  echo "<input value='"; echo @$prodoc[1]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
+                                                  echo "<input required value='"; echo @$prodoc[1]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
                                               }
                                               
                                           }else{
-                                              echo "<input  name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
+                                              echo "<input required   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
                                           }?>
                                        <!--   <input  name="datOffers" type="text" class="form-control" placeholder="วันที่เสนอราคา 01/01/2016"> -->
 
@@ -434,12 +434,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         
                                          <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "สัญญาจ้าง") ||($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"))){
                                               if($prodoc[0]['project_doc_name'] == "สัญญาจ้าง"):  ?>
-                                                <input value="<?php echo @$prodoc[0]['project_doc_qua_dat']; ?>" name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016"/>  
+                                                <input required value="<?php echo @$prodoc[0]['project_doc_qua_dat']; ?>" name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016"/>  
                                             <?php endif;
                                               if($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"): ?>
-                                    <input value="<?php echo @$prodoc[1]['project_doc_qua_dat']; ?>" name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016" />
+                                    <input required value="<?php echo @$prodoc[1]['project_doc_qua_dat']; ?>" name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016" />
                                             <?php endif; }else{ ?>
-                                              <input name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016">
+                                    <input required name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016">
                                             <?php }?>
                                         </div>
                                 </div>
