@@ -199,7 +199,9 @@ class Project extends CI_Controller {
             'txtNoOffer' => $this->input->post('txtNoOffer'),
             'datOffersEmploy' => $this->input->post('datOffersEmploy'), //สัญญาจ้าง
             'txtSumMoneyEmploy' => $this->input->post('txtSumMoneyEmploy'),
-            'txtNoEmploy' => $this->input->post('txtNoEmploy')
+            'txtNoEmploy' => $this->input->post('txtNoEmploy'),
+            'prodocOfferId' => $this->input->post('hdf1'), //id ใบเสนอราคา
+            'prodocEmployId' => $this->input->post('hdf2'), // id สัญญาจ้าง
         );
         
         /*อัตเดตตัวโปรเจค */ $upPro = $this->projects->_update_project($projectData);
@@ -212,7 +214,40 @@ class Project extends CI_Controller {
         
         
         /*อัพเดตไฟล์*/
-                  
+           if ($projectData['datOffers'] != "" || $projectData['datOffersEmploy'] != "") {  //ถ้ามีการกรอกใบเสนอราคาหรือจ้างอย่างใดอย่างหนึ่ง
+            if (!empty($_FILES['fileDocOfffer']['name']) || !empty($_FILES['fileDocEmploy']['name'])) {//มีไฟล์อย่างใดอย่างหนึ่ง
+                if (!empty($_FILES['fileDocOfffer']['name'])) {
+                    if (!$this->upload->do_upload('fileDocOfffer')) {
+                        $error = array('error' => $this->upload->display_errors());
+                        print_r($error);
+                    } else {
+                        $upload_dataOffer = $this->upload->data();
+                        $fileDocOfffer = $upload_dataOffer['file_name'];
+                        $insertToDocPro = $this->projects->_update_prodoc($projectData['datOffers'], $projectData['txtSumMoney'], $projectData['txtNoOffer'], $fileDocOfffer, $projectData['prodocOfferId'], 'ใบเสนอราคา');
+                    }
+                }
+                if (!empty($_FILES['fileDocEmploy']['name'])) {
+                    if (!$this->upload->do_upload('fileDocEmploy')) {
+                        $error = array('error' => $this->upload->display_errors());
+                        print_r($error);
+                    } else {
+                        $upload_dataEmploy = $this->upload->data();
+                        $fileDocEmploy = $upload_dataEmploy['file_name'];
+                        //$insertToDocPro = $this->projects->_insert_prodoc($projectData, $cusIdFromproNumber, 'สัญญาจ้าง');
+                        $insertToDocPro = $this->projects->_update_prodoc($projectData['datOffersEmploy'], $projectData['txtSumMoneyEmploy'], $projectData['txtNoEmploy'], $fileDocEmploy, $projectData['prodocEmployId'], 'สัญญาจ้าง');
+                    }
+                }
+            } else {  //ถ้าไม่มีไฟล์
+                if ($projectData['datOffers'] != "") {
+                    $fileDocOfffer = "";
+                    $insertToDocPro = $this->projects->_update_prodoc($projectData['datOffers'], $projectData['txtSumMoney'], $projectData['txtNoOffer'], $fileDocOfffer, $projectData['prodocOfferId'], 'ใบเสนอราคา');
+                }
+                if ($projectData['datOffersEmploy'] != "") {
+                    $fileDocEmploy = "";
+                    $insertToDocPro = $this->projects->_update_prodoc($projectData['datOffersEmploy'], $projectData['txtSumMoneyEmploy'], $projectData['txtNoEmploy'], $fileDocEmploy, $projectData['prodocEmployId'], 'สัญญาจ้าง');
+                }
+            }
+        } 
         /*.อัพเดตไฟล์*/
                        
         header('Location: ' . $_SERVER['HTTP_REFERER']);

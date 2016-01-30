@@ -34,10 +34,6 @@ class Project_model extends CI_Model {
         return $newProNumber = $curentYearSub . "-" . $customer_tax_id . "-" . $maxOfProIdExPlodeAdd1;
     }
 
-   
-
-    
-
     public function _insert_project($projectData) {
         $curentYear = date("Y") + 543;
         $projectDataInsert = array(
@@ -171,6 +167,7 @@ class Project_model extends CI_Model {
                 'project_doc_money' => $row->project_doc_money,
                 'project_doc_no' => $row->project_doc_no,
                 'project_doc_path' => $row->project_doc_path,
+                'project_doc_id' => $row->project_doc_id
             );
         }
         return @$dataRe;
@@ -207,16 +204,14 @@ class Project_model extends CI_Model {
             $this->db->where('project_id', $selProject)
                     ->delete('team');
         }
-        
     }
-    
-    public function _del_project($customerId){
-        $this->db->where('customer_id',$customerId);
+
+    public function _del_project($customerId) {
+        $this->db->where('customer_id', $customerId);
         $this->db->delete('project');
     }
-    
-    
-     public function _update_project($projectData) {
+
+    public function _update_project($projectData) {
         $projectDataUpdate = array(
             'project_number' => $projectData['txtIdWorkCustomer'],
             'project_income' => $projectData['txtAssetProject'],
@@ -228,13 +223,31 @@ class Project_model extends CI_Model {
             'project_rate' => $projectData['selRateCoast'],
             'project_coasts' => $projectData['txtRevenueAudit'],
             'project_period' => $projectData['txtInstallment'],
-            
-         );
-         $this->db->where('project_id',$projectData['hdfProId']);
-         $this->db->update('project',$projectDataUpdate);
-        
+        );
+        $this->db->where('project_id', $projectData['hdfProId']);
+        $this->db->update('project', $projectDataUpdate);
     }
-    
-   
+
+    public function _update_prodoc($docDate, $docCoast, $docNo, $filePath, $proDocId, $fileName) {
+        if (empty($filePath)) {
+            $dataInsertFile = array(
+                'project_doc_name' => $fileName,
+                'project_doc_qua_dat' => $docDate,
+                'project_doc_money' => $docCoast,
+                'project_doc_no' => $docNo,
+            );
+        } else {
+            $dataInsertFile = array(
+                'project_doc_name' => $fileName,
+                'project_doc_qua_dat' => $docDate,
+                'project_doc_money' => $docCoast,
+                'project_doc_no' => $docNo,
+                'project_doc_path' => $filePath,
+            );
+        }
+
+        $this->db->where('project_doc_id', $proDocId);
+        $this->db->update('project_doc', $dataInsertFile);
+    }
 
 }

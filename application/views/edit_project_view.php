@@ -94,6 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Main content -->
 
                 <?php echo form_open_multipart('project/update_project'); ?>
+                
                 <section class="content">
 
                     <!-- Your Page Content Here -->
@@ -348,19 +349,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
-                                          <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "ใบเสนอราคา") ||($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"))){
+                                          <?php $dateOfferid = 0; if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "ใบเสนอราคา") ||($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"))){
                                               if($prodoc[0]['project_doc_name'] == "ใบเสนอราคา"){
                                                   echo "<input required value='"; echo @$prodoc[0]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
+                                                  $dateOfferid = @$prodoc[0]['project_doc_id'];
+                                                  
                                               }
                                               if($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"){
                                                   echo "<input required value='"; echo @$prodoc[1]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
+                                              
+                                                   $dateOfferid = @$prodoc[1]['project_doc_id'];
                                               }
                                               
                                           }else{
                                               echo "<input required   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
                                           }?>
                                        <!--   <input  name="datOffers" type="text" class="form-control" placeholder="วันที่เสนอราคา 01/01/2016"> -->
-
+                                        <input type="hidden" name="hdf1" value="<?php echo @$dateOfferid?>">
                                     </div>
                                 </div>
                                 <!--ยอดเงินรวม-->  
@@ -432,15 +437,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
                                         
-                                         <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "สัญญาจ้าง") ||($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"))){
-                                              if($prodoc[0]['project_doc_name'] == "สัญญาจ้าง"):  ?>
+                                         <?php $docEmployId = 0; if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "สัญญาจ้าง") ||($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"))){
+                                              if($prodoc[0]['project_doc_name'] == "สัญญาจ้าง"): $docEmployId = $prodoc[0]['project_doc_id'];  ?>
                                                 <input required value="<?php echo @$prodoc[0]['project_doc_qua_dat']; ?>" name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016"/>  
                                             <?php endif;
-                                              if($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"): ?>
+                                              if($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"): $docEmployId = $prodoc[1]['project_doc_id']; ?>
                                     <input required value="<?php echo @$prodoc[1]['project_doc_qua_dat']; ?>" name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016" />
                                             <?php endif; }else{ ?>
                                     <input required name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016">
                                             <?php }?>
+                                    <input type="hidden" name="hdf2" value="<?php echo @$docEmployId;?>">
                                         </div>
                                 </div>
                                 <!--ยอดเงินรวม-->  
