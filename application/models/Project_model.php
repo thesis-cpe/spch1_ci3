@@ -250,4 +250,18 @@ class Project_model extends CI_Model {
         $this->db->update('project_doc', $dataInsertFile);
     }
 
+    public function _del_old_prodoc_id_file($prodocID) {
+        $query = $this->db->where('project_doc_id', $prodocID)
+                        ->get('project_doc')->result();
+        foreach ($query as $row) {
+            $file = $row->project_doc_path;
+            
+        }
+        if(file_exists("uploads/$file")){
+            unlink("uploads/$file");
+        }
+        
+        
+    }
+
 }

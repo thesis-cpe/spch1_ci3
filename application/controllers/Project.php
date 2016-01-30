@@ -223,6 +223,7 @@ class Project extends CI_Controller {
                     } else {
                         $upload_dataOffer = $this->upload->data();
                         $fileDocOfffer = $upload_dataOffer['file_name'];
+                        /*ลบของเก่าออกก่อน*/$this->projects->_del_old_prodoc_id_file($projectData['prodocOfferId']);
                         $insertToDocPro = $this->projects->_update_prodoc($projectData['datOffers'], $projectData['txtSumMoney'], $projectData['txtNoOffer'], $fileDocOfffer, $projectData['prodocOfferId'], 'ใบเสนอราคา');
                     }
                 }
@@ -234,6 +235,7 @@ class Project extends CI_Controller {
                         $upload_dataEmploy = $this->upload->data();
                         $fileDocEmploy = $upload_dataEmploy['file_name'];
                         //$insertToDocPro = $this->projects->_insert_prodoc($projectData, $cusIdFromproNumber, 'สัญญาจ้าง');
+                        /*ลบของเก่าออกก่อน*/$this->projects->_del_old_prodoc_id_file($projectData['prodocEmployId']);
                         $insertToDocPro = $this->projects->_update_prodoc($projectData['datOffersEmploy'], $projectData['txtSumMoneyEmploy'], $projectData['txtNoEmploy'], $fileDocEmploy, $projectData['prodocEmployId'], 'สัญญาจ้าง');
                     }
                 }
