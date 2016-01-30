@@ -350,10 +350,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                           <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "ใบเสนอราคา") ||($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"))){
                                               if($prodoc[0]['project_doc_name'] == "ใบเสนอราคา"){
-                                                  echo "<input value='"; echo$prodoc[0]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
+                                                  echo "<input value='"; echo @$prodoc[0]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
                                               }
                                               if($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"){
-                                                  echo "<input value='"; echo$prodoc[1]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
+                                                  echo "<input value='"; echo @$prodoc[1]['project_doc_qua_dat'];echo"'   name='datOffers' type='text' class='form-control' placeholder='วันที่เสนอราคา 01/01/2016'>";
                                               }
                                               
                                           }else{
@@ -366,18 +366,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!--ยอดเงินรวม-->  
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
-                                    <input class="form-control" name="txtSumMoney" type="number" placeholder="ยอดเงินรวม"/>
+                                    <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "ใบเสนอราคา") ||($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"))){
+                                              if($prodoc[0]['project_doc_name'] == "ใบเสนอราคา"):  ?>
+                                                <input value="<?php echo @$prodoc[0]['project_doc_money']; ?>" class="form-control" name="txtSumMoney" type="number" placeholder="ยอดเงินรวม"/>  
+                                            <?php endif;
+                                              if($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"): ?>
+                                    <input value="<?php echo @$prodoc[1]['project_doc_money']; ?>" class="form-control" name="txtSumMoney" type="number" placeholder="ยอดเงินรวม"/>
+                                            <?php endif; }else{ ?>
+                                               <input class="form-control" name="txtSumMoney" type="number" placeholder="ยอดเงินรวม"/>
+                                            <?php }?>
+                                    
+                                    
+                                   
                                 </div>
                                 <!--เลขที่ใบเสนอราคา-->  
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
-                                    <input class="form-control" name="txtNoOffer" type="number" placeholder="เลขที่ใบเสนอราคา"/>
+                                    <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "ใบเสนอราคา") ||($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"))){
+                                              if($prodoc[0]['project_doc_name'] == "ใบเสนอราคา"):  ?>
+                                               <input value="<?php echo @$prodoc[0]['project_doc_no'] ?>" class="form-control" name="txtNoOffer" type="number" placeholder="เลขที่ใบเสนอราคา"/> 
+                                            <?php endif;
+                                              if($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"): ?>
+                                    <input value="<?php echo @$prodoc[1]['project_doc_no'] ?>" class="form-control" name="txtNoOffer" type="number" placeholder="เลขที่ใบเสนอราคา"/>
+                                            <?php endif; }else{ ?>
+                                               <input class="form-control" name="txtNoOffer" type="number" placeholder="เลขที่ใบเสนอราคา"/>
+                                            <?php }?>
+                                    
                                 </div>
                                 <!--ไฟล์ใบเสนอราคา-->  
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <label>&nbsp;</label>
-                                    <input class="form-control" name="fileDocOfffer" type="file" />
+                                    <input  name="fileDocOfffer" type="file" />
                                 </div>
+                                
+                                <div class="col-sm-1">
+                                     <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "ใบเสนอราคา") ||($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"))){
+                                              if($prodoc[0]['project_doc_name'] == "ใบเสนอราคา"):  ?>
+                                               <div style="padding-top: 21px">
+                                         <a target="_blank" title="ใบเสนอราคา" href="<?php echo base_url();?>uploads/<?php echo $prodoc[0]['project_doc_path'] ?>" class="btn btn-sm btn-default" ><span class="fa fa-download"></span></a>
+                                    </div>
+                                            <?php endif;
+                                              if($prodoc[1]['project_doc_name'] == "ใบเสนอราคา"): ?>
+                                     <div style="padding-top: 21px">
+                                         <a target="_blank" title="ใบเสนอราคา" href="<?php echo base_url();?>uploads/<?php echo $prodoc[1]['project_doc_path'] ?>" class="btn btn-sm btn-default" ><span class="fa fa-download"></span></a>
+                                    </div>
+                                            <?php endif; }else{ ?>
+                                               <div style="padding-top: 21px">
+                                        <a title="ไม่พบไฟล์" hre class="btn btn-sm btn-default" >-</a>
+                                    </div>
+                                            <?php }?>
+                                    
+                                    
+                                </div>
+                                
 
                             </div>
                             
@@ -405,10 +446,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input class="form-control" name="txtNoEmploy" type="number" placeholder="เลขที่ใบสัญญา"/>
                                 </div>
                                 <!--ไฟล์สัญญาจ้าง--->  
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <label>&nbsp;</label>
-                                    <input class="form-control" name="fileDocEmploy" type="file" />
+                                    <input  name="fileDocEmploy" type="file" />
                                 </div>
+                                
+                                 <div class="col-sm-1">
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <div style="padding-top: 21px">
+                                        <a title="สัญญาจ้าง" class="btn btn-sm btn-default" ><span class="fa fa-download"></span></a>
+                                    </div>
+                                    
+                                 </div>
 
                             </div>
                             <!--รายละเอียดเอกสาร-->
