@@ -431,7 +431,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
-                                        <input name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016">
+                                        
+                                         <?php if((!empty($prodoc)) &&(($prodoc[0]['project_doc_name'] == "สัญญาจ้าง") ||($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"))){
+                                              if($prodoc[0]['project_doc_name'] == "สัญญาจ้าง"):  ?>
+                                                <input value="<?php echo @$prodoc[0]['project_doc_qua_dat']; ?>" name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016"/>  
+                                            <?php endif;
+                                              if($prodoc[1]['project_doc_name'] == "สัญญาจ้าง"): ?>
+                                    <input value="<?php echo @$prodoc[1]['project_doc_qua_dat']; ?>" name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016" />
+                                            <?php endif; }else{ ?>
+                                              <input name="datOffersEmploy" type="text" class="form-control" placeholder="วันที่ทำสัญญา 01/01/2016">
+                                            <?php }?>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
 
                                     </div>
                                 </div>
