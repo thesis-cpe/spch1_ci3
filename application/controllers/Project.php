@@ -166,6 +166,47 @@ class Project extends CI_Controller {
         $this->load->view('edit_project_view', $data);
     }
     
+    public function update_project(){
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'doc|docx|pdf|xl|xls';
+        $config['max_size'] = 10000; //10 mb
+
+        $this->upload->initialize($config);
+        $this->load->library('upload', $config);
+       
+        
+        $projectData = array(
+            'hdfProId' => $this->input->post('hdfProId'),
+            'txtIdWorkCustomer' => $this->input->post('txtIdWorkCustomer'),
+            'txtAssetProject' => $this->input->post('txtAssetProject'),
+            'txtCoastOffice' => $this->input->post('txtCoastOffice'),
+            'txtMarkProject' => $this->input->post('txtMarkProject'),
+            /* team */
+            'selEmRole' => $this->input->post('selEmRole[]'),
+            'selEmName' => $this->input->post('selEmName[]'),
+            'txtCountWorkHour' => $this->input->post('txtCountWorkHour[]'),
+            'txtBathTime' => $this->input->post('txtBathTime[]'),
+            /* Project ต่อ */
+            'datIntWork' => $this->input->post('datIntWork'),
+            'datFinalWork' => $this->input->post('datFinalWork'),
+            'datAcepeWork' => $this->input->post('datAcepeWork'),
+            'selRateCoast' => $this->input->post('selRateCoast'),
+            'txtRevenueAudit' => $this->input->post('txtRevenueAudit'),
+            'txtInstallment' => $this->input->post('txtInstallment'),
+            /* Project_doc */
+            'datOffers' => $this->input->post('datOffers'), //ใบเสนอราคา
+            'txtSumMoney' => $this->input->post('txtSumMoney'),
+            'txtNoOffer' => $this->input->post('txtNoOffer'),
+            'datOffersEmploy' => $this->input->post('datOffersEmploy'), //สัญญาจ้าง
+            'txtSumMoneyEmploy' => $this->input->post('txtSumMoneyEmploy'),
+            'txtNoEmploy' => $this->input->post('txtNoEmploy'),
+        );
+        
+        
+        
+        
+    }
+    
     
 
 }

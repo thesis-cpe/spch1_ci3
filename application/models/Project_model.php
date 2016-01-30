@@ -34,9 +34,7 @@ class Project_model extends CI_Model {
         return $newProNumber = $curentYearSub . "-" . $customer_tax_id . "-" . $maxOfProIdExPlodeAdd1;
     }
 
-    public function _update_project($project_id) {
-        
-    }
+   
 
     
 
@@ -215,6 +213,11 @@ class Project_model extends CI_Model {
     public function _del_project($customerId){
         $this->db->where('customer_id',$customerId);
         $this->db->delete('project');
+    }
+    
+    
+     public function _update_project($project_id) {
+        
     }
 
 }
