@@ -375,4 +375,9 @@ class Main_data extends CI_Controller {
           exit; */
     }
 
+    public function delem($emId){
+        echo $emId;
+    }
 }
+
+

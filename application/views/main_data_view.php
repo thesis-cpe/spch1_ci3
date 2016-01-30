@@ -235,6 +235,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <!--เพิ่มเติม-->
                                                                     <td><button data-toggle="modal" data-target="#pnlDelEm<?php echo $rowemployee->em_id; ?>" title="ลบพนักงาน" name="btndelEm<?php echo $rowemployee->em_id; ?>" class="btn btn-xs btn-default"><span class="fa fa-trash"></span></button></td>
                                                                     <!--Modal เตือนลบพนักงาน-->
+                                                                   
                                                             <div id="pnlDelEm<?php echo $rowemployee->em_id; ?>" class="modal fade" tabindex="-1" role="dialog">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
@@ -250,11 +251,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
-                                                                            <a href="<?php echo base_url(); ?>index.php/main_data/del_em/<?php echo $rowemployee->em_id; ?>"  class="btn btn-danger btn-sm">ยืนยัน</a>
+                                                                            <a href="<?php echo base_url();?>index.php/main_data/delem/<?php echo $rowemployee->em_id; ?>" name="btnDelEm" class="btn btn-danger btn-sm">ยืนยัน</a>
                                                                         </div>
                                                                     </div><!-- /.modal-content -->
                                                                 </div><!-- /.modal-dialog -->
                                                             </div><!-- /.modal -->
+                                                            
                                                             <!--/.Modal เตือน-->
 
                                                             </tr>
