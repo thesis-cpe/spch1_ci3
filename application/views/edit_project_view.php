@@ -86,7 +86,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <small></small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="project.php"><i class="fa fa-dashboard"></i>โครงการ</a></li>
+                        <li><a href="<?php echo base_url();?>index.php/project"><i class="fa fa-dashboard"></i>โครงการ</a></li>
                         <li class="active">เพิ่มโครงการ</li>
                     </ol>
                 </section>
@@ -412,7 +412,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </div>
                                             <?php endif; }else{ ?>
                                                <div style="padding-top: 21px">
-                                        <a title="ไม่พบไฟล์" hre class="btn btn-sm btn-default" >-</a>
+                                        <a title="ไม่พบไฟล์">-</a>
                                     </div>
                                             <?php }?>
                                     
@@ -491,7 +491,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                  </div>
                                          <?php endif; }else{ ?>
                                                  <div style="padding-top: 21px">
-                                              <a title="ไม่พบไฟล์" class="btn btn-sm btn-default" >-</a>
+                                              <a title="ไม่พบไฟล์"  >-</a>
                                                  </div>
                                             <?php }?>
                                      </div>
