@@ -128,4 +128,13 @@ class Daily_model extends CI_Model {
         return $res;
     }
 
+    public function _del_daily_pro($selProject) {
+        $query = $this->db->where('project_id', $selProject)
+                        ->get('daily')->result();
+        if (!empty($query)) {
+            $this->db->where('project_id', $selProject)
+                    ->delete('daily');
+        }
+    }
+
 }

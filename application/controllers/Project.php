@@ -134,6 +134,8 @@ class Project extends CI_Controller {
                 }
             }
         }
+        
+        $this->load->view('project_view_load');
     }
 
     public function close_open($command, $id) {
@@ -163,5 +165,7 @@ class Project extends CI_Controller {
 
         $this->load->view('edit_project_view', $data);
     }
+    
+    
 
 }

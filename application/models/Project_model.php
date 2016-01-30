@@ -38,9 +38,7 @@ class Project_model extends CI_Model {
         
     }
 
-    public function _del_project($project_id) {
-        
-    }
+    
 
     public function _insert_project($projectData) {
         $curentYear = date("Y") + 543;
@@ -168,7 +166,7 @@ class Project_model extends CI_Model {
     public function _sel_pro_doc($proId) {
         $query = $this->db->where('project_id', $proId)
                         ->get('project_doc')->result();
-        foreach ($query as $row){
+        foreach ($query as $row) {
             $dataRe[] = array(
                 'project_doc_name' => $row->project_doc_name,
                 'project_doc_qua_dat' => $row->project_doc_qua_dat,
@@ -178,7 +176,45 @@ class Project_model extends CI_Model {
             );
         }
         return @$dataRe;
+    }
+
+    public function _selProjectCustomer($customer_id) {
+        $query = $this->db->where('customer_id', $customer_id)
+                        ->get('project')->result();
+        foreach ($query as $row) {
+            return $row->project_id;
+        }
+    }
+
+    public function _selProjectDocCustomer($selProject) {
+        $query = $this->db->where('project_id', $selProject)
+                        ->get('project_doc')->result();
+        if (!empty($query)) {
+
+            foreach ($query as $row) {
+                $path[] = $row->project_doc_path;
+            }return $path;
+        }
+    }
+
+    public function _delProjectDocCustomer($selProject) {
+        $this->db->where('project_id', $selProject);
+        $this->db->delete('project_doc');
+    }
+
+    public function _delteam($selProject) {
+        $query = $this->db->where('project_id', $selProject)
+                        ->get('team')->result();
+        if (!empty($query)) {
+            $this->db->where('project_id', $selProject)
+                    ->delete('team');
+        }
         
+    }
+    
+    public function _del_project($customerId){
+        $this->db->where('customer_id',$customerId);
+        $this->db->delete('project');
     }
 
 }

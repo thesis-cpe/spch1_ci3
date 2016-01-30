@@ -182,5 +182,12 @@ class Customer_model extends CI_Model {
             $this->db->delete('sign');
         
     }
+    
+    public function _del_customer($customerId){
+        $this->db->where('customer_id',$customerId)
+                ->delete('customer');
+    }
+    
+    
 
 }

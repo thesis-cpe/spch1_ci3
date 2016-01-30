@@ -17,8 +17,8 @@ class Main_data extends CI_Controller {
         parent::__construct();
         $this->load->model('users_model', 'users');
         $this->load->model('Customer_model', 'customer');
-        $this->load->model('project_model','project');
-        $this->load->model('daily_model','daily');
+        $this->load->model('project_model', 'project');
+        $this->load->model('daily_model', 'daily');
     }
 
     public function index() {
@@ -324,25 +324,55 @@ class Main_data extends CI_Controller {
                 /* insertFile */
                 $insertPhotoFile = $this->customer->_insert_file($file_name, $customer['customer_id']);
             }
-            
         }
 
         /* รีไดเรค */
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
-    
-    public function delcus(){
+
+    public function delcus() {
         $customerId = $this->input->post('hdf1');
         $selSign = $this->customer->_sel_sign($customerId);
+        $selFile = $this->customer->_sel_file($customerId);
+        $selProject = $this->project->_selProjectCustomer($customerId); //ได้ project_id
+        //$selDrProid
+        //$selTeam
         
         
-        if(!empty($selSign)){
-          $delFile =   $this->customer->_del_sign2($customerId);
+        print_r($selProject);
+        if (!empty($selSign)) {
+            $delSign = $this->customer->_del_sign2($customerId);
         }
-        
-       header('Location: ' . $_SERVER['HTTP_REFERER']);
-       exit;
+        if (!empty($selFile)) {
+            $delFile = $this->customer->_del_file($customerId);
+            if (file_exists("uploads/$selFile")) {
+                unlink("uploads/$selFile");
+            }
+        }
+        //project
+        if (!empty($selProject)) {
+            $selProjectDoc = $this->project->_selProjectDocCustomer($selProject);
+            if (!empty($selProjectDoc)) {
+                $delProjectDoc = $this->project->_delProjectDocCustomer($selProject);
+                $countFile = count($selProjectDoc);
+                for ($i = 0; $i < $countFile; $i++) {
+                    if (file_exists("uploads/$selProjectDoc[$i]")) {
+                        unlink("uploads/$selProjectDoc[$i]");
+                    }
+                }
+            }
+            
+            $delDrProid = $this->daily->_del_daily_pro($selProject);
+            $delTeam = $this->project->_delteam($selProject);
+            $delProject = $this->project->_del_project($customerId);
+            $delCustomer = $this->customer->_del_customer($customerId);
+            
+            
+        }
+
+        /* header('Location: ' . $_SERVER['HTTP_REFERER']);
+          exit; */
     }
 
 }
