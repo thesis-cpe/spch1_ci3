@@ -199,8 +199,19 @@ class Project extends CI_Controller {
             'txtNoOffer' => $this->input->post('txtNoOffer'),
             'datOffersEmploy' => $this->input->post('datOffersEmploy'), //สัญญาจ้าง
             'txtSumMoneyEmploy' => $this->input->post('txtSumMoneyEmploy'),
-            'txtNoEmploy' => $this->input->post('txtNoEmploy'),
+            'txtNoEmploy' => $this->input->post('txtNoEmploy')
         );
+        
+        /*อัตเดตตัวโปรเจค */ $upPro = $this->projects->_update_project($projectData);
+        /*update team*/ 
+            /*ลบของเก่า*/  $delOldTeam = $this->projects->_delteam($projectData['hdfProId']);
+                       $countEm = 0;
+                       $countEm = count($projectData['selEmName']);
+            /*เพิ่มของใหม่*/ $insertNewTeam = $this->projects->_insert_team($projectData['hdfProId'], $projectData, $countEm);
+                       $countEm = 0;
+        
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
         
         
         

@@ -152,7 +152,7 @@ class Project_model extends CI_Model {
             $daRe[] = array(
                 'team_role' => $row->team_role,
                 'team_hour' => $row->team_hour,
-                'team_salary' => $row->team_hour,
+                'team_salary' => $row->team_salary,
                 'em_id' => $row->em_id,
                 'project_id' => $row->project_id,
             );
@@ -216,8 +216,25 @@ class Project_model extends CI_Model {
     }
     
     
-     public function _update_project($project_id) {
+     public function _update_project($projectData) {
+        $projectDataUpdate = array(
+            'project_number' => $projectData['txtIdWorkCustomer'],
+            'project_income' => $projectData['txtAssetProject'],
+            'project_coast' => $projectData['txtCoastOffice'],
+            'project_note' => $projectData['txtMarkProject'],
+            'prject_start' => $projectData['datIntWork'],
+            'project_end' => $projectData['datFinalWork'],
+            'project_receip' => $projectData['datAcepeWork'],
+            'project_rate' => $projectData['selRateCoast'],
+            'project_coasts' => $projectData['txtRevenueAudit'],
+            'project_period' => $projectData['txtInstallment'],
+            
+         );
+         $this->db->where('project_id',$projectData['hdfProId']);
+         $this->db->update('project',$projectDataUpdate);
         
     }
+    
+   
 
 }
