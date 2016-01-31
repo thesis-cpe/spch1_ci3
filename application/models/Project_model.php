@@ -263,5 +263,10 @@ class Project_model extends CI_Model {
         
         
     }
+    
+    public function _delpro_cascade($proId){
+        $this->db->where('project_id',$proId);
+        $this->db->delete('project');
+    }
 
 }

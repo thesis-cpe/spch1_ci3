@@ -259,6 +259,11 @@ class Project extends CI_Controller {
         
         
     }
+    public function del_project($proId){
+        $delPro = $this->projects->_delpro_cascade($proId);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
     
     
 

@@ -142,7 +142,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         <a href="<?php echo base_url()?>index.php/project/close_open/close/<?php echo $rowdetails->project_id;?>" name="btnCloseProject" title="คลิกปิดโครงการ" class="btn btn-xs btn-default"><span class="fa   fa-unlock"></span></a>
                                                                        <?php else:?>
                                                                             <a href="<?php echo base_url()?>index.php/project/close_open/open/<?php echo $rowdetails->project_id;?>" name="btnCloseProject" title="คลิกเปิดโครงการ" class="btn btn-xs btn-default"><span class="fa  fa-lock"></span></a>   
-                                                                       <?php endif;?>    
+                                                                       <?php endif;?>  
+                                                                            <button data-toggle="modal" data-target="#pnlDelPro<?php echo $rowdetails->project_id;?>" class="btn btn-xs btn-default"><span class="fa fa-trash"></span></button>
+                                                                            <!--Modal-->
+                                                                            <div id="pnlDelPro<?php echo $rowdetails->project_id;?>" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+          <a>ต้องการลบรหัสงาน <?php echo $rowdetails->project_number;?></a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
+        <a href="<?php echo base_url();?>index.php/project/del_project/<?php echo $rowdetails->project_id; ?>" title="ลบโครงการ" class="btn btn-sm btn-danger">ยืนยัน</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+                                                                             <!--!Modal-->
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                            
                                                                     </td>
                                                                 </tr>
                                                       <?php endforeach;?>          
