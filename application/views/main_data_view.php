@@ -138,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         <td><?php echo $rowcustomer->customer_mail; ?></td>
                                                                         <!--เพิ่มเติม-->
                                                                         <td>
-                                                                            <form action="<?php echo base_url(); ?>index.php/main_data/delcus" method="post">
+                                                                            <form action="<?php echo base_url(); ?>index.php/main_data/delcus_cascade" method="post">
                                                                                 <button type="button" data-toggle="modal" data-target="#pnlDelCus<?php echo $rowcustomer->customer_id; ?>" title="ลบข้อมูลลุกค้า" name="btndelEm<?php echo $rowcustomer->customer_id; ?>" class="btn btn-xs btn-default"><span class="fa fa-trash"></span></button>
                                                                                 <!--Modal ลบ cus-->
 

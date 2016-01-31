@@ -378,6 +378,15 @@ class Main_data extends CI_Controller {
     public function delem($emId){
         echo $emId;
     }
+    
+    public function delcus_cascade(){
+         $customerId = $this->input->post('hdf1');
+         $delcus = $this->customer->_del_customer($customerId);
+         
+          header('Location: ' . $_SERVER['HTTP_REFERER']);
+          exit; 
+         
+    }
 }
 
 
