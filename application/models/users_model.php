@@ -215,5 +215,10 @@ class Users_model extends CI_Model {
         $this->db->where('file_id',$file_id);
         $this->db->update('file',$dataUp);
     }
+    
+    public function _del_em_cascade($emId){
+        $this->db->where('em_id',$emId);
+        $this->db->delete('employee');
+    }
 
 }

@@ -376,7 +376,9 @@ class Main_data extends CI_Controller {
     }
 
     public function delem($emId){
-        echo $emId;
+        $del_em = $this->users->_del_em_cascade($emId);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit; 
     }
     
     public function delcus_cascade(){
