@@ -235,6 +235,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <input name="txtContractMail" type="email" class="form-control" placeholder="exam@example.com"/>
                                     </div>
                                 </div>
+                                <!--ระดับลูกค้า-->
+                                <div class="col-md-3">
+                                    <label>กลุ่มลูกค้า:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-group"></i>
+                                        </div>
+                                        <select required="" class="form-control" name="selLevelCus">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--.ระดับลูกค้า-->
                                <!-- <div class="col-md-3">
                                     <label>รูปถ่าย:</label>
                                     <input type="file" class="form-control" name="fileImgCustomer">

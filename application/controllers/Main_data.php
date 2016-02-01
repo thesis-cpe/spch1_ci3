@@ -139,7 +139,8 @@ class Main_data extends CI_Controller {
             'txtLong' => $this->input->post('txtLong'),
             'txtCustomerMark' => $this->input->post('txtCustomerMark'),
             'txtNameCon' => $this->input->post('txtNameCon[]'), //ติดสองตัวล่างเดี๋ยวดูได้จาก code เก่า
-            'selStatusCondition' => $this->input->post('selStatusCondition[]')
+            'selStatusCondition' => $this->input->post('selStatusCondition[]'),
+            'selLevelCus' => $this->input->post('selLevelCus')
         );
 
         $callModelCustomer = $this->customer->_insert_customer($customer); //นำเข้าข้อมูล
@@ -293,7 +294,8 @@ class Main_data extends CI_Controller {
             'txtCustomerMark' => $this->input->post('txtCustomerMark'),
             'txtNameCon' => $this->input->post('txtNameCon[]'),
             'selStatusCondition' => $this->input->post('selStatusCondition[]'),
-            'customer_id' => $this->input->post('hdf')
+            'customer_id' => $this->input->post('hdf'),
+            'customer_level' => $this->input->post('selLevelCus')
         );
         /* update ข้อมูลทั่วไป */
         $updateInfo = $this->customer->_update_customer_by_id($customer);

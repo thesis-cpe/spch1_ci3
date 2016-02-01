@@ -270,6 +270,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <input value="<?php echo $customer_detail['customer_coor_mail']; ?>" name="txtContractMail" type="email" class="form-control" placeholder="exam@example.com"/>
                                     </div>
                                 </div>
+                                
+                                <div class="col-md-3">
+                                    <label>กลุ่มลูกค้า:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-group"></i>
+                                        </div>
+                                        <select required="" class="form-control" name="selLevelCus">
+                                            <option <?php if(($customer_detail['customer_level']) == "A" && (!empty($customer_detail['customer_level'] ))){echo "selected";}?> value="A" >A</option>
+                                            <option <?php if(($customer_detail['customer_level']) == "B" && (!empty($customer_detail['customer_level'] ))){echo "selected";}?>  value="B">B</option>
+                                            <option <?php if(($customer_detail['customer_level']) == "C" && (!empty($customer_detail['customer_level'] ))){echo "selected";}?>  value="C">C</option>
+                                            <option <?php if(($customer_detail['customer_level']) == "D" && (!empty($customer_detail['customer_level'] ))){echo "selected";}?>  value="D">D</option>
+                                            <option <?php if(($customer_detail['customer_level']) == "E" && (!empty($customer_detail['customer_level'] ))){echo "selected";}?>  value="E">E</option>
+                                            <option <?php if(($customer_detail['customer_level']) == "F" && (!empty($customer_detail['customer_level'] ))){echo "selected";}?>  value="F">F</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <!-- <div class="col-md-3">
                                      <label>รูปถ่าย:</label>
                                      <input type="file" class="form-control" name="fileImgCustomer">

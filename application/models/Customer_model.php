@@ -36,7 +36,8 @@ class Customer_model extends CI_Model {
             'customer_coor_mail' => $customer['txtContractMail'],
             'customer_lat' => $customer['txtLat'],
             'customer_long' => $customer['txtLong'],
-            'customer_note' => $customer['txtCustomerMark']
+            'customer_note' => $customer['txtCustomerMark'],
+            'customer_level' => $customer['selLevelCus']
         );
 
 
@@ -107,7 +108,8 @@ class Customer_model extends CI_Model {
                 'customer_coor_mail' => $row->customer_coor_mail,
                 'customer_lat' => $row->customer_lat,
                 'customer_long' => $row->customer_long,
-                'customer_note' => $row->customer_note
+                'customer_note' => $row->customer_note,
+                'customer_level' =>$row->customer_level
             );
         }
         return $dataReturn;
@@ -151,7 +153,8 @@ class Customer_model extends CI_Model {
             'customer_coor_mail' => $customer['txtContractMail'],
             'customer_lat' => $customer['txtLat'],
             'customer_long' => $customer['txtLong'],
-            'customer_note' => $customer['txtCustomerMark']
+            'customer_note' => $customer['txtCustomerMark'],
+            'customer_level' => $customer['customer_level']
         );
         $this->db->where('customer_id', $customer['customer_id']);
         $this->db->update('customer', $dataCustomer);
