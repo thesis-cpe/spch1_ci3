@@ -118,6 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <table id="example1" class="table table-bordered table-striped">
                                                             <thead>
                                                                 <tr>
+                                                                    <th width="30">กลุ่ม</th>
                                                                     <th width="150">เลขผู้เสียภาษีอากร</th>
                                                                     <th width="300">ชื่อกิจการ</th>
                                                                     <th width="100">โทรศัพท์</th>
@@ -128,6 +129,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <tbody>
                                                                 <?php foreach ($customer as $rowcustomer): ?>
                                                                     <tr>
+                                                                        <td><?php echo $rowcustomer->customer_level; ?></td>
                                                                         <!--เลขประจำตัวผู้เสียภาษีอากร-->
                                                                         <td><?php echo $rowcustomer->customer_tax_id; ?></td>
                                                                         <!--ชื่อกิจการ-->
@@ -162,7 +164,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">ปิด</button>
                                                                                                 <button  class="btn btn-danger btn-sm" type="submit">ยืนยัน</button>
                                                                                                 
-                                                                                            </div>
+                                                                                           </div>
 
                                                                                         </div><!-- /.modal-content -->
                                                                                     </div><!-- /.modal-dialog -->
