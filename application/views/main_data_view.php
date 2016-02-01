@@ -131,7 +131,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         <!--เลขประจำตัวผู้เสียภาษีอากร-->
                                                                         <td><?php echo $rowcustomer->customer_tax_id; ?></td>
                                                                         <!--ชื่อกิจการ-->
-                                                                        <td><a title="ดูข้อมูลลูกค้าอย่างละเอียด" href="<?php echo base_url(); ?>index.php/main_data/edit_customer/<?php echo $rowcustomer->customer_id; ?>"><?php echo $rowcustomer->customer_name; ?></a></td>
+                                                                        <td><a title="ดูข้อมูลลูกค้าอย่างละเอียด" href="<?php echo base_url(); ?>index.php/main_data/edit_customer/<?php echo $rowcustomer->customer_id; ?>"><?php echo $rowcustomer->customer_status."."." ".$rowcustomer->customer_name; ?></a></td>
                                                                         <!--โทรศัพท์-->
                                                                         <td><?php echo $rowcustomer->customer_tel; ?></td>
                                                                         <!--อีเมล์-->

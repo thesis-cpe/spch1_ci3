@@ -196,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         </td>
 
                                                                         <td>
-                                                                            <?php echo $rowteam_data['customer_name'];
+                                                                            <?php echo $rowteam_data['customer_status']."."." ".$rowteam_data['customer_name'];
                                                                             if(!empty($DateSelDetial[0][$j]['daily_id'])){
                                                                                 //echo $DateSelDetial[0][$j]['daily_start_time'];
                                                                             }
