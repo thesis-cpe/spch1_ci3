@@ -186,6 +186,8 @@ class Report_model extends CI_Model {
         if ($year != "") {
             $sqlSelCustomer = $sqlSelCustomer . " AND project.project_year = '$year'";
         }
+        
+       
         /* ต่อท้ายด้วย GROUP BY */
         $sqlSelCustomer = $sqlSelCustomer . " GROUP BY(project.project_id)";
         $query = $this->db->query($sqlSelCustomer);
