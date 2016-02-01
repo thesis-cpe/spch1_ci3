@@ -98,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="box-body box-profile">
                                     <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>dashboard/lte/dist/img/avatar5.png" title="รูปประจำตัว">
                                     <div style="padding-top: 9px"></div>
-                                    <input type="file" class="form-control input-sm" name="fileEmPhoto"/>
+                                    <input required="" type="file" class="form-control input-sm" name="fileEmPhoto"/>
                                 </div>
                             </div>
 
