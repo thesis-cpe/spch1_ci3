@@ -151,13 +151,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <thead>
 
                                                         <tr>
-                                                            <th colspan="2"><center>ข้อมูล</center></th>
+                                                            <th colspan="3"><center>ข้อมูล</center></th>
                                                     <th colspan="3"><center>เวลา</center></th>
                                                     <th colspan="3"><center>รายการบันทึก</center></th>
                                                     </tr> 
 
                                                     <tr>
                                                      <!--   <th>พนักงาน</th> -->
+                                                        <th width="30">กุล่ม</th>
                                                         <th>รหัสงานบริษัท</th>
                                                         <th>ชื่อบริษัท</th>
                                                         <th>ใช้ไป</th>
@@ -173,6 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <?php /*Loop1*/$i =0; foreach ($reportL1 as $rowreportL1):?>
                                                         <tr>
                                                           <!--  <td>ใจเย็นๆ ก่อน</td> -->
+                                                            <td><center><?php echo $rowreportL1['customer_level']; ?></center></td>
                                                             <!--รหัสงานบริษัท-->
                                                             <td><?php echo $rowreportL1['project_number']; ?></td>
                                                             <!--ชื่อบริษัท-->

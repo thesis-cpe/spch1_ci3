@@ -180,12 +180,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <table id="example1" class="table table-bordered table-striped">
                                                     <thead>
                                                         <tr>
-                                                            <th colspan="3"><center>ข้อมูล</center></th>
+                                                            <th colspan="4"><center>ข้อมูล</center></th>
                                                     <th colspan="3"><center>เวลา</center></th>
                                                     <th colspan="3"><center>รายการบันทึก</center></th>
                                                     </tr> 
 
                                                     <tr>
+                                                        <th width="30">กุล่ม</th>
                                                         <th>รหัสงาน</th>
                                                         <th>รหัสพนักงาน</th>
                                                         <th>ชื่อพนักงาน</th>
@@ -205,6 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         
                                                         ?>
                                                         <tr>
+                                                            <td><center><?php echo $rowsearhL1['customer_level'];?></center></td>
                                                             <td><?php echo $rowsearhL1['project_number']; ?></td>
 
                                                             <!--รหัสพนักงาน-->

@@ -42,7 +42,7 @@ class Report_model extends CI_Model {
     }
 
     public function _search_L1($dataL1) { //หาในทีมรหัสงาน
-        $sqlSerhL1 = "SELECT daily.project_id AS project_id, employee.em_id AS em_id, project.project_number AS project_number, SUM(daily_use_time) AS sum_use_time, em_number, em_name, employee.em_id AS employee_id, SUM(daily.daily_rec_insert) AS sum_rec FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
+        $sqlSerhL1 = "SELECT customer_level, daily.project_id AS project_id, employee.em_id AS em_id, project.project_number AS project_number, SUM(daily_use_time) AS sum_use_time, em_number, em_name, employee.em_id AS employee_id, SUM(daily.daily_rec_insert) AS sum_rec FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
 
         if (!empty($dataL1['selProjectNumber'])) {
             $sqlSerhL1 = $sqlSerhL1 . " AND project.project_id = '$dataL1[selProjectNumber]'";
@@ -170,7 +170,7 @@ class Report_model extends CI_Model {
 
     public function _sel_em_L1($emId, $proStatus, $year) {
         /* ควบคุมการค้นหา L1 */
-        $sqlSelCustomer = "SELECT project.project_id AS pro_id, project_number, customer_name, SUM(daily_use_time) AS sum_use_time, SUM(daily_rec_insert) AS sum_rec  FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
+        $sqlSelCustomer = "SELECT customer_level, project.project_id AS pro_id, project_number, customer_name, SUM(daily_use_time) AS sum_use_time, SUM(daily_rec_insert) AS sum_rec  FROM `daily` JOIN employee ON daily.em_id = employee.em_id JOIN project ON daily.project_id = project.project_id JOIN customer ON project.customer_id = customer.customer_id";
         if ($emId != "") {
             $sqlSelCustomer = $sqlSelCustomer . " AND employee.em_id = '$emId'";
         }
