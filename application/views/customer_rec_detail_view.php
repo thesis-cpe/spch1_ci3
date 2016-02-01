@@ -172,7 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <?php //endif; ?> </center>  -->
                                         <!--ตรวจสอบ-->
 
-                                        <?php if ($pro_role == "ผู้ปฏิบัติงาน" || $this->session->userdata('em_role') == "ผู้ดูแลระบบ"): ?>
+                                        <?php if ($pro_role == "ผู้ทำบัญชี" || $this->session->userdata('em_role') == "ผู้ดูแลระบบ"): ?>
                                             <button data-toggle="modal" data-target="#pnlCheck<?php echo $rowcustomer_pro_details->daily_id; ?>" class="btn btn-xs btn-default"><span class="fa fa-eye"></span></button> 
 
                                         <?php endif; ?>
@@ -208,7 +208,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <div class="modal-body">
     <?php //echo $rowcustomer_pro_details->daily_id; ?>
                                                             <select required="" class="form form-control" name="selCheck">
-                                                                <option value="">ผลการตวจ</option>
+                                                                <option value="">ผลการตรวจ</option>
                                                                 <option <?php if (($rowcustomer_pro_details->validator != "") && ($rowcustomer_pro_details->validator == "ตรวจสอบ" )) {
         echo "selected";
     } ?> value="ตรวจสอบ">ตรวจสอบแล้ว</option>
