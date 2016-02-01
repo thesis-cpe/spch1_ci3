@@ -174,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                       <?php endforeach;?>          
                                                     
                                                             </tbody>
-                                                            <tfoot>
+                                                        <!--    <tfoot>
                                                                 <tr>
                                                                     <th>รหัสโครงการ</th>
                                                                     <th>วันที่นำเข้า</th>
@@ -182,7 +182,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <th>วันสิ้นสุดโครงการ</th>
                                                                     <th>เพิ่มเติม</th>
                                                                 </tr>
-                                                            </tfoot>
+                                                            </tfoot>  -->
                                                         </table>
                                                     </div> <!--/.div table responsive-->
                                                 </div>

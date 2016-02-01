@@ -159,7 +159,7 @@ $config['composer_autoload'] = FALSE;
 |
 */
 //$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-ก-ฮะาิีุูเะแำไใๆ่้๊๋ั็์ึื';   //เครดิต http://www.iponthakorn.com/2014/11/codeigniter-url.html
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-ก-ฮะาิีุูเะแำไใๆ่้๊๋ั็์ึื()';   //เครดิต http://www.iponthakorn.com/2014/11/codeigniter-url.html
 
 /*
 |--------------------------------------------------------------------------
