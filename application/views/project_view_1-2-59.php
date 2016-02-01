@@ -131,50 +131,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                             <td><?php echo $rowlistCustomer->customer_tel; ?></td>
                                                                             <td><?php echo $rowlistCustomer->customer_mail; ?></td>
                                                                             
-                                                                            <td>
-                                                                               <!-- <a href="<?php //echo base_url();?>index.php/project/add_project/<?php //echo $rowlistCustomer->customer_id; ?>/<?php //echo $rowlistCustomer->customer_tax_id; ?>/<?php //echo $rowlistCustomer->customer_name; ?>" name="btnAddProject" title="เพิ่มโครงการ" class="btn btn-xs btn-default"><span class="fa  fa-suitcase"></span></a> -->
-                                                                                <button data-toggle="modal" data-target="#pnlAddPro<?php echo $rowlistCustomer->customer_id; ?>" class="btn btn-xs btn-default" type="button"><span class="fa fa-suitcase"></span></button>
-                                                                                <!--Modal-->
-                                                                                <?php echo form_open('project/add_project2')?>
-                                                                                <div id="pnlAddPro<?php echo $rowlistCustomer->customer_id; ?>"  class="modal fade" tabindex="-1" role="dialog">
-                                                                                        <div class="modal-dialog">
-                                                                                          <div class="modal-content">
-                                                                                            <div class="modal-header">
-                                                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                              <h4 class="modal-title">Modal title</h4>
-                                                                                            </div>
-                                                                                            <div class="modal-body">
-                                                                                                <input type="hidden" name="hdf1" value="<?php echo $rowlistCustomer->customer_id; ?>">
-                                                                                                <input type="hidden" name="hdf2" value="<?php echo $rowlistCustomer->customer_tax_id; ?>">
-                                                                                                <input type="hidden" name="hdf3" value="<?php echo $rowlistCustomer->customer_name; ?>">
-                                                                                                <div class="row">
-                                                                                                    <div class="col-sm-3">
-                                                                                                        <label>ปีบัญชี:</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-5">
-                                                                                                        <select class="form-control" name="selYear">
-                                                                                                            <?php
-                                                                                                                for($year = 2555; $year <= 2600; $year++){ ?>
-                                                                                                            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                                                                                                             <?php   }
-                                                                                                            ?>
-                                                                                                        </select>
-                                                                                                        
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                
-                                                                                                
-                                                                                            </div>
-                                                                                            <div class="modal-footer">
-                                                                                              <button type="button" class="btn-sm btn btn-default" data-dismiss="modal">ปิด</button>
-                                                                                              <button type="submit" class="btn-sm btn btn-primary">สร้างรหัสงาน</button>
-                                                                                            </div>
-                                                                                          </div><!-- /.modal-content -->
-                                                                                        </div><!-- /.modal-dialog -->
-                                                                                    </div><!-- /.modal -->
-                                                                                 <?php echo form_close();?>
-                                                                                <!--Modal-->
-                                                                            </td>
+                                                                            <td><a href="<?php echo base_url();?>index.php/project/add_project/<?php echo $rowlistCustomer->customer_id; ?>/<?php echo $rowlistCustomer->customer_tax_id; ?>/<?php echo $rowlistCustomer->customer_name; ?>" name="btnAddProject" title="เพิ่มโครงการ" class="btn btn-xs btn-default"><span class="fa  fa-suitcase"></span></a></td>
                                                                         </tr>
                                                              <?php endforeach;?>
                                                             </tbody>

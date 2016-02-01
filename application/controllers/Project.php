@@ -266,5 +266,32 @@ class Project extends CI_Controller {
     }
     
     
+    public function add_project2() {
+        //เจนรหัสใหม่
+        $customer_id = $this->input->post('hdf1');
+        $curentYearSub1 = $this->input->post('selYear');
+        $curentYearSub = substr($curentYearSub1, 2);
+        $customer_tax_id = $this->input->post('hdf2');
+        $customer_name =  $this->input->post('hdf3');
+        
+        
+        
+        $newProNumber = $this->projects->_add_project($curentYearSub, $customer_id, $customer_tax_id);
+        /* เลือก Em Name */
+        $emname = $this->users->_sel_employee_details();
+
+        /* เอา Data ไปยัด */
+        $dataOpenPro = array(
+            'newProNumber' => $newProNumber,
+            'taxId' => $customer_tax_id,
+            'customerName' => $customer_name,
+            'customer_id' => $customer_id,
+            'em_name' => $emname
+        );
+
+        $this->load->view('add_project_view', $dataOpenPro);
+    }
+    
+    
 
 }
