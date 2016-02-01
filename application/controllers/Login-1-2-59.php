@@ -68,20 +68,6 @@ class Login extends CI_Controller {
                             $resultEmSession['em_start_work'] = $rowemSession->em_start_work;
                             $resultEmSession['em_id'] = $rowemSession->em_id;
                         }
-                        
-                        $getPhoto = $this->users->_sel_photo($resultEmSession['em_id']);
-                        if(!empty($getPhoto)){
-                            if(file_exists("uploads/$getPhoto[file_path]")){
-                                $emPhoto = "uploads/".$getPhoto['file_path'];
-                            }else{
-                                $emPhoto = 'dashboard/lte/dist/img/avatar5.png';
-                                        
-                            }
-                        }else{
-                            $emPhoto = 'dashboard/lte/dist/img/avatar5.png';
-                        }
-                        
-                        
 
                         $dataEm = array(//ตัวแปร session
                             'username' => $username,
@@ -90,8 +76,7 @@ class Login extends CI_Controller {
                             'em_role' => $resultEmSession['role'],
                             'em_start' => $resultEmSession['em_start_work'],
                             'em_id' => $resultEmSession['em_id'],
-                            'date_curent' => $curentDay,
-                            'em_photo' => $emPhoto
+                            'date_curent' => $curentDay
                         );
                         $this->session->set_userdata($dataEm); //สร้างตัวแปร Session
                         redirect('login');
