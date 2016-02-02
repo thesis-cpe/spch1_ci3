@@ -40,7 +40,7 @@ class Project_model extends CI_Model {
     }
 
     public function _insert_project($projectData) {
-        $curentYear = date("Y") + 543;
+        //$curentYear = date("Y") + 543;
         $projectDataInsert = array(
             'project_number' => $projectData['txtIdWorkCustomer'],
             'project_income' => $projectData['txtAssetProject'],
@@ -55,7 +55,8 @@ class Project_model extends CI_Model {
             'project_status' => 'เปิดโครงการ',
             //'project_year' => $curentYear, //อาจมีการเปลี่ยนแปลง
             'project_year' => $projectData['selYear'],
-            'customer_id' => $projectData['hdfCustomerId']
+            'customer_id' => $projectData['hdfCustomerId'],
+            'project_title' => $projectData['txtWorkTitle']
         );
 
         $this->db->insert('project', $projectDataInsert);

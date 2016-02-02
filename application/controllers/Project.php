@@ -92,7 +92,8 @@ class Project extends CI_Controller {
             'txtSumMoneyEmploy' => $this->input->post('txtSumMoneyEmploy'),
             'txtNoEmploy' => $this->input->post('txtNoEmploy'),
             /*ปี*/
-            'selYear' => $this->input->post('selYear')
+            'selYear' => $this->input->post('selYear'),
+            'txtWorkTitle' => $this->input->post('txtWorkTitle')
         );
         $insertToProject = $this->projects->_insert_project($projectData);  //insert ลง project
         $proNumber = $this->input->post('txtIdWorkCustomer');  //รับค่ารหัสงานใหม่
