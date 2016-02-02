@@ -80,7 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <small>หน้าจัดการโครงการ</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="project.php"><i class="fa fa-dashboard"></i> โครงการ</a></li>
+                        <li><a href="<?php echo base_url();?>index.php/project"><i class="fa fa-dashboard"></i> โครงการ</a></li>
                         <li class="active">จัดการโครงการ</li>
                     </ol>
                 </section>

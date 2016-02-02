@@ -143,7 +143,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                           <div class="modal-content">
                                                                                             <div class="modal-header">
                                                                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                              <h4 class="modal-title">Modal title</h4>
+                                                                                              <h4 class="modal-title">เปิดโครงการ...</h4>
                                                                                             </div>
                                                                                             <div class="modal-body">
                                                                                                 <input type="hidden" name="hdf1" value="<?php echo $rowlistCustomer->customer_id; ?>">
@@ -153,7 +153,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                                     <div class="col-sm-3">
                                                                                                         <label>ปีบัญชี:</label>
                                                                                                     </div>
-                                                                                                    <div class="col-sm-5">
+                                                                                                    <div class="col-sm-3">
                                                                                                         <select class="form-control" name="selYear">
                                                                                                             <?php
                                                                                                                 for($year = 2555; $year <= 2600; $year++){ ?>
@@ -162,6 +162,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                                             ?>
                                                                                                         </select>
                                                                                                         
+                                                                                                    </div>
+                                                                                                    
+                                                                                                    
+                                                                                                </div><br>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-sm-3">
+                                                                                                        <label>ประเภท:</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-3">
+                                                                                                        <select class="form-control" name="selCate">
+                                                                                                            <option value="A">A: Account</option>
+                                                                                                            <option value="B">B: Audit</option>
+                                                                                                            <option value="C">C: Consult</option>
+                                                                                                            <option value="R">R: Reg</option>
+                                                                                                            <option value="S">S: System</option>
+                                                                                                            <option value="T">T: Tax</option>
+                                                                                                            <option value="O">O: Other</option>
+                                                                                                        </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 
