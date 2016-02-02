@@ -126,7 +126,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 
                                                                 <?php foreach ($listCustomer as $rowlistCustomer): ?>
                                                                           <tr>
-                                                                              <td><?php echo $rowlistCustomer->customer_level; ?></td>
+                                                                              <td><center><?php echo $rowlistCustomer->customer_level; ?></center></td>
                                                                             <td><?php echo $rowlistCustomer->customer_tax_id; ?></td> <!--เลขประจำตัวผู้เสียภาษีอากร-->
                                                                             
                                                                             <td><a title="โครงการทั้งหมดของลูกค้าท่านนี้" href="<?php echo base_url();?>index.php/project/project_customer/<?php echo $rowlistCustomer->customer_id;  ?>/<?php echo $rowlistCustomer->customer_name; ?>/<?php echo $rowlistCustomer->customer_tax_id; ?>"><?php echo $rowlistCustomer->customer_status."."." ".$rowlistCustomer->customer_name; ?></a></td>

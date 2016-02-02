@@ -21,7 +21,7 @@
         <li><a href="<?php echo base_url()?>index.php/main_panel"><i class="fa fa-tachometer"></i> <span>ส่วนควบคุมหลัก</span></a></li>
         <?php if($this->session->userdata('em_role')== "ผู้ดูแลระบบ"):?> 
         <li><a href="<?php echo base_url()?>index.php/main_data"><i class="fa fa-database"></i> <span>ข้อมูลหลัก</span></a></li>
-        <li><a href="<?php echo base_url()?>index.php/project"><i class="fa fa-group"></i> <span>เปิดงาน</span></a></li>
+        <li><a href="<?php echo base_url()?>index.php/project"><i class="fa fa-group"></i> <span>โครงการ</span></a></li>
         <?php endif;?>
         <li><a href="<?php echo base_url()?>index.php/dailywork"><i class="fa fa-tasks"></i> <span>งานประจำวัน</span></a></li>
       <!--  <li><a href="report.php"><i class="fa fa-line-chart"></i> <span>รายงาน</span></a></li>  -->
