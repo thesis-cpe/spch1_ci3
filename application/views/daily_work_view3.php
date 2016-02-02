@@ -147,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <!-- /.box-header -->
                                                 <div class="box-body">
                                                     <div class="table-responsive">  
-                                                        <table id="example1" class="table table-bordered table-striped" width="1205">
+                                                        <table id="example1" class="table table-bordered table-striped"> <!--width="1205" -->
                                                             <thead><!--หัวตาราง-->
                                                                 <tr>
 
@@ -159,9 +159,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         <p>รหัสงาน</p></td>
                                                                     <td width="100"  rowspan="2" align="center"><p>cusname</p>
                                                                         <p>ชื่อบริษัท</p></td>
-                                                                    <td width="50"  rowspan="2" align="center"><p>trndate</p>
-                                                                        <p>วันที่</p></td>
-                                                                    <td  width="50" rowspan="2" align="center"><p>trntime</p>
+                                                                   <td width="10"  rowspan="2" align="center"> <p>trndate</p> 
+                                                                        วันที่
+                                                                   </td>
+                                                                  <td  width="100" rowspan="2" align="center"><p>trntime</p>
                                                                         <p>ช่วงเวลา</p></td>
                                                                     <td colspan="3" align="center">เวลา</td>
                                                                     <td colspan="3" align="center">รายการบันทึก</td>
