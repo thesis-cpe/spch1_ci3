@@ -127,7 +127,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab_1" data-toggle="tab">ข้อมูลงาน</a></li>
 
-                            <li><button name="btnSubmit" type="submit" class="btn btn-block btn-info btn-sm" title="บันทึก"><span class="fa fa-save"></button></li> 
+                            <li><button name="btnSubmit" type="submit" class="btn btn-block btn-info btn-sm" title="บันทึก"><span class="fa fa-save"></button></li>
+                            
                         </ul>
 
                         <div class="tab-content">
@@ -411,7 +412,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <!-- /.col -->
                                     </div>
+                                    
                                     <!-- /.row -->
+                                    <!--หมายเหตุ-->
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <label>A: </label> Account,&nbsp;  <label>B:</label> Audit,&nbsp;  <label>C:</label> Consult,&nbsp;  <label>R:</label> Reg,&nbsp;  <label>S:</label> System,&nbsp;  <label>T:</label> Tax,&nbsp;  <label>O:</label> Other
+                                        </div>
+                                    </div>
+                                    <!--.หมายเหตุ-->
                                 </section>
 
                                 <!--.Conten Tab1-->
