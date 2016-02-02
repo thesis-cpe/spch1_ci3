@@ -263,11 +263,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>  <!--รับค่าจาก GoogleMap-->
-                                    <input name="txtLat" id="lat_value" class="form-control" placeholder="ละติจูด(ค่าอัตโนมัติเมื่อลากหมุด)" />
+                                    <input required="" value="19.170412677723295" name="txtLat" id="lat_value" class="form-control" placeholder="ละติจูด(ค่าอัตโนมัติเมื่อลากหมุด)" />
                                 </div>
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label><!--รับค่าจาก GoogleMap-->
-                                    <input name="txtLong" id="lon_value" class="form-control" placeholder="ลองติจูด(ค่าอัตโนมัติเมื่อลากหมุด)" />
+                                    <input required="" value="99.90067908465574" name="txtLong" id="lon_value" class="form-control" placeholder="ลองติจูด(ค่าอัตโนมัติเมื่อลากหมุด)" />
                                 </div>
                                 <div class="col-sm-6">
                                     <label>&nbsp;</label>
