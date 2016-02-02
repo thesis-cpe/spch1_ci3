@@ -360,7 +360,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!--เลขที่ใบเสนอราคา-->  
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
-                                    <input class="form-control" name="txtNoOffer" type="number" placeholder="เลขที่ใบเสนอราคา"/>
+                                    <input class="form-control" name="txtNoOffer" type="text" placeholder="เลขที่ใบเสนอราคา"/>
                                 </div>
                                 <!--ไฟล์ใบเสนอราคา-->  
                                 <div class="col-sm-3">
@@ -390,7 +390,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!--เลขที่สัญญาจ้าง--->  
                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
-                                    <input class="form-control" name="txtNoEmploy" type="number" placeholder="เลขที่ใบสัญญา"/>
+                                    <input class="form-control" name="txtNoEmploy" type="text" placeholder="เลขที่ใบสัญญา"/>
                                 </div>
                                 <!--ไฟล์สัญญาจ้าง--->  
                                 <div class="col-sm-3">
