@@ -123,8 +123,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <label>หน่วยงาน:</label>
                                     <input type="text" class="form-control" name="txtCustomerName" value="<?php echo $customerName; ?>" readonly=""/>
                                 </div>
-                                <!--รายได้โครงการ-->
-                                <div class="col-sm-3">
+                                <!--ชื่องานที่ทำ-->
+                                <div class="col-sm-6">
+                                    <label>&nbsp;</label>
+                                    <input required="" class="form-control" name="txtWorkTitle" placeholder="หัวข้องาน" type="text" />
+                                    
+                                </div>
+                                <!--ค่าใช้จ่ายสำนักงาน-->
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>&nbsp;</label>
+                                    <textarea class="form-control" name="txtMarkProject" placeholder="หมายเหตุ"></textarea>
+                                </div>
+                                
+                                 <div class="col-sm-3">
                                     <label>&nbsp;</label>
                                     <div class="input-group">
                                         <div class="input-group-addon">
@@ -133,18 +147,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <input name="txtAssetProject" type="number" class="form-control" placeholder="รายได้โครงการ(บาท)"/>
                                     </div>
                                 </div>
-                                <!--ค่าใช้จ่ายสำนักงาน-->
+                                
                                 <div class="col-sm-3">
 
                                     <label>&nbsp;</label>
                                     <input type="number"  class="form-control" name="txtCoastOffice" placeholder="ค่าใช้จ่ายสำนักงาน(บาท)"  />
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>&nbsp;</label>
-                                    <textarea class="form-control" name="txtMarkProject" placeholder="หมายเหตุ"></textarea>
-                                </div>
+                                
                             </div>
                         </div>
                         <!-- /.box-body -->
