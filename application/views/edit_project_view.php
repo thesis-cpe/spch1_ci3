@@ -125,8 +125,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="text" class="form-control" name="txtCustomerName" value="<?php echo $customerName; ?>" readonly=""/>
                                 </div>
                                 <!--รายได้โครงการ-->
-                                <div class="col-sm-3">
+                                <div class="col-sm-6">
+                                    <label>หัวข้องาน:</label>
+                                    <input value="<?php echo $project_detail['project_title'] ?>" required="" class="form-control" name="txtWorkTitle" placeholder="หัวข้องาน" type="text">
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
                                     <label>&nbsp;</label>
+                                    <textarea class="form-control" name="txtMarkProject" placeholder="หมายเหตุ"><?php echo $project_detail['project_note']?></textarea>
+                                </div>
+                                <!--รายได้โครงการ-->
+                                <div class="col-sm-3">
+                                    <label>รายได้โครงการ:</label>
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-usd"></i>
@@ -137,14 +150,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!--ค่าใช้จ่ายสำนักงาน-->
                                 <div class="col-sm-3">
 
-                                    <label>&nbsp;</label>
+                                    <label>ค่าใช้จ่ายสำนักงาน</label>
                                     <input value="<?php echo $project_detail['project_coast'];?>" type="number"  class="form-control" name="txtCoastOffice" placeholder="ค่าใช้จ่ายสำนักงาน(บาท)"  />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>&nbsp;</label>
-                                    <textarea class="form-control" name="txtMarkProject" placeholder="หมายเหตุ"><?php echo $project_detail['project_note']?></textarea>
                                 </div>
                             </div>
                         </div>

@@ -161,7 +161,8 @@ class Project extends CI_Controller {
             'project_detail' => $projectDetail,
             'employeeDetail' => $employeeDetail,
             'teamDetail' => $teamDetail,
-            'prodoc' => $proDocDetail 
+            'prodoc' => $proDocDetail ,
+            
         );
         //echo $data['teamDetail'][0]['team_role'];
 
@@ -205,6 +206,9 @@ class Project extends CI_Controller {
             'txtNoEmploy' => $this->input->post('txtNoEmploy'),
             'prodocOfferId' => $this->input->post('hdf1'), //id ใบเสนอราคา
             'prodocEmployId' => $this->input->post('hdf2'), // id สัญญาจ้าง
+            
+            /*หัวข้องาน*/
+            'txtWorkTitle' => $this->input->post('txtWorkTitle')
         );
         
         /*อัตเดตตัวโปรเจค */ $upPro = $this->projects->_update_project($projectData);

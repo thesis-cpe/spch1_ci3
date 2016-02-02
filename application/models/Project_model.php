@@ -141,6 +141,7 @@ class Project_model extends CI_Model {
                 'project_status' => $row->project_status,
                 'project_year' => $row->project_year,
                 'customer_id' => $row->customer_id,
+                'project_title' => $row->project_title
             );
         }
         return $dataRe;
@@ -230,6 +231,7 @@ class Project_model extends CI_Model {
             'project_rate' => $projectData['selRateCoast'],
             'project_coasts' => $projectData['txtRevenueAudit'],
             'project_period' => $projectData['txtInstallment'],
+            'project_title' => $projectData['txtWorkTitle']
         );
         $this->db->where('project_id', $projectData['hdfProId']);
         $this->db->update('project', $projectDataUpdate);
