@@ -91,6 +91,8 @@ class Project extends CI_Controller {
             'datOffersEmploy' => $this->input->post('datOffersEmploy'), //สัญญาจ้าง
             'txtSumMoneyEmploy' => $this->input->post('txtSumMoneyEmploy'),
             'txtNoEmploy' => $this->input->post('txtNoEmploy'),
+            /*ปี*/
+            'selYear' => $this->input->post('selYear')
         );
         $insertToProject = $this->projects->_insert_project($projectData);  //insert ลง project
         $proNumber = $this->input->post('txtIdWorkCustomer');  //รับค่ารหัสงานใหม่
@@ -273,10 +275,10 @@ class Project extends CI_Controller {
         $curentYearSub = substr($curentYearSub1, 2);
         $customer_tax_id = $this->input->post('hdf2');
         $customer_name =  $this->input->post('hdf3');
+        $selCatetagory = $this->input->post('selCate');
         
         
-        
-        $newProNumber = $this->projects->_add_project($curentYearSub, $customer_id, $customer_tax_id);
+        $newProNumber = $this->projects->_add_project($curentYearSub, $customer_id, $customer_tax_id,$selCatetagory); //ได้รหัสงานใหม่
         /* เลือก Em Name */
         $emname = $this->users->_sel_employee_details();
 
@@ -286,7 +288,9 @@ class Project extends CI_Controller {
             'taxId' => $customer_tax_id,
             'customerName' => $customer_name,
             'customer_id' => $customer_id,
-            'em_name' => $emname
+            'em_name' => $emname,
+            'sel_year' => $curentYearSub1
+                
         );
 
         $this->load->view('add_project_view', $dataOpenPro);

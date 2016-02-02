@@ -20,18 +20,23 @@ class Project_model extends CI_Model {
         return $query;
     }
 
-    public function _add_project($curentYearSub, $customer_id, $customer_tax_id) {
+    public function _add_project($curentYearSub, $customer_id, $customer_tax_id, $selCatetagory) {
         //สร้างรหัสงานใหม่
-        $sql = "SELECT MAX(project_number) AS max_project_id FROM project WHERE customer_id = '$customer_id' AND project_year LIKE '%$curentYearSub'";
+          $sql = "SELECT MAX(project_number) AS max_project_id FROM project WHERE customer_id = '$customer_id' AND project_year LIKE '%$curentYearSub'";
         $query = $this->db->query($sql)->result();
         foreach ($query as $row) {
             $maxProId = $row->max_project_id; //จะได้หมายเลขโปรเจคของลูกค้าที่ล่าสุด
         }
-        $maxProIdExPlode = (explode("-", $maxProId));
+          $maxProIdExPlode = (explode("-", $maxProId));
         $sizemaxProIdExPlode = sizeof($maxProIdExPlode) - 1; //เอาอาเรย์ตัวสุดท้าย
-        $maxOfProIdExPlode = $maxProIdExPlode[$sizemaxProIdExPlode];
-        $maxOfProIdExPlodeAdd1 = $maxOfProIdExPlode + 1;
-        return $newProNumber = $curentYearSub . "-" . $customer_tax_id . "-" . $maxOfProIdExPlodeAdd1;
+         $maxOfProIdExPlode = $maxProIdExPlode[$sizemaxProIdExPlode];
+         $maxOfProIdExPlodeAdd1 = $maxOfProIdExPlode + 1;
+        
+       
+        //return $newProNumber = $curentYearSub . "-" . $customer_tax_id . "-" . $maxOfProIdExPlodeAdd1;
+         /*แก้รหัสงานใหม่*/
+         return   $newProNumber = $curentYearSub . "-" . $customer_tax_id . "-" . $selCatetagory."-".$maxOfProIdExPlodeAdd1;
+        /*.แก้รหัสงานใหม่*/
     }
 
     public function _insert_project($projectData) {
@@ -48,7 +53,8 @@ class Project_model extends CI_Model {
             'project_coasts' => $projectData['txtRevenueAudit'],
             'project_period' => $projectData['txtInstallment'],
             'project_status' => 'เปิดโครงการ',
-            'project_year' => $curentYear, //อาจมีการเปลี่ยนแปลง
+            //'project_year' => $curentYear, //อาจมีการเปลี่ยนแปลง
+            'project_year' => $projectData['selYear'],
             'customer_id' => $projectData['hdfCustomerId']
         );
 
