@@ -116,6 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <table id="example1" class="table table-bordered table-striped">
                                                             <thead>
                                                                 <tr>
+                                                                    <th>หัวข้องาน</th>
                                                                     <th>รหัสโครงการ</th>
                                                                     <th>วันที่นำเข้า</th>
                                                                     <th>วันเริ่มโครงการ</th>
@@ -126,6 +127,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <tbody>
                                                        <?php foreach ($details as $rowdetails):?>    
                                                                 <tr>
+                                                                    <!--หัวข้องาน-->
+                                                                    <td><?php echo $rowdetails->project_title;?></td>
                                                                     <!--รหัสโครงการ-->
                                                                     <td><?php echo $rowdetails->project_number;?></td>
                                                                     <!--วันที่นำเข้า-->
