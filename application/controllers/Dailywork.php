@@ -134,7 +134,7 @@ class Dailywork extends CI_Controller {
                    $DateSelDetial[] = $this->daily->sel_daily_datsel($em_id,$rowTeamdata['project_id'],$dataDate['dateSel']);
                    
              }
-             $dataDate['DateSelDetial'] = $DateSelDetial;
+             @$dataDate['DateSelDetial'] = $DateSelDetial;
              //print_r($DateSelDetial)."<br>";
              //echo $dataDate['DateSelDetial'][0][1]['daily_id'];
              /*วนตัวแปรมา explode*/
